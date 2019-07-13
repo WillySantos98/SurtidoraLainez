@@ -13,7 +13,7 @@
             <th>Chasis</th>
             <th>Accion</th>
         </thead>
-        <tbody>
+        <tbody id="bodyTable">
         @foreach($notificaciones as  $info)
             <tr>
                 <td>{{$info->cod_venta}}</td>
@@ -34,4 +34,5 @@
     <div class="modal fade" id="ModalGeneracionNotificacion" tabindex="-1" role="dialog" aria-labelledby="ModalGeneracionNotificacion" aria-hidden="true">
         @include('Inventario.Motocicletas.Documentos.Notificaciones.Modals.ModalGenerarNotificacion')
     </div>
+    @include('Index.componentes.buscador')
 @endsection

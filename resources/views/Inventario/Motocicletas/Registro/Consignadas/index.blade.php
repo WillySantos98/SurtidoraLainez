@@ -106,6 +106,7 @@
 
 $(document).ready(function () {
     $('#AgregarRegistrosConsignacion').click(function () {
+        var modelo = document.getElementById("ModeloFormConsignacion").value;
         var chasis = document.getElementById("NumChasisFormConsignacion").value;
         var motor = document.getElementById("NumMotorFormConsignacion").value;
         let color = document.getElementById("ColorFormConsignacion").value;
@@ -113,13 +114,6 @@ $(document).ready(function () {
         let observacion = document.getElementById("ObservacionFormConsignacion").value;
         let idMarca = document.getElementById("IdMarcaFormConsignacion").value;
         let idModelo = document.getElementById("IdModeloFormConsignacion").value;
-        var modelo = document.getElementById("ModeloFormConsignacion").value;
-        var radioCasco = document.getElementById("CheckCasco").value;
-        var radioAcido = document.getElementById("CheckAcido").value;
-        var radioLlaves = document.getElementById("CheckLlaves").value;
-        console.log(radioCasco);
-        console.log(radioLlaves);
-        console.log(radioAcido);
         $('#CuerpoFormularioConsignado').append('<tr>' +
             '<td>' +
             '<input type="text" class="form-control" value="'+idModelo+'" HIDDEN  required name="Modelo[]">' +

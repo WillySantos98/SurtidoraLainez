@@ -62,7 +62,7 @@ class ConsignadaController extends Controller
         $entrada_moto->observacion = $observacion[$i];
         $entrada_moto->consignacion_id = $nueva_consignacion->id;
         $entrada_moto->id_moto = $nueva_consignacion->cod_entrada.'--'.$request->input('SelectProveedor').'-'.$marcas[$i].'-'.$modelos[$i].'-'.($contador_modelo + 1);
-        $entrada_moto->estado = $request->input('SelectEntrada');
+        $entrada_moto->estado = 1;
         $entrada_moto->sucursal_id = $request->input('SelectSucursal');
         $entrada_moto->save();
 

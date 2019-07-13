@@ -14,6 +14,7 @@ function cargarEmpleados(val) {
     });
 }
 
+
 function cargarmodelos(val) {
     var id = val;
     let html ="<option value=''>-----</option>";
@@ -132,27 +133,13 @@ function cargardatosmodelos(val) {
               </div>
             </div>
             
-            <div class="row form-group">
-              <div class="col">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" name="CheckCasco" id="CheckCasco" >
-                    <label for="CheckCasco">Casco</label>
-                    <input type="checkbox" name="CheckLlaves" id="CheckLlaves" >
-                    <label for="CheckLlaves">Llaves</label>
-                    <input type="checkbox" name="CheckAcido" id="CheckAcido" >
-                    <label for="CheckAcido">Acido</label>
-                    <input type="checkbox" id="CheckBateria" name="CheckBateria">
-                    <label for="CheckBateria">Bateria</label>
-                    <input type="checkbox" id="CheckGarantia"  name="CheckGarantia">
-                    <label for="CheckGarantia">Hoja de Garantia</label>
-                </div>
-              </div>
-            </div>
+            
                 `
         }
         var elemento = document.getElementById('CuerpoModalFormularioConsignado');
         elemento.innerHTML=html;
     })
+
 }
 
 

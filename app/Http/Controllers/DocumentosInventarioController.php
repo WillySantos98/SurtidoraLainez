@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use SurtidoraLainez\Consignacion;
 use SurtidoraLainez\Notificacion;
 use SurtidoraLainez\Salida;
+use SurtidoraLainez\Transferencia;
 
 class DocumentosInventarioController extends Controller
 {
@@ -26,8 +27,11 @@ class DocumentosInventarioController extends Controller
         $entradas = Consignacion::all()->count();
         $salidas = Salida::all()->count();
         $notificaciones = Notificacion::all()->count();
+        $trans_p = Transferencia::where('estado', 2)->count();
+        $trans_a = Transferencia::where('estado', 1)->count();
+        $trans_r = Transferencia::where('estado', 3)->count();
         return view('Inventario.Motocicletas.Documentos.index', compact('entradas','salidas','notificaciones'
-        ,'notificaciones', 'salidas'));
+        ,'trans_p','trans_a','trans_r'));
     }
 
     public function docEntrada_ficha($codigo){

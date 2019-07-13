@@ -5,12 +5,14 @@ namespace SurtidoraLainez\Http\Controllers;
 use FontLib\EOT\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use function MongoDB\BSON\toJSON;
+use SurtidoraLainez\Sucursal;
 
 class SalidasController extends Controller
 {
     public function formulario (){
-
-        return view('Inventario.Motocicletas.Transferencias.index');
+        $almacenes = Sucursal::all();
+        return view('Inventario.Motocicletas.Transferencias.index', compact('almacenes'));
     }
 
     public function index_notificaciones(){
@@ -51,5 +53,18 @@ class SalidasController extends Controller
         $pdf = \PDF::loadView('notificacion', compact('consulta', 'fecha'));
 
         return $pdf->stream();
+    }
+
+    public function cargarMotos($id){
+        $motos = DB::table('entrada_motocicletas')
+            ->select('entrada_motocicletas.id_moto','entrada_motocicletas.motor','entrada_motocicletas.chasis','entrada_motocicletas.id',
+                'entrada_motocicletas.color','sucursals.nombre as nombre_alm','marcas.nombre as nombre_mar','modelos.nombre_mod')
+            ->join('sucursals','sucursals.id','=','entrada_motocicletas.sucursal_id')
+            ->join('marcas','marcas.id','=','entrada_motocicletas.marca_id')
+            ->join('modelos','modelos.id','=','entrada_motocicletas.modelo_id')
+            ->where('entrada_motocicletas.estado',1)->where('sucursals.id',$id)
+            ->get();
+
+        return $motos;
     }
 }

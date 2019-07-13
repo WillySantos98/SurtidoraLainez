@@ -80,8 +80,7 @@ class SalidasMotocicletasController extends Controller
             ->join('notificacions','notificacions.salida_id','=','salidas.id')
             ->select('salidas.cod_venta','tipo_ventas.nombre as nombre_ven','salidas.num_venta','salidas.fecha_salida',
                 'clientes.nombres','clientes.apellidos', 'clientes.identidad','clientes.rtn','entrada_motocicletas.chasis',
-                'marcas.nombre','modelos.nombre_mod','entrada_motocicletas.motor','entrada_motocicletas.color','entrada_motocicletas.ano'
-                ,'salidas.estado_piso')
+                'marcas.nombre','modelos.nombre_mod','entrada_motocicletas.motor','entrada_motocicletas.color','entrada_motocicletas.ano')
             ->where('salidas.cod_venta',$codigo)
             ->get();
 

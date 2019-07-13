@@ -39,7 +39,7 @@
                 <div class="col card border-left-primary shadow py-2">
                     <div class="row">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Notificaciones</div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Notificaciones Pendientes</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{$notificaciones}}</div>
                         </div>
                         <div class="col-auto">
@@ -53,7 +53,7 @@
                 <div class="col card border-left-primary shadow py-2">
                     <div class="row">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Salidas x Ventas Aceptadas</div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Notificaciones</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{$salidas}}</div>
                         </div>
                         <div class="col-auto">
@@ -72,12 +72,26 @@
 
 
         <div class="d-flex justify-content-between">
-            <a href="{{route('notificaciones.index')}}" class="nav-link" style="width: 24%">
+            <a href="{{route('transferencias_internas.index')}}" class="nav-link" style="width: 24%">
                 <div class="col card border-left-primary shadow py-2">
                     <div class="row">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Notificaciones</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$notificaciones}}</div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Transferencias Pendientes</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$trans_p}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-file fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="{{route('aceptadas.index')}}" class="nav-link" style="width: 24%">
+                <div class="col card border-left-primary shadow py-2">
+                    <div class="row">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Transferencias I. Aceptadas</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$trans_a}}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-file fa-2x text-gray-300"></i>
@@ -90,22 +104,8 @@
                 <div class="col card border-left-primary shadow py-2">
                     <div class="row">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Transferencias Internas</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$notificaciones}}</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-file fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="{{route('notificaciones.index')}}" class="nav-link" style="width: 24%">
-                <div class="col card border-left-primary shadow py-2">
-                    <div class="row">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Transferencias Externas</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$notificaciones}}</div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Transferencias I. Rechazadas</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$trans_r}}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-file fa-2x text-gray-300"></i>

@@ -128,7 +128,8 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Gestion de Motos</h6>
                 <a class="collapse-item" href="{{route('consignada.index')}}">Entrada</a>
-                <a class="collapse-item" href="{{route('transferencia.formulario')}}">Trasnferencia</a>
+                <a class="collapse-item" href="{{route('transferencia.formulario')}}">Trasnferencia Interna</a>
+                <a class="collapse-item" href="{{route('transferencia.formulario')}}">Trasnferencia Externa</a>
                 <a class="collapse-item" href="{{route('salidaVenta.index')}}">Salida x Venta</a>
             </div>
         </div>

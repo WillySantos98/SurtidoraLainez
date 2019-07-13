@@ -93,3 +93,10 @@ Route::get('/inventario/motocicletas/notificaciones/ver/{codigo}', 'SalidasContr
 Route::post('/inventario/motocicletas/notificaciones/generar/', 'SalidasController@generacion_notificacion')->name('generacion.notificacion');
 //transferencia
 Route::get('/inventario/motocicletas/transferencias/salida_x_transferencia','SalidasController@formulario')->name('transferencia.formulario');
+Route::post('/inventario/motocicletas/transferencias/salida_x_transferencia','TransferenciaController@save_transferencia')->name('save.transferencia');
+Route::get('/cargar_motos_x_sucursal/{id}', 'SalidasController@cargarMotos');
+Route::get('/inventario/motocicletas/documentos/transferencias/','TransferenciaController@index')->name('transferencias_internas.index');
+Route::get('/inventario/motocicletas/documentos/transferencias_internas/{codigo}','TransferenciaController@transferencia')->name('transferencias_internas.transferencia');
+Route::get('/decisiontransferencia/{codigo}/{valor}/{idusuario}/{idtr}', 'TransferenciaController@aceptarTrans');
+Route::get('/inventario/motocicletas/documentos/transferencias/aceptadas','TransferenciaController@index_aceptadas')->name('aceptadas.index');
+Route::get('/inventario/motocicletas/documentos/transferencias/pdf/{codigo}','TransferenciaController@pdf');
