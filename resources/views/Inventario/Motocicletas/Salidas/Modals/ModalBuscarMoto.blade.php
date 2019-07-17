@@ -25,21 +25,8 @@
                         <th>Motor</th>
                         <th>Color</th>
                     </thead>
-                    <tbody id="bodyTableMoto">
-                    @foreach($motos as $info)
-                        <tr>
-                            <td>{{$info->id_moto}}</td>
-                            <td>{{$info->nombre}}</td>
-                            <td>{{$info->nombre_mod}}</td>
-                            <td>{{$info->chasis}}</td>
-                            <td>{{$info->motor}}</td>
-                            <td>{{$info->color}}</td>
-                            <td><button class="btn btn-success" data-dismiss="modal" value="{{$info->id}}.{{$info->nombre}}.{{$info->nombre_mod}}.{{$info->chasis}}.{{$info->motor}}.{{$info->color}}" onclick="addMoto(this.value)">
-                                    <i class="fa fa-arrow-right" aria-hidden="true"> Seleccionar</i>
-                                </button>
-                            </td>
-                        </tr>
-                    @endforeach
+                    <tbody id="bodyTableMotoE">
+
                     </tbody>
                 </table>
             </div>
@@ -51,7 +38,7 @@
     $(document).ready(function(){
         $("#myInputM").on("keyup", function() {
             var value = $(this).val().toLowerCase();
-            $("#bodyTableMoto tr").filter(function() {
+            $("#bodyTableMotoE tr").filter(function() {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });

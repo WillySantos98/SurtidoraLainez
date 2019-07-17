@@ -2,6 +2,7 @@
 @section('title', 'SL Ficha de Venta')
 @section('content')
     <div class="container-fluid">
+        @include('Index.componentes.status')
         <hr>
         <div class="d-flex justify-content-between">
             <a href="{{route('salidas.index')}}" class="btn btn-dark">

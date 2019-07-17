@@ -19,7 +19,7 @@
                     <th>Ficha</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="bodyTable">
                 @foreach($motos as $moto)
                     <tr>
                         <td>{{$moto->nombre_mar}}</td>
@@ -33,4 +33,5 @@
             </tbody>
         </table>
     </div>
+    @include('Index.componentes.buscador')
 @endsection

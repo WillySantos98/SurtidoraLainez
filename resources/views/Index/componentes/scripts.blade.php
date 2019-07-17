@@ -14,4 +14,5 @@
 <script src="{{asset('js/peticiones/Salidas.js')}}"></script>
 <script src="{{asset('js/peticiones/transferencia.js')}}"></script>
 <script src="{{asset('js/peticiones/TransferenciasInternas.js')}}"></script>
+<script src="{{asset('js/DocumentosEntradas.js')}}"></script>
 <!-- <script src="{{asset('js/FormularioConsignacion.js')}}"></script> -->

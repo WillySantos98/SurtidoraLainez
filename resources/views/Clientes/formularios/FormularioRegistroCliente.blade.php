@@ -25,7 +25,7 @@
                 </div>
         </div>
         <div class="col-md-4" style="overflow-y: scroll; height: 250px">
-                @include('Clientes.formularios.FormularioRegistroClienteTelefono')
+            @include('Clientes.formularios.FormularioRegistroClienteDocumentos')
         </div>
     </div>
     <div class="row">
@@ -33,7 +33,7 @@
             @include('Clientes.formularios.FormularioRegistroClienteDireccion')
         </div>
         <div class="col" style="overflow-y: scroll; height: 250px">
-            @include('Clientes.formularios.FormularioRegistroClienteDocumentos')
+            @include('Clientes.formularios.FormularioRegistroClienteTelefono')
         </div>
     </div>
 

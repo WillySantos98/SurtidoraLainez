@@ -2,6 +2,7 @@
 @section('title', 'Transferencias Internas')
 @section('content')
     <div class="container-fluid">
+        @include('Index.componentes.status')
         <div class="d-flex bd-highlight">
             <div class="p-2 flex-grow-1 bd-highlight">
                 <a href="{{route('transferencias_internas.index')}}" class="btn btn-dark">
@@ -11,11 +12,27 @@
             <div class="p-2 bd-highlight">
                 <div id="SeccionBotonesTransferencia">
                     @foreach($trans1 as $info)
-                        @if($info->estado  == 2)
-                            <button class="btn btn-outline-danger"  onclick="DenegarTransInterna()">Denegar Transferencia</button>
-                            <button class="btn btn-outline-success" onclick="AceptarTransInterna()">Aceptar Transferencia</button>
+                        @if($info->estado_c == 3)
+                            @if($info->estado  == 2)
+                                <button class="btn btn-outline-danger" onclick="DenegarTransInterna()">Rechazar Transferencia</button>
+                                <button class="btn btn-outline-success" onclick="AceptarTransInterna()">Aceptar Transferencia</button>
+                            @endif
                         @endif
                     @endforeach
+                        @foreach($trans1 as $info)
+                            @if($info->estado_c == 3)
+                                @if($info->estado  == 1)
+                                    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#ModalDeclinarTransferencia"
+                                            data-cod="{{$info->cod_transferencia}}">
+                                        Declinar Transferencia
+                                    </button>
+                                    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#ModalTransferenciaExitosa"
+                                            data-cod="{{$info->cod_transferencia}}">
+                                        Aceptar Transferencia
+                                    </button>
+                                @endif
+                            @endif
+                        @endforeach
                 </div>
             </div>
         </div>
@@ -44,12 +61,20 @@
                         <td>{{$info->nombre_suc}}</td>
                         <td id="FechaSolucionTransferencia">{{$info->fecha_decision}}</td>
                         <td id="EstadoTransferencia">
-                        @if($info->estado  == 2)
-                            <span class="badge badge-warning">Sin Solucion</span>
-                        @elseif($info->estado == 3)
-                            <span class="badge badge-danger">Denegada</span>
-                        @elseif($info->estado == 1)
-                            <span class="badge badge-success">Aceptada</span>
+                        @if($info->estado_c == 3 || $info->estado_c == 5)
+                            @if($info->estado  == 2)
+                                <span class="badge badge-warning">Sin Solucion</span>
+                            @elseif($info->estado == 3)
+                                <span class="badge badge-danger">Denegada x Supervisor</span>
+                            @elseif($info->estado == 1)
+                                <span class="badge badge-success">Aceptada sin Recibir</span>
+                            @endif
+                        @else
+                            @if($info->estado_c  == 1)
+                                    <span class="badge badge-success">Transferencia Exitosa</span>
+                            @elseif($info->estado_c == 2)
+                                    <span class="badge badge-danger">Declinada x Gerente</span>
+                            @endif
                         @endif
                         </td>
                     </tr>
@@ -108,4 +133,11 @@
         </div>
     </div>
 
+
+    <div class="modal fade" id="ModalDeclinarTransferencia" tabindex="-1" role="dialog" aria-labelledby="ModalDeclinarTransferencia" aria-hidden="true">
+        @include('Inventario.Motocicletas.Documentos.Transferencia.Modals.ModalDeclinarTransferencia')
+    </div>
+    <div class="modal fade bd-example-modal-xl" id="ModalTransferenciaExitosa" tabindex="-1" role="dialog" aria-labelledby="ModalTransferenciaExitosa" aria-hidden="true">
+        @include('Inventario.Motocicletas.Documentos.Transferencia.Modals.ModalTransferenciaExitosa')
+    </div>
 @endsection

@@ -11,9 +11,11 @@
 */
 
 //login
-Route::get('/', 'Auth\LoginController@index')->name('login');
+Route::get('/', 'Auth\LoginController@index');
 Route::post('/verificar', 'Auth\LoginController@enter')->name('validacionUser');
 Route::get('/meter','Auth\LoginController@meter');
+Route::get('logout','Auth\LoginController@logout')->name('logout');
+Route::get('logout','Auth\LoginController@logout')->name('logout');
 //index
 Route::get('/inicio', 'InicioController@index')->name('index');
 //----------------------------------------------------------------------------------------------------------------------
@@ -70,27 +72,31 @@ Route::get('cargar_datos_modelos/{id}', 'ConsignadaController@cargar_datos_model
 Route::post('/inventario/motocicletas/consignada/registro','ConsignadaController@registro')->name('consignada.registro.save');
 Route::get('/inventario/motocicletas/registro/2/{id}', 'ConsignadaController@registro2')->name('consignada.2.form');
 Route::post('/inventario/motocicletas/consignada/registro/2','ConsignadaController@save_registro2')->name('save.2.form');
+Route::get('/inventario/edit_entrada/{codigo}', 'ConsignadaController@edit_entrada');
 
 //inventario
 Route::get('/inventario/motocicletas','MotocicletasController@index')->name('motocicletas.index');
 Route::get('/inventario/motocicletas/ficha/{codigo}','MotocicletasController@ficha')->name('motocicletas.ficha');
 Route::get('/inventario/motocicletas/inventario_x_sucursal','MotocicletasController@inventario_sucursal')->name('inventarioSucursal.index');
 Route::get('/inventario/motocicletas/cargarmotos/{id}','MotocicletasController@info_sucursal');
-
+Route::get('/inventario/motocicletas/estado_de_transferencia', 'MotocicletasController@transferencia')->name('inventario.transferencia');
 //doucmentos de entrada
 Route::get('/inventario/motocicletas/documentos/entrada', 'DocumentosInventarioController@entrada_doc')->name('docEntrada.index');
 Route::get('/inventario/motocicletas/documentos/', 'DocumentosInventarioController@doc')->name('doc.index');
 Route::get('/inventario/motocicletas/documentos/entrada/{codigo}', 'DocumentosInventarioController@docEntrada_ficha')->name('docEntrada.ficha');
 Route::post('/inventario/motocicletas/documentos/salidaceptada','DocumentosInventarioController@save_aceptado')->name('save.aceptada.salida');
+Route::post('/inventario/motocicletas/documentos/entrada_edit','ConsignadaController@update_entrada')->name('edit.entrada');
 //salidas
 Route::get('/inventario/motocicletas/salidas_x_venta/', 'SalidasMotocicletasController@salidas_venta')->name('salidaVenta.index');
 Route::post('/inventario/motocicletas/documentos/save_salida','SalidasMotocicletasController@salida_save')->name('salida.save');
-    Route::get('/inventario/motocicletas/documentos/salidas','SalidasMotocicletasController@index')->name('salidas.index');
+Route::get('/inventario/motocicletas/documentos/salidas','SalidasMotocicletasController@index')->name('salidas.index');
 Route::get('/inventario/motocicletas/documentos/salidas/{codigo}','SalidasMotocicletasController@venta')->name('salidas.venta');
+Route::post('/inventario/motocicletas/documentos/salidas_x_venta/add_documentos','SalidasMotocicletasController@add_doc')->name('add.doc');
 //notificacions
 Route::get('/inventario/motocicletas/notificaciones/', 'SalidasController@index_notificaciones')->name('notificaciones.index');
-Route::get('/inventario/motocicletas/notificaciones/ver/{codigo}', 'SalidasController@index_notificaciones')->name('generacion.ver');
-Route::post('/inventario/motocicletas/notificaciones/generar/', 'SalidasController@generacion_notificacion')->name('generacion.notificacion');
+Route::get('/inventario/motocicletas/notificaciones/pendientes/{codigo}', 'SalidasController@index_notificaciones')->name('generacion.ver');
+Route::get('/inventario/motocicletas/notificaciones/generadas/', 'SalidasController@index_generadas')->name('notificacion.gen');
+Route::get('/inventario/motocicletas/notificaciones/generar/{codigo}/{fecha}', 'SalidasController@generacion_notificacion')->name('generacion.notificacion');
 //transferencia
 Route::get('/inventario/motocicletas/transferencias/salida_x_transferencia','SalidasController@formulario')->name('transferencia.formulario');
 Route::post('/inventario/motocicletas/transferencias/salida_x_transferencia','TransferenciaController@save_transferencia')->name('save.transferencia');
@@ -100,3 +106,12 @@ Route::get('/inventario/motocicletas/documentos/transferencias_internas/{codigo}
 Route::get('/decisiontransferencia/{codigo}/{valor}/{idusuario}/{idtr}', 'TransferenciaController@aceptarTrans');
 Route::get('/inventario/motocicletas/documentos/transferencias/aceptadas','TransferenciaController@index_aceptadas')->name('aceptadas.index');
 Route::get('/inventario/motocicletas/documentos/transferencias/pdf/{codigo}','TransferenciaController@pdf');
+Route::post('/inventario/motocicletas/documentos/transferencias/declinadas','TransferenciaController@declinada')->name('declinada.transferencia');
+Route::post('/inventario/motocicletas/documentos/transferencias/exitosas','TransferenciaController@exitosa')->name('transferencia.exitosa');
+Route::get('/inventario/motocicletas/documentos/transferencias/declinadas','TransferenciaController@declinadas')->name('declinada.transferencia.index');
+Route::get('/inventario/motocicletas/documentos/transferencias/exitosas','TransferenciaController@exitosas')->name('exitosas.transferencia.index');
+Route::get('/inventario/motocicletas/documentos/transferenciasrechazadas/','TransferenciaController@rechazada')->name('transferencia.rechazadas');
+Route::get('/inventario/motocicletas/documentos/transferencias/exitosas/motos/{codigo}','TransferenciaController@motos');
+
+//Auth::routes();
+//Route::get('/home', 'HomeController@index')->name('home');

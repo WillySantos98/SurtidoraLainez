@@ -11,6 +11,13 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
+                                @if($info->estado_c == 1)
+                                    <button class="btn btn-outline-success disabled"><i data-feather="check"></i></button>
+                                @elseif($info->estado_c == 2)
+                                    <button class="btn btn-outline-danger disabled"><i data-feather="x"></i></button>
+                                @else
+                                <button class="btn btn-outline-success disabled" style="background-color: orangered"><i data-feather="minus"></i></button>
+                                @endif
                                 <div>{{$info->cod_transferencia}}</div>
                                 <div>Almacen de Origen: {{$info->nombre}}</div>
                             @foreach($destino as $info2)

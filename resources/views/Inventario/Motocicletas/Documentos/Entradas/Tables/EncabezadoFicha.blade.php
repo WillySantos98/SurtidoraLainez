@@ -1,7 +1,6 @@
 <table class="table">
     <thead>
     <tr>
-        <th class="text-center" style="font-size: 13px"># de Documento de Entrada</th>
         <th class="text-center" style="font-size: 13px"># de Transferencia</th>
         <th class="text-center" style="font-size: 13px">Proveedor</th>
         <th class="text-center" style="font-size: 13px">Fecha de Entrada</th>
@@ -13,7 +12,6 @@
     </thead>
     <tbody>
     <tr>
-        <td class="text-center" style="font-size: 13px">{{$info->guia_remision}}</td>
         <td class="text-center" style="font-size: 13px">{{$info->num_transferencia}}</td>
         <td class="text-center" style="font-size: 13px">{{$info->nombre_pro}}</td>
         <td class="text-center" style="font-size: 13px">{{$info->fecha_entrada}}</td>

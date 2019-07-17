@@ -23,14 +23,15 @@ class SalidasController extends Controller
             ->join('marcas','marcas.id','=','entrada_motocicletas.marca_id')
             ->join('modelos','modelos.id','=','entrada_motocicletas.modelo_id')
             ->select('salidas.cod_venta','salidas.num_venta','clientes.nombres','clientes.apellidos','marcas.nombre','modelos.nombre_mod',
-                'entrada_motocicletas.chasis','entrada_motocicletas.motor','notificacions.id')
+                'entrada_motocicletas.chasis','entrada_motocicletas.motor','notificacions.id')->where('notificacions.estado', 1)
             ->get();
         return view('Inventario.Motocicletas.Documentos.Notificaciones.index', compact('notificaciones'));
     }
 
-    public function generacion_notificacion(Request $request)
+    public function generacion_notificacion($id, $fecha)
     {
-        $fecha = $request->input('Fecha');
+        DB::table('notificacions')->where('notificacions.id', $id)
+            ->update(['estado'=>2]);
         $consulta = DB::table('notificacions')
             ->join('salidas', 'salidas.id', '=', 'notificacions.salida_id')
             ->join('entrada_motocicletas', 'entrada_motocicletas.id', '=', 'salidas.moto_id')
@@ -47,7 +48,7 @@ class SalidasController extends Controller
                 'consignacions.fecha_entrada', 'clientes.nombres', 'clientes.apellidos', 'clientes.identidad', 'clientes.rtn',
                 'sucursals.nombre as nombre_sucursal', 'notificacions.cod_notificacion', 'colaboradors.nombre as nombre_colaborador',
                 'users.name')
-            ->where('notificacions.id', $request->input('Id'))
+            ->where('notificacions.id', $id)
             ->get();
 
         $pdf = \PDF::loadView('notificacion', compact('consulta', 'fecha'));
@@ -67,4 +68,18 @@ class SalidasController extends Controller
 
         return $motos;
     }
+
+    public function index_generadas(){
+        $notificaciones = DB::table('notificacions')
+            ->join('salidas','salidas.id','=','notificacions.salida_id')
+            ->join('clientes','clientes.id','=','salidas.cliente_id')
+            ->join('entrada_motocicletas','entrada_motocicletas.id','=','salidas.moto_id')
+            ->join('marcas','marcas.id','=','entrada_motocicletas.marca_id')
+            ->join('modelos','modelos.id','=','entrada_motocicletas.modelo_id')
+            ->select('salidas.cod_venta','salidas.num_venta','clientes.nombres','clientes.apellidos','marcas.nombre','modelos.nombre_mod',
+                'entrada_motocicletas.chasis','entrada_motocicletas.motor','notificacions.id')
+            ->where('notificacions.estado', 2)->get();
+        return view('Inventario.Motocicletas.Documentos.Notificaciones.IndexGeneradas', compact('notificaciones'));
+    }
+
 }

@@ -17,7 +17,7 @@
                 </select>
             </div>
             <div class="col form-group">
-                <label for="">Sucursal</label>
+                <label for="">Sucursal de Entrada</label>
                 <select class="form-control" required name="SelectSucursal" id="SelectSucursal" onchange="cargarEmpleados(this.value);">
                     <option value="-">-----</option>
                     @foreach($sucursales as $itemSucursales)
@@ -26,12 +26,15 @@
                 </select>
             </div>
             <div class="col form-group">
-                <label for="">Empleados</label>
+                <label for="">Empleado Responsable de Entrada</label>
                 <select required class="form-control" name="SelectEmpleadoSucursal" id="SelectEmpleadoSucursal">
 
                 </select>
             </div>
+        </div>
+        <div class="row">
             <div class="col form-group">
+                <input type="text" name="Usuario" hidden value="{{Auth::user()->id}}">
                 <label for="">Proveedor</label>
                 <select class="form-control" required name="SelectProveedor" id="SelectProveedor" onchange="cargarmarcas(this.value)">
                     <option value="-">---------------</option>
@@ -40,18 +43,9 @@
                     @endforeach
                 </select>
             </div>
-        </div>
-        <div class="row">
             <div class="col form-group">
-                <label for=""># Documento de Entrada</label>
-                <input type="text" name="Usuario" hidden value="{{Auth::user()->id}}">
-                <input type="text" class="form-control" required name="Remision" placeholder="# de documento">
-                <span >(Numero de factura o guia de remision)</span>
-            </div>
-            <div class="col form-group">
-                <label for=""># Transferencia</label>
+                <label for="">Numero de Transferencia</label>
                 <input type="text" class="form-control" name="Trasferencia" placeholder="# de Transferencia">
-                <span >(*Si no trae # de transferencia dejar vacio)</span>
             </div>
             <div class="col-2 form-group">
                 <label for="">Fecha de Entrada</label>

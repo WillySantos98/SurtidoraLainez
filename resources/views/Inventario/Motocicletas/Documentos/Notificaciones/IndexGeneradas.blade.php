@@ -1,17 +1,17 @@
 @extends('Index.base')
-@section('title', 'Notificaciones Pendientes')
+@section('title', 'Notificaciones Generadas')
 @section('content')
     @include('Inventario.Motocicletas.Documentos.encabezado')
-    <h4 class="text-center">Notificaciones Pendientes</h4>
+    <h4 class="text-center">Notificaciones Generadas</h4>
     <table class="table table-sm">
         <thead>
-            <th>Cod. de Venta</th>
-            <th>Num. de Venta</th>
-            <th>Nombre del Cliente</th>
-            <th>Marca</th>
-            <th>Modelo</th>
-            <th>Chasis</th>
-            <th>Accion</th>
+        <th>Cod. de Venta</th>
+        <th>Num. de Venta</th>
+        <th>Nombre del Cliente</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Chasis</th>
+        <th>Accion</th>
         </thead>
         <tbody id="bodyTable">
         @foreach($notificaciones as  $info)

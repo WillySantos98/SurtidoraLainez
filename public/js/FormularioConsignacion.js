@@ -7,13 +7,6 @@ function AgregarRegistrosConsignacion(){
   var observacion = document.getElementById("ObservacionFormConsignacion").value;
   var idMarca = document.getElementById("IdMarcaFormConsignacion").value;
   var idModelo = document.getElementById("IdModeloFormConsignacion").value;
-  console.log("chasis: "+chasis);
-  console.log("motor: "+motor);
-  console.log("color: "+color);
-  console.log("ano: "+ano);
-  console.log("observacion: "+observacion);
-  console.log("marca: "+idMarca);
-  console.log("modelo: "+idModelo);
 
   $(document).ready(function () {
       var i = 1;

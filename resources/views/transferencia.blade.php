@@ -29,16 +29,16 @@
     <table class="table table-sm">
         <thead>
         <tr>
-            <th>Almacen de Origen</th>
-            <th>Encargado de Despachar</th>
-            <th>Usuario Solicitante</th>
+            <th style="font-size: 12px">Almacen de Origen</th>
+            <th style="font-size: 12px">Encargado de Despachar</th>
+            <th style="font-size: 12px">Usuario Solicitante</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td>{{$info->nombre_suc}}</td>
-            <td>{{$info->nombre_col}}</td>
-            <td>{{$info->usuario}}</td>
+            <td style="font-size: 12px">{{$info->nombre_suc}}</td>
+            <td style="font-size: 12px">{{$info->nombre_col}}</td>
+            <td style="font-size: 12px">{{$info->usuario}}</td>
         </tr>
         </tbody>
     </table>
@@ -47,16 +47,16 @@
         <table class="table table-sm">
             <thead>
             <tr>
-                <th>Almacen de Origen</th>
-                <th>Encargado de Recibir</th>
-                <th>Usuario que Autorizo</th>
+                <th style="font-size: 12px">Almacen de Origen</th>
+                <th style="font-size: 12px">Encargado de Recibir</th>
+                <th style="font-size: 12px">Usuario que Autorizo</th>
             </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>{{$info->nombre_suc}}</td>
-                    <td>{{$info->nombre_col}}</td>
-                    <td>{{$info->usuario}}</td>
+                    <td style="font-size: 12px">{{$info->nombre_suc}}</td>
+                    <td style="font-size: 12px">{{$info->nombre_col}}</td>
+                    <td style="font-size: 12px">{{$info->usuario}}</td>
                 </tr>
             </tbody>
         </table>
@@ -65,28 +65,39 @@
     <table class="table table-sm">
         <thead>
         <tr>
-            <th>codigo</th>
-            <th>Chasis</th>
-            <th>Motor</th>
-            <th>Marca</th>
-            <th>Modelo</th>
-            <th>Color</th>
+            <th style="font-size: 12px">codigo</th>
+            <th style="font-size: 12px">Chasis</th>
+            <th style="font-size: 12px">Motor</th>
+            <th style="font-size: 12px">Marca</th>
+            <th style="font-size: 12px">Modelo</th>
+            <th style="font-size: 12px">Color</th>
         </tr>
         </thead>
         <tbody>
         @foreach($motos as $info)
         <tr>
-            <td>{{$info->id_moto}}</td>
-            <td>{{$info->chasis}}</td>
-            <td>{{$info->motor}}</td>
-            <td>{{$info->nombre}}</td>
-            <td>{{$info->nombre_mod}}</td>
-            <td>{{$info->color}}</td>
+            <td style="font-size: 11px">{{$info->id_moto}}</td>
+            <td style="font-size: 11px">{{$info->chasis}}</td>
+            <td style="font-size: 11px">{{$info->motor}}</td>
+            <td style="font-size: 11px">{{$info->nombre}}</td>
+            <td style="font-size: 11px">{{$info->nombre_mod}}</td>
+            <td style="font-size: 11px">{{$info->color}}</td>
         </tr>
         @endforeach
         </tbody>
     </table>
         <hr>
+    <p>Fecha que se Envio la Transferencia:____________________________________</p>
+    <p>Fecha que se Recibio la Transferencia:___________________________________</p>
+    <p>Nombre del Motorista:________________________________________________</p>
+    <p>Observaciones:___________________________________________________________________</p>
+    <p>________________________________________________________________________________</p>
+    <p>________________________________________________________________________________</p>
+    <p>________________________________________________________________________________</p>
+        <br>
+    <p>Nombre del que Recibio:______________________________________________</p>
+        <hr>
+        <h6 style="font-size: 9px">Este es un documento oficial de SURTIDORA LAINEZ</h6>
 </div>
 </body>
 </html>

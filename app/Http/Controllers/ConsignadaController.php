@@ -8,12 +8,15 @@ use SurtidoraLainez\Consignacion;
 use SurtidoraLainez\DocumentosConsignacion;
 use SurtidoraLainez\DocumentosMotocicleta;
 use SurtidoraLainez\EntradaMotocicleta;
+use SurtidoraLainez\FotosMotocicleta;
+use SurtidoraLainez\HistorialUsuario;
 use SurtidoraLainez\Marca;
 use SurtidoraLainez\Modelo;
 use SurtidoraLainez\Proveedor;
 use SurtidoraLainez\Sucursal;
 use DB;
 use SurtidoraLainez\TipoEntrada;
+use SurtidoraLainez\User;
 
 class ConsignadaController extends Controller
 {
@@ -38,7 +41,6 @@ class ConsignadaController extends Controller
     $nueva_consignacion = new Consignacion();
     $cod_consignacion = 'sl-000-'.$contador;
     $nueva_consignacion->cod_entrada = $cod_consignacion;
-    $nueva_consignacion->guia_remision = $request->input('Remision');
     $nueva_consignacion->num_transferencia = $request->input('Trasferencia');
     $nueva_consignacion->fecha_entrada = $request->input('FechaEntrada');
     $nueva_consignacion->proveedor_id = $request->input('SelectProveedor');
@@ -47,6 +49,18 @@ class ConsignadaController extends Controller
     $nueva_consignacion->sucursal_id = $request->input('SelectSucursal');
     $nueva_consignacion->tipo_entrada_id = $request->input('SelectEntrada');
     $nueva_consignacion->save();
+
+    $usuario = User::where('id', $request->input('Usuario'))->get();
+    foreach ($usuario as $user){
+        $nuevo_historial = new HistorialUsuario();
+        $nuevo_historial->id_usuario = $request->input('Usuario');
+        $nuevo_historial->usuario = $user->usuario;
+        $nuevo_historial->descripcion = 'Creo la entrada con numero ';
+        $nuevo_historial->codigo = $nueva_consignacion->cod_entrada;
+        $nuevo_historial->save();
+        break;
+    }
+
 
     for ($i = 0; $i < count($request->input('Motor')); $i++){
         $entrada_moto = new EntradaMotocicleta();
@@ -65,6 +79,15 @@ class ConsignadaController extends Controller
         $entrada_moto->estado = 1;
         $entrada_moto->sucursal_id = $request->input('SelectSucursal');
         $entrada_moto->save();
+        foreach ($usuario as $user){
+            $nuevo_historial = new HistorialUsuario();
+            $nuevo_historial->id_usuario = $request->input('Usuario');
+            $nuevo_historial->usuario = $user->usuario;
+            $nuevo_historial->descripcion = 'Ingreso la motocicleta con codigo ';
+            $nuevo_historial->codigo = $entrada_moto->id_moto;
+            $nuevo_historial->save();
+            break;
+        }
 
     }
 
@@ -145,9 +168,58 @@ class ConsignadaController extends Controller
             $nuevo_documentoMoto->acido_bateria = $acido[$i];
             $nuevo_documentoMoto->entrada_id = $id_m[$i];
             $nuevo_documentoMoto->save();
+
+            $filed = $request->file('InputDocumentosMoto-'.$id_m[$i]);
+
+            if ($request->hasFile('InputDocumentosMoto-'.$id_m[$i])){
+                for ($e = 0; $e < count($request->file('InputDocumentosMoto-'.$id_m[$i])); $e++){
+                  $nuevo_doc = new FotosMotocicleta();
+                    $filem = $filed[$e];
+                    $nombre_d = time().'-'.$filem->getClientOriginalName();
+                    $nuevo_doc->nombre = $nombre_d;
+                    $nuevo_doc->moto_id = $id_m[$i];
+                    $filem->move(public_path().'/documentos/entradas/docmotos', $nombre_d);
+                    $nuevo_doc->save();
+                }
+            }
         }
 
         return redirect()->route('motocicletas.index');
 
+    }
+
+    public function edit_entrada($codigo){
+        $entrada = Consignacion::where('cod_entrada', $codigo)->get();
+
+
+        return $entrada;
+    }
+    public function update_entrada(Request $request){
+        $num_trans = $request->input('InputNumTransferencia');
+        $fecha = $request->input('InputFecha');
+        $id = $request->input('InputIdentrada');
+        $cod = $request->input('InputCodEntrada');
+        $user =  $request->input('InputIdUser');
+        try{
+            DB::table('consignacions')->where('id',$id )
+                ->update(['num_transferencia'=>$num_trans,'fecha_entrada'=>$fecha]);
+            DB::table('entrada_motocicletas')->where('consignacion_id', $id)
+                ->update(['fecha_entrada'=>$fecha]);
+            $nuevo_historial = new HistorialUsuario();
+            $nuevo_historial->id_usuario = $user;
+            $nuevo_historial->usuario = $request->input('InputUser');
+            $nuevo_historial->descripcion = 'Modifico entrada con codigo ';
+            $nuevo_historial->codigo = $cod;
+            $nuevo_historial->save();
+
+            $error = false;
+        }catch (\mysqli_sql_exception $e){
+            $error = true;
+        }
+        if ($error == false){
+            return redirect('/inventario/motocicletas/documentos/entrada/'.$cod)->with('status','El cambio de la entrada '.$cod.' se ha realizado correctamente');
+        }else{
+            return 'error';
+        }
     }
 }

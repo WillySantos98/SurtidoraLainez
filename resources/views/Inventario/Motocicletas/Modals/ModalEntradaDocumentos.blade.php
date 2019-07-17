@@ -7,15 +7,14 @@
             </button>
         </div>
         <div class="modal-body" >
-            @include('Inventario.Motocicletas.Componentes.GaleriaEntradaDocumentos')
+            <button id="btnVistaPDF" class="btn btn-outline-danger"><i class="fa fa-file-pdf-o fa-fw" aria-hidden="true"></i> Vista PDF</button>
+            <button id="btnVistaFoto" class="btn btn-outline-success"><i class="fa fa-file-image-o fa-fw" aria-hidden="true"></i> Vista Imagen</button>
+            <div id="VistaFoto">
+                @include('Inventario.Motocicletas.Componentes.GaleriaEntradaDocumentos')
+            </div>
+            <div id="VistaPDF">
+                @include('Inventario.Motocicletas.Componentes.VistaDocumentosPDF')
+            </div>
         </div>
     </div>
 </div>
-<script>
-    $('#ModalEntradaDocumentos').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var nombre = button.data('nombre');
-        var modal = $(this);
-        modal.find('.modal-header #titulo').html("Documentos del numero de entrada "+nombre);
-    });
-</script>

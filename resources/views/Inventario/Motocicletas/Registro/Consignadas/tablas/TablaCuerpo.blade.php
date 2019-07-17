@@ -16,7 +16,7 @@
             <p><img src="../../../../../../iconos/garantia.svg" style="width: 30px; height: 30px" alt=""> Hoja de Garantia</p>
         </div>
     </div>
-   <div style="overflow-y: scroll; height: 350px;">
+   <div style="overflow-y: scroll; height: 250px;">
        <table class="table table-hover">
            <thead>
            <tr>
@@ -30,6 +30,7 @@
                <th class="text-center"><img src="../../../../../../iconos/acido.svg" style="width: 30px; height: 30px" alt=""></th>
                <th class="text-center"><img src="../../../../../../iconos/llave.svg" style="width: 30px; height: 30px" alt=""> </th>
                <th class="text-center"><img src="../../../../../../iconos/garantia.svg" style="width: 30px; height: 30px" alt=""></th>
+               <th class="text-center">Subir Doc</th>
            </tr>
            </thead>
            <tbody>
@@ -78,6 +79,7 @@
                            <option value="2">No</option>
                        </select>
                    </td>
+                   <td><input type="file" required multiple class="form-control" name="InputDocumentosMoto-{{$item->id}}[]"></td>
                </tr>
            @endforeach
            </tbody>

@@ -1,6 +1,7 @@
 <table class="table">
     <thead>
     <tr>
+        <th class="text-center" style="font-size: 13px">Codigo</th>
         <th class="text-center" style="font-size: 13px">Marca</th>
         <th class="text-center" style="font-size: 13px">Modelo</th>
         <th class="text-center" style="font-size: 13px">Chasis</th>
@@ -11,6 +12,7 @@
     </thead>
     <tbody>
     <tr>
+        <td class="text-center" style="font-size: 13px"><a href="/inventario/motocicletas/ficha/{{$info->id_moto}}">{{$info->id_moto}}</a></td>
         <td class="text-center" style="font-size: 13px">{{$info->nombre}}</td>
         <td class="text-center" style="font-size: 13px">{{$info->nombre_mod}}</td>
         <td class="text-center" style="font-size: 13px">{{$info->chasis}}</td>

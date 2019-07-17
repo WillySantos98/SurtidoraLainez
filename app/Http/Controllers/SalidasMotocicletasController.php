@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use SurtidoraLainez\Cliente;
 use SurtidoraLainez\Colaborador;
+use SurtidoraLainez\DocumentosSalida;
 use SurtidoraLainez\Notificacion;
 use SurtidoraLainez\Salida;
 use SurtidoraLainez\Sucursal;
@@ -80,10 +81,33 @@ class SalidasMotocicletasController extends Controller
             ->join('notificacions','notificacions.salida_id','=','salidas.id')
             ->select('salidas.cod_venta','tipo_ventas.nombre as nombre_ven','salidas.num_venta','salidas.fecha_salida',
                 'clientes.nombres','clientes.apellidos', 'clientes.identidad','clientes.rtn','entrada_motocicletas.chasis',
-                'marcas.nombre','modelos.nombre_mod','entrada_motocicletas.motor','entrada_motocicletas.color','entrada_motocicletas.ano')
+                'marcas.nombre','modelos.nombre_mod','salidas.id','entrada_motocicletas.motor','entrada_motocicletas.color',
+                'entrada_motocicletas.ano','entrada_motocicletas.id_moto')
             ->where('salidas.cod_venta',$codigo)
             ->get();
+        $doc = DB::table('salidas')
+            ->join('documentos_salidas','documentos_salidas.salida_id','=','salidas.id')
+            ->select('documentos_salidas.nombre','documentos_salidas.id')
+            ->where('salidas.cod_venta', $codigo)->get();
 
-        return view('Inventario.Motocicletas.Documentos.Salidas.venta', compact('cliente'));
+        return view('Inventario.Motocicletas.Documentos.Salidas.venta', compact('cliente','doc'));
+    }
+
+    public function add_doc(Request $request){
+        $files = $request->file('Documentos');
+        $i = 0;
+        if($request->hasFile('Documentos')){
+            foreach ($request->file('Documentos') as $key => $value){
+                $nuevo_Documento = new DocumentosSalida();
+                $file = $files[$key];
+                $nombre = time().'-'.$file->getClientOriginalName();
+                $nuevo_Documento->nombre = $nombre;
+                $nuevo_Documento->salida_id = $request->input('IdVenta');
+                $file->move(public_path().'/documentos/ventas', $nombre);
+                $nuevo_Documento->save();
+                $i++;
+            }
+        }
+        return redirect('/inventario/motocicletas/documentos/salidas/'.$request->input('CodVenta'))->with('status','Se agregaron '.$i.' correctamente');
     }
 }

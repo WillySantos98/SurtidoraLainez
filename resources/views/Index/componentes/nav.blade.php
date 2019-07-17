@@ -113,8 +113,11 @@
         <div id="collapseInventario2" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Inventario</h6>
-                <a class="collapse-item" href="{{route('motocicletas.index')}}">Inventario Total</a>
+                <a class="collapse-item" href="{{route('motocicletas.index')}}">Inventario Disponible</a>
+                <a class="collapse-item" href="{{route('inventario.transferencia')}}">Inventario en Transferencia</a>
                 <a class="collapse-item" href="{{route('inventarioSucursal.index')}}">Inventario x Sucursal</a>
+                <a class="collapse-item" href="{{route('inventarioSucursal.index')}}">Inventario Vendido</a>
+                <a class="collapse-item" href="{{route('inventarioSucursal.index')}}">Inventario Trans. Externa</a>
             </div>
         </div>
     </li>

@@ -14,7 +14,6 @@ function cargarEmpleados2(val) {
 
         axios.get('/cargar_motos_x_sucursal/'+id).
             then(function (motos) {
-            console.log(motos.data);
             let html2 = "";
             for (var i = 0; i < motos.data.length; i++){
                 html2 +=`
@@ -46,7 +45,6 @@ function AddFilaFormTransferenciaInterna(valor) {
     $('#tBodyFormTransferenciaInterna').append(
         '<tr id="fila-'+id+'">'+
             '<td>'+codigo+'</td>'+
-            '<td><input type="text" value="'+id+'" name="IdMotocicleta[]" hidden></td>'+
             '<td>'+chasis+'</td>'+
             '<td>'+motor+'</td>'+
             '<td>'+marca+'</td>'+
@@ -54,9 +52,12 @@ function AddFilaFormTransferenciaInterna(valor) {
             '<td>'+color+'</td>'+
             '<td>'+almacen+'</td>'+
             '<td><button class="btn btn-outline-danger QuitarFilaFormTransferencia" type="button"><i class="fa fa-minus-square" aria-hidden="true"></i></button></td>'+
+            '<td><input type="text" value="'+id+'" name="IdMotocicleta[]" hidden></td>'+
         '</tr>'
     )
-    $(document).on('click', )
-
-
 }
+
+$(document).on('click', '.QuitarFilaFormTransferencia', function () {
+    $(this).parent().parent().remove();
+
+});

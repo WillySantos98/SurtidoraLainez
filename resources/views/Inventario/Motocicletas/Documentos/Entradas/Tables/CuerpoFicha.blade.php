@@ -1,4 +1,4 @@
-<div style="overflow-y: scroll; height: 250px">
+<div style="overflow-y: scroll; height: 180px">
     <table class="table">
         <thead>
         <tr>

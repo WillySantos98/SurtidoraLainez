@@ -94,7 +94,7 @@
                 <div>
                     <h6 class="text-center" style="font-size: 12px; margin-top: 70px">{{$info->nombre_colaborador}}</h6>
                     <hr>
-                    <h6 style="font-size: 9px">Este es un documentos oficial de Surtidora Lainez. Contactanos: willydasane@gmail.com Tel.9959-5625. (Elaborador por {{$info->name}})</h6>
+                    <h6 style="font-size: 9px">Este es un documentos oficial de Surtidora Lainez. Contactanos: willydasane@gmail.com Tel.9959-5625.</h6>
                 </div>
             </div>
         </div>

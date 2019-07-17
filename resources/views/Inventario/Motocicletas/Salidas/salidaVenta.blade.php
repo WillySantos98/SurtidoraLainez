@@ -19,9 +19,9 @@
             </div>
             <div class="col">
                 <div class="form-group">
-                    <select class="form-control" required name="SelectColaborador" id="">
-                        <option value="">Colaborador Responsable</option>
-                        @foreach($colaborador as $info)
+                    <select class="form-control" required name="SelectSucursal" id="" onchange="cargarEmpleadosMo(this.value);">
+                        <option value="">Seleccione Sucursal de Venta</option>
+                        @foreach($sucursal as $info)
                             <option value="{{$info->id}}">{{$info->nombre}}</option>
                         @endforeach
                     </select>
@@ -29,11 +29,8 @@
             </div>
             <div class="col">
                 <div class="form-group">
-                    <select class="form-control" required name="SelectSucursal" id="">
-                        <option value="">Seleccione Sucursal de Venta</option>
-                        @foreach($sucursal as $info)
-                            <option value="{{$info->id}}">{{$info->nombre}}</option>
-                        @endforeach
+                    <select class="form-control" required name="SelectColaborador" id="SelectEmpleadoSucursal">
+
                     </select>
                 </div>
             </div>

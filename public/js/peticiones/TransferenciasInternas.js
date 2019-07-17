@@ -45,3 +45,60 @@ function DenegarTransInterna() {
         }
     );
 }
+
+$('#ModalTransferenciaExitosa').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var cod = button.data('cod');
+    var modal = $(this);
+    modal.find('.modal-header #titulo').html("Transferencia Exitosa # "+cod);
+
+    axios.get('/inventario/motocicletas/documentos/transferencias/exitosas/motos/'+cod).
+    then(function (motos) {
+        console.log(motos.data);
+        let html = '';
+        for (var i = 0; i<motos.data.length; i++){
+            html +=`
+                    <tr>
+                        <td>${motos.data[i].id_moto}</td>
+                        <td>${motos.data[i].nombre_mod}</td>
+                        <td>${motos.data[i].color}</td>
+                        <td>${motos.data[i].motor}</td>
+                        <td>${motos.data[i].chasis}</td>
+                        <td><select class="form-control" name="SelectCasco" required id="">
+                            <option value="1">------</option>
+                            <option value="1">Si</option>
+                            <option value="2">No</option>
+                        </select></td>
+                        <td><select class="form-control" name="SelectBateria" required id="">
+                            <option value="1">------</option>
+                            <option value="1">Si</option>
+                            <option value="2">No</option>
+                        </select></td>
+                        <td><select name="SelectAcido" required  class="form-control" id="">
+                            <option value="1">------</option>
+                            <option value="1">Si</option>
+                            <option value="2">No</option>
+                        </select></td>
+                        <td><select name="SelectHoja" id="" required class="form-control">
+                            <option value="1">------</option>
+                            <option value="1">Si</option>
+                            <option value="2">No</option>
+                        </select></td>
+                        <td>
+                            <select name="SelectLlaves" required class="form-control" id="">
+                                <option value="1">-----</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </td>
+                        <input type="text" hidden name="InputIdTrans" value="${motos.data[i].id}">
+                        <input type="text" hidden name="InputIdMoto[]" value="${motos.data[i].idm}">
+                    </tr>
+                    `
+        }
+        elemento = document.getElementById("CuerpoFormTransferenciaExitosa");
+        elemento.innerHTML = html;
+
+    })
+});

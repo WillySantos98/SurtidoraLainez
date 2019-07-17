@@ -7,15 +7,14 @@
             </button>
         </div>
         <div class="modal-body" >
-            @include('Clientes.componentes.GaleriaDocumentos')
+            <button id="btnVistaPDFCliente" class="btn btn-outline-danger">Vista Documento</button>
+            <button id="btnVistaFotoCliente" class="btn btn-outline-success">Vista Imagen</button>
+            <div id="VistaPDFCliente">
+                @include('Clientes.componentes.VistaPDF')
+            </div>
+            <div id="VistaFotoCliente">
+                @include('Clientes.componentes.GaleriaDocumentos')
+            </div>
         </div>
     </div>
 </div>
-<script>
-    $('#ModalDocumentos').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var nombre = button.data('nombre');
-        var modal = $(this);
-        modal.find('.modal-header #titulo').html("Documentos de "+nombre);
-    });
-</script>

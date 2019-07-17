@@ -32,7 +32,7 @@ class MotocicletasController extends Controller
             ->join('colaboradors','colaboradors.id','=','consignacions.colaborador_id')
             ->join('sucursals','sucursals.id','=','consignacions.sucursal_id')
             ->select('consignacions.cod_entrada','marcas.nombre as nombre_mar','modelos.nombre_mod','entrada_motocicletas.id_moto as codigo',
-                'consignacions.guia_remision','consignacions.cod_entrada','consignacions.num_transferencia','tipo_entradas.nombre as nombre_ent',
+                'consignacions.cod_entrada','consignacions.num_transferencia','tipo_entradas.nombre as nombre_ent',
                 'consignacions.fecha_entrada','colaboradors.nombre as nombre_col','sucursals.nombre as nombre_suc')
             ->where('entrada_motocicletas.id_moto',$codigo)
             ->get();
@@ -64,9 +64,13 @@ class MotocicletasController extends Controller
         $documentos_moto = DB::table('documentos_motocicletas')
             ->join('entrada_motocicletas','entrada_motocicletas.id','=','documentos_motocicletas.entrada_id')
             ->select('documentos_motocicletas.casco','documentos_motocicletas.hoja_garantia','documentos_motocicletas.llaves',
-                'documentos_motocicletas.bateria','documentos_motocicletas.acido_bateria')
+                'documentos_motocicletas.bateria','documentos_motocicletas.acido_bateria','entrada_motocicletas.id')
             ->where('entrada_motocicletas.id_moto', $codigo)->get();
-        return view('Inventario.Motocicletas.ficha', compact('informacion_moto','info_modelo','info_fisico','entrada_documentos','contador_doc','documentos_moto'));
+        $fotos_moto = DB::table('fotos_motocicletas')
+            ->join('entrada_motocicletas','entrada_motocicletas.id','=','fotos_motocicletas.moto_id')
+            ->select('fotos_motocicletas.nombre','entrada_motocicletas.id_moto')->where('entrada_motocicletas.id_moto', $codigo)->get();
+        return view('Inventario.Motocicletas.ficha', compact('informacion_moto','info_modelo','info_fisico','entrada_documentos',
+            'contador_doc','documentos_moto','fotos_moto'));
     }
 
     public function inventario_sucursal(){
@@ -82,9 +86,23 @@ class MotocicletasController extends Controller
             ->select('entrada_motocicletas.motor', 'marcas.nombre as nombre_mar','modelos.nombre_mod','entrada_motocicletas.color',
                 'entrada_motocicletas.ano','entrada_motocicletas.id_moto','entrada_motocicletas.chasis','entrada_motocicletas.motor',
                 'sucursals.nombre','entrada_motocicletas.estado')
-            ->where('entrada_motocicletas.sucursal_id',$id)
+            ->where('entrada_motocicletas.sucursal_id',$id)->where('entrada_motocicletas.estado', 1)
             ->get();
         return $datos_sucursal;
+    }
+
+    public function transferencia(){
+        $totalMotos = EntradaMotocicleta::where('estado',5)->count();
+        $motos = DB::table('entrada_motocicletas')
+            ->join('marcas','marcas.id','=','entrada_motocicletas.marca_id')
+            ->join('modelos','modelos.id','=','entrada_motocicletas.modelo_id')
+            ->join('sucursals','sucursals.id','=','entrada_motocicletas.sucursal_id')
+            ->select('marcas.nombre as nombre_mar','modelos.nombre_mod','entrada_motocicletas.color','entrada_motocicletas.id_moto as codigo',
+                'sucursals.nombre as nombre_su','entrada_motocicletas.id')
+            ->where('entrada_motocicletas.estado',5)
+            ->get();
+
+        return view('Inventario.Motocicletas.index', compact('totalMotos','motos'));
     }
 
 }

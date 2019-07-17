@@ -6,21 +6,22 @@
     <div class="container-fluid">
         @include('Inventario.Motocicletas.Documentos.encabezado')
         <hr>
-        <table class="table table-sm">
-            <h4 class="text-center">Documentos de Salidas</h4>
-            <thead>
-            <tr>
-                <th>Cod. Salida</th>
-                <th>Num Salida</th>
-                <th>Nombre del Cliente</th>
-                <th>Codigo Motocicleta</th>
-                <th>Marca</th>
-                <th>Modelo</th>
-                <th>Fecha de Salida</th>
-                <th>Venta</th>
-            </tr>
-            </thead>
-            <tbody id="bodyTable">
+        <div class="overflow-auto">
+            <table class="table table-sm">
+                <h4 class="text-center">Documentos de Salidas x Venta</h4>
+                <thead>
+                <tr>
+                    <th>Cod. Salida</th>
+                    <th>Num Salida</th>
+                    <th>Nombre del Cliente</th>
+                    <th>Codigo Motocicleta</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Fecha de Salida</th>
+                    <th>Venta</th>
+                </tr>
+                </thead>
+                <tbody id="bodyTable">
                 @foreach($salidas as $info)
                     <tr>
                         <td>{{$info->cod_venta}}</td>
@@ -33,8 +34,9 @@
                         <td><a href="/inventario/motocicletas/documentos/salidas/{{$info->cod_venta}}">ver venta...</a></td>
                     </tr>
                 @endforeach
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     @include('Index.componentes.buscador')
