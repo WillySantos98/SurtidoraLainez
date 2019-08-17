@@ -4,6 +4,7 @@ namespace SurtidoraLainez\Http\Controllers;
 
 use Illuminate\Http\Request;
 use SurtidoraLainez\Colaborador;
+use SurtidoraLainez\CondicionPlaca;
 use SurtidoraLainez\Consignacion;
 use SurtidoraLainez\DocumentosConsignacion;
 use SurtidoraLainez\DocumentosMotocicleta;
@@ -88,6 +89,12 @@ class ConsignadaController extends Controller
             $nuevo_historial->save();
             break;
         }
+
+        $nueva_condicion = new CondicionPlaca();
+        $nueva_condicion->estado = 3;
+        $nueva_condicion->moto_id = $entrada_moto->id;
+        $nueva_condicion->save();
+
 
     }
 

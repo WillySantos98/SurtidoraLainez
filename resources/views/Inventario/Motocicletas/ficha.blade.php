@@ -3,10 +3,15 @@
 @section('content')
    <!-- <div class="container-fluid" style="overflow: auto; height: 570px"> -->
     <div class="container-fluid">
-        @foreach($informacion_moto as $info)
-            <div class="container-fluid">
-                <h4 class="text-center">Ficha de la Motocicleta --> {{$info->nombre_mar}} {{$info->nombre_mod}} {{$info->codigo}} --<</h4>
+        <div class="d-flex flex-row bd-highlight mb-3">
+            <div class="p-2 bd-highlight">@include('Index.componentes.ButtonBack')</div>
+            <div class="p-2 bd-highlight">
+                @foreach($informacion_moto as $info)
+                    <div class="container-fluid">
+                        <h4 class="text-center">Ficha de la Motocicleta --> {{$info->nombre_mar}} {{$info->nombre_mod}} {{$info->codigo}} --<</h4>
+                    </div>
             </div>
+        </div>
             <hr>
             <h4 class="text-center">Informacion de Entrada</h4>
             <div class="d-flex justify-content-between">

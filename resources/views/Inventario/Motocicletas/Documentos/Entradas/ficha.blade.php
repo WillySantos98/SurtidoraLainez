@@ -5,8 +5,7 @@
     <div class="container-fluid">
         @include('Index.componentes.status')
         <div class="d-flex justify-content-between">
-            <a href="{{route('docEntrada.index')}}" class="btn btn-dark">
-                <i class="fa fa-arrow-left" aria-hidden="true"> Volver Atras</i>
+            @include('Index.componentes.ButtonBack')
             </a>
             @foreach($DatosEncabezado as $info)
                 <h3 class="text-center">Informacion de la Entrada {{$info->cod_entrada}}</h3>

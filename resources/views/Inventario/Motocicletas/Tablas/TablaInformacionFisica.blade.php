@@ -8,7 +8,7 @@
         <th class="text-center" style="font-size: 14px">Ano</th>
         <th class="text-center" style="font-size: 14px">Estado en Piso</th>
         <th class="text-center" style="font-size: 14px">Observacion de Entrada</th>
-        <th class="text-center" style="font-size: 14px">Hubicacion Actual</th>
+        <th class="text-center" style="font-size: 14px">Ultima Hubicacion</th>
     </tr>
     </thead>
     <tbody>

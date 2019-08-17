@@ -117,7 +117,7 @@
                 <a class="collapse-item" href="{{route('inventario.transferencia')}}">Inventario en Transferencia</a>
                 <a class="collapse-item" href="{{route('inventarioSucursal.index')}}">Inventario x Sucursal</a>
                 <a class="collapse-item" href="{{route('inventarioSucursal.index')}}">Inventario Vendido</a>
-                <a class="collapse-item" href="{{route('inventarioSucursal.index')}}">Inventario Trans. Externa</a>
+                <a class="collapse-item" href="{{route('transferencias_externas.index')}}">Inventario Trans. Externa</a>
             </div>
         </div>
     </li>
@@ -132,7 +132,7 @@
                 <h6 class="collapse-header">Gestion de Motos</h6>
                 <a class="collapse-item" href="{{route('consignada.index')}}">Entrada</a>
                 <a class="collapse-item" href="{{route('transferencia.formulario')}}">Trasnferencia Interna</a>
-                <a class="collapse-item" href="{{route('transferencia.formulario')}}">Trasnferencia Externa</a>
+                <a class="collapse-item" href="{{route('transferenciasExternas.form')}}">Trasnferencia Externa</a>
                 <a class="collapse-item" href="{{route('salidaVenta.index')}}">Salida x Venta</a>
             </div>
         </div>
@@ -144,6 +144,28 @@
         </a>
     </li>
 
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-heading">
+        Placas
+    </div>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePlacas1" aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fa fa-motorcycle" aria-hidden="true"></i>
+            {{--            <i class="fa fa-motorcycle" aria-hidden="true"></i>--}}
+            <span>Gestion de Placas</span>
+        </a>
+        <div id="collapsePlacas1" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Inventario</h6>
+                <a class="collapse-item" href="{{route('placas.ingreso')}}">Ingreso de Placa</a>
+                <a class="collapse-item" href="{{route('inventario.transferencia')}}">Inventario de Placas</a>
+                <a class="collapse-item" href="{{route('inventarioSucursal.index')}}">Placas x Sucursal</a>
+                <a class="collapse-item" href="{{route('inventarioSucursal.index')}}">Placas Pendientes</a>
+            </div>
+        </div>
+    </li>
+
 
 
     <!-- Divider -->
@@ -153,5 +175,7 @@
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
+
+
 
 </ul>

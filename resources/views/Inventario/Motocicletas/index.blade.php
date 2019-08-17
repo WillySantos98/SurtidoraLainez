@@ -7,7 +7,7 @@
                 <input class="form-control" id="myInput" type="text" placeholder="Buscar...">
         </div>
     </div>
-    <div class="container-fluid" style="overflow-y: scroll; height: 750px">
+    <div class="container-fluid" style="overflow-y: scroll; height: 550px">
         <table class="table table-hover">
             <thead>
                 <tr>

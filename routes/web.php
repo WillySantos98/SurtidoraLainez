@@ -64,7 +64,7 @@ Route::get('aval-nuevo', 'AvalController@cliente_formnuevo')->name('aval.formNue
 
 //----------------------------------------------------------------------------------------------------------------------
 //*****Entradas de motocicletas
-//Consignadas
+//Consignadasn
 Route::get('inventario/motocicletas/registro','ConsignadaController@indexForm')->name('consignada.index');
 Route::get('/cargar_empleados/{id}', 'ConsignadaController@cargar_empleados');
 Route::get('cargar_modelos/{id}', 'ConsignadaController@cargar_modelos');
@@ -112,6 +112,19 @@ Route::get('/inventario/motocicletas/documentos/transferencias/declinadas','Tran
 Route::get('/inventario/motocicletas/documentos/transferencias/exitosas','TransferenciaController@exitosas')->name('exitosas.transferencia.index');
 Route::get('/inventario/motocicletas/documentos/transferenciasrechazadas/','TransferenciaController@rechazada')->name('transferencia.rechazadas');
 Route::get('/inventario/motocicletas/documentos/transferencias/exitosas/motos/{codigo}','TransferenciaController@motos');
+Route::get('/inventario/motocicletas/documentos/transferencias_externas','TransferenciasExternasController@index')->name('transferencias_externas.index');
+
+Route::get('/inventario/motocicletas/documentos/salidas_x_transferencia_externa','TransferenciasExternasController@form')->name('transferenciasExternas.form');
+Route::post('/inventario/motocicletas/documentos/salidas_x_transferencia_externa','TransferenciasExternasController@save_form')->name('transferenciasExternas.form.save');
+Route::get('/inventario/motocicletas/documentos/salidas_x_transferencia_externa/{codigo}','TransferenciasExternasController@transferencia')->name('transferenciaExterna');
+
+Route::get('/permisos/circulacion_sin_placa','PermisosController@index')->name('permisos.index');
+Route::get('/compras_x_cliente/{id}','PermisosController@compras');
+Route::get('/permiso/circulacion_sin_placa/{id}','PermisosController@generar_permiso');
+
+
+Route::get('/placas/ingreso','PlacasController@ingreso')->name('placas.ingreso');
+Route::post('/placas/ingreso','PlacasController@save_ingreso')->name('placas.save');
 
 //Auth::routes();
 //Route::get('/home', 'HomeController@index')->name('home');

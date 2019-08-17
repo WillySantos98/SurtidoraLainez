@@ -7,7 +7,8 @@
             </button>
         </div>
         <div class="modal-body">
-            <form action="{{route('marca.save')}}" method="post">
+            <form action="{{route('marca.save')}}" method="post" id="FormNuevaMarca">
+
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label for="">Seleccione Proveedor</label>
@@ -20,7 +21,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Nombre de la Marca</label>
-                    <input type="text" name="NombreMarca" class="form-control" required >
+                    <input type="text" name="NombreMarca" class="form-control" id="FormNuevaMarca-NombreMarca" required>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -31,3 +32,6 @@
 
     </div>
 </div>
+<script>
+
+</script>

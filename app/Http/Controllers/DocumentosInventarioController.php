@@ -34,8 +34,9 @@ class DocumentosInventarioController extends Controller
         $trans_r = Transferencia::where('estado', 3)->count();
         $trans_declinadas = Transferencia::where('estado_c', 2)->count();
         $trans_exitosas = Transferencia::where('estado_c', 1)->count();
+        $transferencias_externas = Transferencia::where('estado', 7)->count();
         return view('Inventario.Motocicletas.Documentos.index', compact('entradas','salidas','notificaciones'
-        ,'trans_p','trans_a','trans_r','notificaciones2','trans_declinadas','trans_exitosas'));
+        ,'trans_p','trans_a','trans_r','notificaciones2','trans_declinadas','trans_exitosas','transferencias_externas'));
     }
 
     public function docEntrada_ficha($codigo){
