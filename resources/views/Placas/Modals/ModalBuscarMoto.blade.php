@@ -37,7 +37,7 @@
                             <td>{{$moto->color}}</td>
                             <td>
                                 <button onclick="VinculacionMoto(this.value)" data-dismiss="modal"
-                                        value="{{$moto->id}}.{{$moto->nombre}}.{{$moto->nombre_mod}}.{{$moto->chasis}}.{{$moto->motor}}.{{$moto->color}}.{{$moto->ano}}.{{$moto->cilindraje}}"
+                                        value="{{$moto->id}}.{{$moto->nombre}}.{{$moto->nombre_mod}}.{{$moto->chasis}}.{{$moto->motor}}.{{$moto->color}}.{{$moto->ano}}.{{$moto->cilindraje}}.{{$moto->nombres}}.{{$moto->apellidos}}.{{$moto->identidad}}.{{$moto->rtn}}.{{$moto->id_sal}}.{{$moto->nombre_suc}}.{{$moto->sucrusal_id}}"
                                         class="btn btn-outline-success"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
                             </td>
                         </tr>
@@ -58,21 +58,5 @@
         });
     });
 
-    function VinculacionMoto(val) {
-        var cadena = val;
-        var datos = cadena.split('.');
-        let id = datos[0];
-        let marca = datos[1], modelo = datos[2], chasis = datos[3], motor = datos[4], color = datos[5], ano=datos[6], cilindraje = datos[7];
-
-        document.getElementById("BoletaMarca").innerHTML = marca;
-        document.getElementById("BoletaModelo").innerHTML = modelo;
-        document.getElementById("BoletaColor").innerHTML =  color;
-        document.getElementById("BoletaMotor").innerHTML = motor;
-        document.getElementById("BoletaChasis").innerHTML = chasis;
-        document.getElementById("BoletaAno").innerHTML = ano;
-        document.getElementById("BoletaCil").innerHTML = cilindraje;
-        document.getElementById("BoletaInputIdMoto").innerHTML = '<input value="'+id+'" type="text" hidden>';
-
-    }
 
 </script>

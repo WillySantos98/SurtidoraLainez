@@ -15,6 +15,7 @@ class UsuarioController extends Controller
             ->select('users.name','users.usuario','users.password','users.email','tipo_usuarios.nombre','users.estado','users.id',
                 'tipo_usuarios.id as id_t')
             ->get();
+
         return view('Usuarios.index', compact('usuarios'));
     }
 
@@ -27,11 +28,13 @@ class UsuarioController extends Controller
         $nuevo_usuario = new User();
         $nuevo_usuario->name = $request->input('Nombre');
         $nuevo_usuario->usuario = $request->input('Usuario');
-        $nuevo_usuario->password = bcrypt($request->input('Contra'));
+        $nuevo_usuario->password = encrypt($request->input('Contra'));
         $nuevo_usuario->email = $request->input('Correo');
         $nuevo_usuario->tipousuario_id = $request->input('SelectUsuario');
         $nuevo_usuario->estado = 1;
         $nuevo_usuario->save();
+
+
 
         return redirect()->route('usuario.index');
     }

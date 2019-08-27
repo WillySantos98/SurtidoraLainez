@@ -31,7 +31,8 @@ class SavePlaca extends FormRequest
             'Identificacion' => 'required|min:13|max:14',
             'Propietario' => 'required',
             'Año'=> 'required|max:4|min:4',
-            'FileBoleta' => 'required'
+            'FileBoleta' => 'required',
+            'NumGuia' =>  'required'
         ];
     }
 }

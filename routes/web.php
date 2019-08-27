@@ -122,9 +122,16 @@ Route::get('/permisos/circulacion_sin_placa','PermisosController@index')->name('
 Route::get('/compras_x_cliente/{id}','PermisosController@compras');
 Route::get('/permiso/circulacion_sin_placa/{id}','PermisosController@generar_permiso');
 
-
+//=========================================================================Placas
 Route::get('/placas/ingreso','PlacasController@ingreso')->name('placas.ingreso');
 Route::post('/placas/ingreso','PlacasController@save_ingreso')->name('placas.save');
-
+Route::get('/placas/inventario','PlacasController@inventario')->name('placas.inventario');
+Route::get('/info_placas/{id}','PlacasController@info');
+Route::get('/placas/boleta/{codigo}','PlacasController@boleta')->name('placas.boleta');
+Route::get('/placas/transferencia','PlacasController@transferencia')->name('placas.transferencia');
+Route::post('/placas/transferencia','PlacasController@save_transferencia')->name('placas.transferencia.save');
+Route::get('/cargar_almacenes','PlacasController@sucursales');
+Route::get('/cargar_placas/{idorigen}/{iddestino}','PlacasController@cargarPlacas');
+Route::get('/cargar_info_boletas/{id}','PlacasController@ver_info');
 //Auth::routes();
 //Route::get('/home', 'HomeController@index')->name('home');

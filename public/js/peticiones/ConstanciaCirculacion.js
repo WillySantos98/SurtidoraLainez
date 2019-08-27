@@ -15,7 +15,7 @@ function MotosPorCliente(value) {
                     <h6 class="m-0 font-weight-bold text-primary">${compras.data[i].nombre} - ${compras.data[i].nombre_mod}</h6>
                    </a>
                </div>
-
+    
                 <div class="collapse" id="collapseCompras-${compras.data[i].id}">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">

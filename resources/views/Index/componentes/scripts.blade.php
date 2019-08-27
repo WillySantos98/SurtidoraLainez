@@ -21,6 +21,9 @@
 <script src="{{asset('js/peticiones/TransferenciasInternas.js')}}"></script>
 <script src="{{asset('js/peticiones/ConstanciaCirculacion.js')}}"></script>
 <script src="{{asset('js/DocumentosEntradas.js')}}"></script>
+<script src="{{asset('js/FormularioPlacas.js')}}"></script>
+<script src="{{asset('js/PlacasInformacion.js')}}"></script>
+<script src="{{asset('js/FormTransPlacas.js')}}"></script>
 <!-- <script src="{{asset('js/FormularioConsignacion.js')}}"></script> -->
 <script>
 function UrlBack() {

@@ -11,5 +11,6 @@
             <input type="submit" class="btn btn-primary" value="Guardar Tipo de Colaborador">
         </div>
     </div>
+
 </form>
 <hr>

@@ -159,9 +159,8 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Inventario</h6>
                 <a class="collapse-item" href="{{route('placas.ingreso')}}">Ingreso de Placa</a>
-                <a class="collapse-item" href="{{route('inventario.transferencia')}}">Inventario de Placas</a>
-                <a class="collapse-item" href="{{route('inventarioSucursal.index')}}">Placas x Sucursal</a>
-                <a class="collapse-item" href="{{route('inventarioSucursal.index')}}">Placas Pendientes</a>
+                <a class="collapse-item" href="{{route('placas.inventario')}}">Inven, de Boletas/Placas</a>
+                <a class="collapse-item" href="{{route('placas.transferencia')}}">Transferencias</a>
             </div>
         </div>
     </li>

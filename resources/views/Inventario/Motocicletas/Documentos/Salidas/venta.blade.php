@@ -5,9 +5,7 @@
         @include('Index.componentes.status')
         <hr>
         <div class="d-flex justify-content-between">
-            <a href="{{route('salidas.index')}}" class="btn btn-dark">
-                <i class="fa fa-arrow-left" aria-hidden="true"> Volver Atras</i>
-            </a>
+            @include('Index.componentes.ButtonBack')
             @foreach($cliente as $info)
                 <h4 class="text-center">Venta con codigo {{$info->cod_venta}}</h4>
             @endforeach

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use SurtidoraLainez\Colaborador;
 use SurtidoraLainez\Http\Requests\SaveSucursal;
 use SurtidoraLainez\Http\Requests\SaveColaborador;
+use SurtidoraLainez\PermisoUsuario;
 use SurtidoraLainez\Sucursal;
 use SurtidoraLainez\TipoColaborador;
 
@@ -54,10 +55,11 @@ class SucursalController extends Controller
     }
 
     public function save_tipocolaborador(Request $request){
-        $nombre = $request->input('Nombre');
+
         $nuevoTipoColaborador = new TipoColaborador();
         $nuevoTipoColaborador->nombre = $request->input('Nombre');
         $nuevoTipoColaborador->save();
+        $nombre = $request->input('Nombre');
         return redirect()->route('colaboradores.index')->with('status','El tipo de colaborador '.$nombre.' se ha guardado correctamente');
     }
 

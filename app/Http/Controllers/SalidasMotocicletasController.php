@@ -50,6 +50,7 @@ class SalidasMotocicletasController extends Controller
         $nuevaNotificacion->cod_notificacion = 'sl-nt-'.$contadorNotificacion;
         $nuevaNotificacion->fecha_generada = $request->input('Fecha_Venta');
         $nuevaNotificacion->salida_id = $nuevaSalida->id;
+        $nuevaNotificacion->estado = 1;
         $nuevaNotificacion->save();
 
         DB::table('entrada_motocicletas')->where('id', $request->input('IdMoto'))

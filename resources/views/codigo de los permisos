@@ -1,0 +1,81 @@
+$nuvo_permisosUser = new PermisoUsuario();
+        if ($request->input('CheckModuloTarea') == null){
+            $nuvo_permisosUser->tareas = 2;
+        }else{
+            $nuvo_permisosUser->tareas = 1;
+        }
+        if ($request->input('CheckModuloUsuarios') == null){
+            $nuvo_permisosUser->usuarios = 2;
+        }else{
+            $nuvo_permisosUser->usuarios =1;
+        }
+        if ($request->input('CheckModuloClientes') == null){
+            $nuvo_permisosUser->clientes = 2;
+        }else{
+            $nuvo_permisosUser->clientes = 1;
+        }
+        if ($request->input('CheckModuloAvales')==null){
+            $nuvo_permisosUser->avales = 2;
+        }else{
+            $nuvo_permisosUser->avales = 1;
+        }
+        if ($request->input('CheckModuloInventario') == null){
+            $nuvo_permisosUser->inventario = 2;
+        }else{
+            $nuvo_permisosUser->inventario = 1;
+        }
+        if ($request->input('CheckModuloInventarioDisponible') == null){
+            $nuvo_permisosUser->inventario_disponible = 2;
+        }else{
+            $nuvo_permisosUser->inventario_disponible = 1;
+        }
+        if ($request->input('CheckModuloGestionMotocicletas') == null){
+            $nuvo_permisosUser->gestion_motocicletas = 2;
+        }else{
+            $nuvo_permisosUser->gestion_motocicletas = 1;
+        }
+        if ($request->input('CheckModuloGestionPlaca') == null){
+            $nuvo_permisosUser->gestion_placa = 2;
+        }else{
+            $nuvo_permisosUser->gestion_placa = 1;
+        }
+        $nuvo_permisosUser->tipo_usuario = $nuevoTipoColaborador->id;
+        $nuvo_permisosUser->save();
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+<div class="form-group row">
+        <div class="col">
+            <label for="">Modulo Tareas</label>
+            <input type="checkbox" value="1" name="CheckModuloTarea" class="-check-circle">
+        </div>
+        <div class="col">
+            <label for="">Modulo Usuarios</label>
+            <input type="checkbox" value="1" name="CheckModuloUsuarios" class="-check-circle">
+        </div>
+        <div class="col">
+            <label for="">Modulo Clientes</label>
+            <input type="checkbox" value="1" name="CheckModuloClientes" class="-check-circle">
+        </div>
+        <div class="col">
+            <label for="">Modulo Avales</label>
+            <input type="checkbox" value="1" name="CheckModuloAvales" class="-check-circle">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col">
+            <label for="">Modulo Inventario</label>
+            <input type="checkbox" value="1" name="CheckModuloInventario" class="-check-circle">
+        </div>
+        <div class="col">
+            <label for="">Modulo Inventario Disponible</label>
+            <input type="checkbox" value="1" name="CheckModuloInventarioDisponible" class="-check-circle">
+        </div>
+        <div class="col">
+            <label for="">Modulo Gestion Motocicletas</label>
+            <input type="checkbox" value="1" name="CheckModuloGestionMotocicletas" class="-check-circle">
+        </div>
+        <div class="col">
+            <label for="">Modulo Gestion Placa</label>
+            <input type="checkbox" value="1" name="CheckModuloGestionPlaca" class="-check-circle">
+        </div>
+    </div>
