@@ -4,6 +4,7 @@
     <div class="container-fluid">
         <h4 class="text-center">Formulario de Transferencia de Boletas/Placas</h4>
         <form action="{{route('placas.transferencia.save')}}" method="post">
+            @csrf
             <div class="row">
                 <div class="col">
                     <div class="form-group">
@@ -76,6 +77,14 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <label for="">Observaciones</label>
+                <input type="text" class="form-control" name="Observaciones">
+            </div>
+            <hr>
+            <div class="form-group">
+                <input type="submit" class="btn btn-outline-primary" value="Realizar Transferencia">
             </div>
         </form>
     </div>

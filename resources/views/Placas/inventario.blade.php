@@ -33,8 +33,10 @@
                         <td>
                             @if($placa->estado == 1)
                                 <span class="badge-warning">No</span>
-                            @else($placa->estado ==2)
+                            @elseif($placa->estado ==2)
                                 <span class="badge-success">Si</span>
+                            @elseif($placa->estado == 3)
+                                <span class="badge-dark">En Transferencia</span>
                             @endif
                         </td>
                         @if($placa->estado_enlazo == 1)

@@ -174,25 +174,26 @@
         <div class="sidebar-heading">
             Ventas
         </div>
-
         <li class="nav-item active">
             <a class="nav-link" href="{{route('motocicletas.index')}}">
                 <i class="fa fa-motorcycle" aria-hidden="true"></i>
                 <span>Inventario</span></a>
         </li>
-
         <li class="nav-item active">
             <a class="nav-link" href="{{route('cliente.formNuevo')}}">
                 <i class="fa fa-address-card"></i>
                 <span>Crear Cliente</span></a>
         </li>
-
         <li class="nav-item active">
             <a class="nav-link" href="{{route('cliente.index')}}">
                 <i class="fa fa-address-card"></i>
                 <span>Clientes</span></a>
         </li>
-
+        <li class="nav-item active">
+            <a class="nav-link" href="{{route('consignada.index')}}">
+                <i class="fa fa-address-card"></i>
+                <span>Salidsas x Venta</span></a>
+        </li>
         <li class="nav-item active">
             <a class="nav-link" href="{{route('placas.inventario')}}">
                 <span>Placas</span></a>

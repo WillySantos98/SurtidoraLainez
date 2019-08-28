@@ -133,5 +133,9 @@ Route::post('/placas/transferencia','PlacasController@save_transferencia')->name
 Route::get('/cargar_almacenes','PlacasController@sucursales');
 Route::get('/cargar_placas/{idorigen}/{iddestino}','PlacasController@cargarPlacas');
 Route::get('/cargar_info_boletas/{id}','PlacasController@ver_info');
+Route::get('/placas/documentos/transferencia','PlacasController@placas_transferencias')->name('placasTransferencias');
+Route::get('/lotes_placas/{id}','PlacasController@lotes');
+Route::post('/placas/transferencia_aceptar', 'PlacasController@saveTransferencia_aceptada')->name('placas.transferencia.aceptada.save');
+Route::get('/placas/documentos/aceptadas_x_sucursals','PlacasController@aceptadas_sucursal')->name('placas.aceptadas.sucursal');
 //Auth::routes();
 //Route::get('/home', 'HomeController@index')->name('home');

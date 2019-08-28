@@ -3,8 +3,11 @@
 namespace SurtidoraLainez\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Stmt\Return_;
 use SurtidoraLainez\AlmacenAltualPlaca;
+use SurtidoraLainez\CuerpoTransferenciaPlaca;
 use SurtidoraLainez\EntradaMotocicleta;
 use SurtidoraLainez\FotosBoleta;
 use SurtidoraLainez\FotosPlaca;
@@ -13,6 +16,7 @@ use SurtidoraLainez\Http\Requests\SavePlaca;
 use SurtidoraLainez\Placa;
 use SurtidoraLainez\Salida;
 use SurtidoraLainez\Sucursal;
+use SurtidoraLainez\TransferenciaPlaca;
 
 class PlacasController extends Controller
 {
@@ -209,6 +213,43 @@ class PlacasController extends Controller
     }
 
     public function save_transferencia(Request $request){
+        $placas = TransferenciaPlaca::count();
+        $idPlacas = $request->input('IdBoletas');
+
+        $nueva_transferencia_placa = new TransferenciaPlaca();
+        $nueva_transferencia_placa->cod_transferencia = 'tr-pl-'.$placas;
+        $nueva_transferencia_placa->almacen_origen = $request->input('SelectAlmacenOrigen');
+        $nueva_transferencia_placa->almacen_final = $request->input('SelectAlmacenDestino');
+        $nueva_transferencia_placa->usuario = $request->input('InputIdUsuario');
+        $nueva_transferencia_placa->estado = 1;
+        $nueva_transferencia_placa->observaciones = $request->input('Observaciones');
+        $nueva_transferencia_placa->save();
+
+        for($i = 0; $i < count($request->input('IdBoletas')); $i++){
+            $nuevo_CuerpoTransferencia = new CuerpoTransferenciaPlaca();
+            $nuevo_CuerpoTransferencia->transferencia_id = $nueva_transferencia_placa->id;
+            $nuevo_CuerpoTransferencia->placa_id = $idPlacas[$i];
+            $nuevo_CuerpoTransferencia->save();
+
+            $nuevo_historial = new HistorialUsuario();
+            $nuevo_historial->id_usuario = Auth::user()->id;
+            $nuevo_historial->usuario = Auth::user()->usuario;
+            $nuevo_historial->descripcion = 'Creo la transferencia de la boleta/placa '.$idPlacas[$i] .' con codigo de transferencia '.$nueva_transferencia_placa->cod_transferencia;;
+            $nuevo_historial->codigo = $idPlacas[$i];
+            $nuevo_historial->save();
+
+            DB::table('placas')->where('id', $idPlacas[$i])
+                ->update(['estado'=>3]);
+        }
+
+        $nuevo_historial = new HistorialUsuario();
+        $nuevo_historial->id_usuario = Auth::user()->id;
+        $nuevo_historial->usuario = Auth::user()->usuario;
+        $nuevo_historial->descripcion = 'Creo una Transferencia codigo '.$nueva_transferencia_placa->cod_transferencia;
+        $nuevo_historial->codigo = $nueva_transferencia_placa->cod_transferencia;
+        $nuevo_historial->save();
+
+        return redirect()->route('placasTransferencias');
 
     }
 
@@ -223,6 +264,51 @@ class PlacasController extends Controller
             ->where('placas.id', $id)->get();
 
         return $info;
+    }
+
+    public function placas_transferencias(){
+
+        $placas = TransferenciaPlaca::join('sucursals','sucursals.id','=','transferencia_placas.almacen_final')
+            ->select('transferencia_placas.id','sucursals.nombre','transferencia_placas.cod_transferencia')
+            ->where('transferencia_placas.estado', 1)->get();
+
+        return view('Placas.Documentos.PlacasTransferencia', compact('placas'));
+    }
+
+    public function lotes($id){
+        $lote = TransferenciaPlaca::join('sucursals','sucursals.id','=','transferencia_placas.almacen_final')
+            ->join('cuerpo_transferencia_placas','cuerpo_transferencia_placas.transferencia_id','=','transferencia_placas.id')
+            ->join('placas','placas.id','=','cuerpo_transferencia_placas.placa_id')
+            ->join('salidas','salidas.id','=','placas.venta_id')
+            ->join('clientes','clientes.id','=','salidas.cliente_id')
+            ->join('entrada_motocicletas','entrada_motocicletas.id','=','salidas.moto_id')
+            ->select('sucursals.nombre','transferencia_placas.cod_transferencia','placas.num_boleta','placas.num_placa',
+                'clientes.nombres','clientes.apellidos','entrada_motocicletas.chasis','placas.estado_enlazo',
+                'transferencia_placas.id','sucursals.id as id_suc')
+            ->where('transferencia_placas.id', $id)->get();
+
+        return $lote;
+    }
+
+    public function saveTransferencia_aceptada(Request $request){
+        $id = $request->input('Id');
+        $idSuc = $request->input('IdSuc');
+
+        DB::table('transferencia_placas')->join('cuerpo_transferencia_placas','cuerpo_transferencia_placas.transferencia_id','=','transferencia_placas.id')
+            ->join('placas','placas.id','=','cuerpo_transferencia_placas.placa_id')
+            ->join('almacen_altual_placas','almacen_altual_placas.placa_id','=','placas.id')
+            ->where('transferencia_placas.id', $id)
+            ->update(['placas.estado'=>1, 'transferencia_placas.estado'=>2,'almacen_altual_placas.almacen_actual'=> $idSuc]);
+
+        return $id;
+    }
+
+    public function aceptadas_sucursal(){
+        $placas = TransferenciaPlaca::join('sucursals','sucursals.id','=','transferencia_placas.almacen_final')
+            ->select('transferencia_placas.id','sucursals.nombre','transferencia_placas.cod_transferencia')
+            ->where('transferencia_placas.estado', 1)->get();
+
+        return view('Placas.Documentos.PlacasAceptadas', compact('placas'));
     }
 
 }

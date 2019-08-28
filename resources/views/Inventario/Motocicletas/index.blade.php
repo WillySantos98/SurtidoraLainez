@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="container-fluid" style="overflow-y: scroll; height: 550px">
-        <table class="table table-hover">
+        <table class="table table-responsive-xl table-hover">
             <thead>
                 <tr>
                     <th>Marca</th>
