@@ -66,7 +66,7 @@
     @endif
 
 
-    @if(Auth::user()->tipousuario_id == 4 Or Auth::user()->tipousuario_id == 1)
+    @if(Auth::user()->tipousuario_id == 4 Or Auth::user()->tipousuario_id == 1 or Auth::user()->tipousuario_id == 6)
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
             Clientes
@@ -122,22 +122,25 @@
                 </div>
             </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventario" aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fa fa-plus" aria-hidden="true"></i>
-                {{--            <i class="fa fa-motorcycle" aria-hidden="true"></i>--}}
-                <span>Gestion de Motocicletas</span>
-            </a>
-            <div id="collapseInventario" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Gestion de Motos</h6>
-                    <a class="collapse-item" href="{{route('consignada.index')}}">Entrada</a>
-                    <a class="collapse-item" href="{{route('transferencia.formulario')}}">Trasnferencia Interna</a>
-                    <a class="collapse-item" href="{{route('transferenciasExternas.form')}}">Trasnferencia Externa</a>
-                    <a class="collapse-item" href="{{route('salidaVenta.index')}}">Salida x Venta</a>
+        @if(Auth::user()->tipousuario_id == 1 or Auth::user()->tipousuario_id == 4)
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventario" aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    {{--            <i class="fa fa-motorcycle" aria-hidden="true"></i>--}}
+                    <span>Gestion de Motocicletas</span>
+                </a>
+                <div id="collapseInventario" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Gestion de Motos</h6>
+                        <a class="collapse-item" href="{{route('consignada.index')}}">Entrada</a>
+                        <a class="collapse-item" href="{{route('transferencia.formulario')}}">Trasnferencia Interna</a>
+                        <a class="collapse-item" href="{{route('transferenciasExternas.form')}}">Trasnferencia Externa</a>
+                        <a class="collapse-item" href="{{route('salidaVenta.index')}}">Salida x Venta</a>
+                    </div>
                 </div>
-            </div>
-        </li>
+            </li>
+
+        @endif
         <li class="nav-item">
             <a class="nav-link" href="{{route('doc.index')}}">
                 <i class="fa fa-file" aria-hidden="true"></i>
