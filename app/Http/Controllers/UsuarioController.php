@@ -28,7 +28,7 @@ class UsuarioController extends Controller
         $nuevo_usuario = new User();
         $nuevo_usuario->name = $request->input('Nombre');
         $nuevo_usuario->usuario = $request->input('Usuario');
-        $nuevo_usuario->password = encrypt($request->input('Contra'));
+        $nuevo_usuario->password = bcrypt($request->input('Contra'));
         $nuevo_usuario->email = $request->input('Correo');
         $nuevo_usuario->tipousuario_id = $request->input('SelectUsuario');
         $nuevo_usuario->estado = 1;
