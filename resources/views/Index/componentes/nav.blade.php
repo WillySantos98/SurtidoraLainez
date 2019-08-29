@@ -122,7 +122,7 @@
                 </div>
             </div>
         </li>
-        @if(Auth::user()->tipousuario_id == 1 or Auth::user()->tipousuario_id == 4)
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventario" aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fa fa-plus" aria-hidden="true"></i>
@@ -140,7 +140,7 @@
                 </div>
             </li>
 
-        @endif
+
         <li class="nav-item">
             <a class="nav-link" href="{{route('doc.index')}}">
                 <i class="fa fa-file" aria-hidden="true"></i>
@@ -149,7 +149,7 @@
         </li>
 
         <hr class="sidebar-divider">
-
+        @if(Auth::user()->tipousuario_id == 1 or Auth::user()->tipousuario_id == 4)
         <div class="sidebar-heading">
             Placas
         </div>
@@ -168,6 +168,7 @@
                 </div>
             </div>
         </li>
+            @endif
     @endif
 
     @if(Auth::user()->tipousuario_id == 3)
