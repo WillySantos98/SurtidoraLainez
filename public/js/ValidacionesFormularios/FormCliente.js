@@ -40,7 +40,6 @@ $('#FormCliente').on('change', function () {
     }
     if (file.files.length == 0){
         file.style.border = "thick solid #FF0000";
-        console.log(file.value.data)
     }else {
         let extensiones = /(.jpg|.png|.jpeg|.pdf)$/i;
         var nombreFile = '';
@@ -48,13 +47,13 @@ $('#FormCliente').on('change', function () {
         let fotosPesadas = [];
         let pdfPesados = [];
         let extFile = '';
+        let b =0;
         for (let i = 0; i<file.files.length; i++){
             nombreFile = file.files[i].name;
             if (!extensiones.exec(nombreFile)){
                 file_malos.push(nombreFile)
             }
             extFile = file.files[i].name.split('.').pop();
-            console.log(extFile);
             if (extFile == "png" | extFile == "jpeg" | extFile == "jpg"){
                 if (file.files[i].size > 2097152){
                     fotosPesadas.push(nombreFile)
@@ -70,13 +69,16 @@ $('#FormCliente').on('change', function () {
         if (file_malos.length > 0){
             alert("Estos archivos no tienen extension valida"+file_malos);
             file.style.border = "thick solid #FF0000";
+            b += 1;
         }if (fotosPesadas.length > 0){
             alert("Estas fotos pesan mas de 2 megas"+fotosPesadas);
             file.style.border = "thick solid #FF0000";
+            b +=1;
         }if (pdfPesados.length > 0){
             alert("Estos pdf pesan mas de 10 megas"+pdfPesados);
             file.style.border = "thick solid #FF0000";
-        }else{
+            b +=1;
+        }if (b == 0){
             file.style.border ="thick solid #00FF00";
             bandera += 1;
         }
