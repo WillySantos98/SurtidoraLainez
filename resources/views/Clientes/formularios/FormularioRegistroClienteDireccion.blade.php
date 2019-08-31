@@ -11,7 +11,7 @@
         <label for="DireccionesCliente">Direcciones</label>
         <table id="TableDirecciones" style="width: 95%" >
             <tr>
-                <textarea class="form-control" required id="DireccionesCliente" name="DireccionesClientes[]" rows="3"></textarea>
+                <textarea class="form-control" required id="FormCliente-Direcciones" minlength="5" name="DireccionesClientes[]" rows="3"></textarea>
             </tr>
         </table>
     </div>

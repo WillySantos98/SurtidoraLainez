@@ -6,9 +6,9 @@
     @foreach($entrada_documentos as $doc)
         <div class="mySlides">
             <div class="numbertext">{{$i = $i + 1}} / {{$contador_doc}}</div>
-            <img src="/documentos/entradas/{{$doc->nombre}}" class="rounded mx-auto d-block" style="width:350px; height: 450px">
-            <a href="/documentos/entradas/{{$doc->nombre}}" download="Entrada-{{$doc->cod_entrada}}-{{$doc->nombre}}" >Descargar Documento </a>
-            <a href="/documentos/entradas/{{$doc->nombre}}" target="_blank">Ver completa</a>
+            <img src="{{asset('documentos/entradas/'.$doc->nombre)}}" class="rounded mx-auto d-block" style="width:350px; height: 450px">
+            <a href="{{asset('documentos/entradas/'.$doc->nombre)}}" download="Entrada-{{$doc->cod_entrada}}-{{$doc->nombre}}" >Descargar Documento </a>
+            <a href="{{asset('documentos/entradas/'.$doc->nombre)}}" target="_blank">Ver completa</a>
         </div>
     @endforeach
     <a class="prev" onclick="plusSlides(-1)">❮</a>
@@ -22,7 +22,7 @@
         <input type="hidden" {{$e=0}}>
         @foreach($entrada_documentos as $doc)
             <div class="column">
-                <img class="demo cursor" src="/documentos/entradas/{{$doc->nombre}}" style="width:100%" onclick="currentSlide({{$e = $e + 1}})" alt="{{$doc->nombre}}">
+                <img class="demo cursor" src="{{asset('documentos/entradas/'.$doc->nombre)}}" style="width:100%" onclick="currentSlide({{$e = $e + 1}})" alt="{{$doc->nombre}}">
             </div>
         @endforeach
     </div>

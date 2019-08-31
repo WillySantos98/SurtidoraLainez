@@ -1,4 +1,4 @@
-<h3 class="text-center"> Registro de Documentos</h3>
+<h4 class="text-center"> Registro de Documentos</h4>
 <div class="d-flex flex-row-reverse bd-highlight">
 </div>
 <div class="form-row">
@@ -6,7 +6,7 @@
         <label for="Documentos">Documetos Personales Escaneados</label>
         <table id="TableDocumentos">
             <tr>
-                <input type="file" class="form-control w-100"  name="Documentos[]" multiple>
+                <input type="file" class="form-control w-100" required id="FormCliente-File"  name="Documentos[]" multiple >
             </tr>
         </table>
 

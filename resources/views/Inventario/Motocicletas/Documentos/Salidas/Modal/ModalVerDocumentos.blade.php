@@ -23,7 +23,7 @@
                     <tbody>
                     @foreach($doc as $info)
                         <tr>
-                            <td><a href="../../../../../documentos/ventas/{{$info->nombre}}" target="_blank" class="card-link"><i data-feather="file"></i> {{$info->nombre}}</a></td>
+                            <td><a href="{{asset('documentos/ventas/'.$info->nombre)}}" target="_blank" class="card-link"><i data-feather="file"></i> {{$info->nombre}}</a></td>
                         </tr>
                     @endforeach
                     </tbody>

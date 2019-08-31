@@ -11,7 +11,8 @@
 
     <title>@yield('title', 'Surtidoara Lainez')</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('css/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -20,7 +21,9 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('css/css/sb-admin-2.min.css')}}" rel="stylesheet">
     <script src="https://unpkg.com/feather-icons"></script>
+
     <script src="{{asset('css/vendor/jquery/jquery.min.js')}}"></script>
+
 
 
     <!-- CSS -->

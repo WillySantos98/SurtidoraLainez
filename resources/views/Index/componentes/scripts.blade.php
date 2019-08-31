@@ -3,9 +3,6 @@
 
 <!-- Core plugin JavaScript-->
 <script src="{{asset('css/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
-<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/alertify.min.js"></script>
-
-
 
 
 
@@ -24,9 +21,26 @@
 <script src="{{asset('js/FormularioPlacas.js')}}"></script>
 <script src="{{asset('js/PlacasInformacion.js')}}"></script>
 <script src="{{asset('js/FormTransPlacas.js')}}"></script>
-<!-- <script src="{{asset('js/FormularioConsignacion.js')}}"></script> -->
+<script src="{{asset('js/ValidacionesFormularios/Validacion.js')}}"></script>
+<script src="{{asset('js/ValidacionesFormularios/FormCliente.js')}}"></script>
+
 <script>
 function UrlBack() {
     window.history.back();
 }
+</script>
+
+<script src="{{asset('js/app.js')}}"></script>
+<script>
+    @if(session('error'))
+    new Noty({
+        type: 'error',
+        layout: 'topRight',
+        text: '{{session('error')}}'+'Para desaparecer la advertencia haga click aca.',
+        animation:{
+            speed: 500,
+        }
+    }).show();
+    @endif
+
 </script>

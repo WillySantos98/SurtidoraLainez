@@ -7,7 +7,7 @@
     <tbody>
     @foreach($entrada_documentos as $doc)
         <tr>
-            <td><a href="/documentos/entradas/{{$doc->nombre}}" target="_blank">{{$doc->nombre}}</a></td>
+            <td><a href="{{asset('documentos/entradas/'.$doc->nombre)}}" target="_blank">{{$doc->nombre}}</a></td>
         </tr>
     @endforeach
     </tbody>

@@ -1,4 +1,5 @@
-
+window.Noty = require('noty');
+window.swal = require('sweetalert2');
 window._ = require('lodash');
 
 /**

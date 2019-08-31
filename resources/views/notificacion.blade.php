@@ -14,7 +14,7 @@
             </div>
             <div class="col-sm-12">
                 <h3 class="text-center text-uppercase font-weight-bold">Surtidora Lainez</h3>
-                <h6 class="text-center text-uppercase" style="font-size: 14px">Col. 19 de Abril contiguo a "Transportes Cristina. Trujillo, Colon.</h6>
+                <h6 class="text-center text-uppercase" style="font-size: 14px">{{$info->dir}}</h6>
                 <hr>
             </div>
         </div>

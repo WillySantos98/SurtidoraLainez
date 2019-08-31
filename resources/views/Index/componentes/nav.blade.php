@@ -3,7 +3,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('index')}}">
         <div class="sidebar-brand-icon">
-            <img class="img-profile rounded-circle" src="logo2.png" style="width: 100%; height: 100%;" alt="">
+            <img class="img-profile rounded-circle" src="{{asset('logo2.png')}}" style="width: 100%; height: 100%;" alt="">
         </div>
         <div class="sidebar-brand-text mx-3">Surtidora Lainez</div>
     </a>
@@ -190,16 +190,17 @@
         </li>
         <li class="nav-item active">
             <a class="nav-link" href="{{route('cliente.index')}}">
-                <i class="fa fa-address-card"></i>
+                <i class="fa fa-address-book" aria-hidden="true"></i>
                 <span>Clientes</span></a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="{{route('consignada.index')}}">
-                <i class="fa fa-address-card"></i>
-                <span>Salidsas x Venta</span></a>
+            <a class="nav-link" href="{{route('salidaVenta.index')}}">
+                <i class="fa fa-address-card" aria-hidden="true"></i>
+                <span>Registrar una Venta</span></a>
         </li>
         <li class="nav-item active">
             <a class="nav-link" href="{{route('placas.inventario')}}">
+                <i class="fa fa-folder" aria-hidden="true"></i>
                 <span>Placas</span></a>
         </li>
     @endif

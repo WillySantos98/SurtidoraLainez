@@ -32,7 +32,7 @@
     <h4 class="text-uppercase text-center"><strong>Constancia</strong></h4>
     <p class="parrafo">Por medio de la presente <strong>SURTIDORA LAINEZ</strong> hace constar que hemos
         vendido al señor(a): <strong class="text-uppercase">{{$info->nombres}}  {{$info->apellidos}}</strong>, con numero de
-        identidad <strong>{{$info->identidad}}</strong>, una moto financida con las siguientes caracteristicas:</p>
+        identidad <strong>{{$info->identidad}}</strong>, una moto con las siguientes caracteristicas:</p>
 
     <p class="filas text-uppercase"><strong>TIPO DE VENTA:</strong>     {{$info->venta}}</p>
     <p class="filas text-uppercase"><strong>MARCA:</strong>     {{$info->marca}}</p>

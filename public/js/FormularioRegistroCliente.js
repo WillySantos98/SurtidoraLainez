@@ -4,7 +4,7 @@ $(document).ready(function () {
         i++;
         $('#TableTelefono').append('<tr>' +
             '<td>' +
-            '<input type="tel" class="form-control" id="TelefonosCliente'+i+'" required name="TelefonosClientes[]" placeholder="99999999">' +
+            '<input type="tel" class="form-control" maxlength="8" id="TelefonosCliente'+i+'" required name="TelefonosClientes[]" placeholder="99999999">' +
             '</td>' +
             '<td>' +
             '<button type="button" class="btn btn-danger btn_remove"><i data-feather="plus"></i></button>' +
@@ -35,7 +35,7 @@ $(document).ready(function () {
     var i = 1;
     $('#BtnRegistroDireccion').click(function () {
         i++;
-        $('#TableDirecciones').append('<tr><td><textarea class="form-control" id="DireccionesCliente" name="DireccionesClientes[]" rows="3"></textarea><td>' +
+        $('#TableDirecciones').append('<tr><td><textarea class="form-control" id="DireccionesCliente" required name="DireccionesClientes[]" rows="3"></textarea><td>' +
             '<button type="button" class="btn btn-danger btn_remove_dir">\n' +
             '                    <i data-feather="plus"></i>\n' +
             '                </button>' +

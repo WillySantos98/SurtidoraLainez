@@ -18,48 +18,56 @@ class ClientesController extends Controller
     }
 
     public function cliente_save(SaveDatosCliente $request){
-        $nuevo_cliente = new Cliente();
-        $telefonos = $request->input('TelefonosClientes');
-        $direcciones = $request->input('DireccionesClientes');
-        $nombreCliente = ' '.$request->input('NombresCliente').' '.$request->input('ApellidosCliente');
 
-        $nuevo_cliente->nombres = $request->input('NombresCliente');
-        $nuevo_cliente->apellidos = $request->input('ApellidosCliente');
-        $nuevo_cliente->identidad = $request->input('IdentidadCliente');
-        $nuevo_cliente->rtn =  $request->input('RtnCliente');
-        $nuevo_cliente->save();
+        if (Cliente::where('identidad','=', $request->input('IdentidadCliente'))->exists()){
+            return redirect()->route('cliente.formNuevo')->with('error','Numero de identidad '.$request->input('IdentidadCliente').' ya esta registrado como un cliente. ');
+        }else{
+            $nuevo_cliente = new Cliente();
+            $telefonos = $request->input('TelefonosClientes');
+            $direcciones = $request->input('DireccionesClientes');
+            $nombreCliente = ' '.$request->input('NombresCliente').' '.$request->input('ApellidosCliente');
 
-        foreach ($request->input('TelefonosClientes') as $key => $value){
-            $nuevo_telefono = new TelefonoCliente();
-            $nuevo_telefono->numero = $telefonos[$key];
-            $nuevo_telefono->cliente_id = $nuevo_cliente->id;
-            $nuevo_telefono->estado = 1;
-            $nuevo_telefono->save();
-        }
+            $nuevo_cliente->nombres = $request->input('NombresCliente');
+            $nuevo_cliente->apellidos = $request->input('ApellidosCliente');
+            $nuevo_cliente->identidad = $request->input('IdentidadCliente');
+            $nuevo_cliente->rtn =  $request->input('RtnCliente');
+            $nuevo_cliente->save();
 
-        foreach ($request->input('DireccionesClientes') as $key => $value){
-            $nueva_direccion = new DireccionCliente();
-            $nueva_direccion->direccion = $direcciones[$key];
-            $nueva_direccion->estado = 1;
-            $nueva_direccion->cliente_id = $nuevo_cliente->id;
-            $nueva_direccion->save();
-        }
-
-        $files = $request->file('Documentos');
-
-        if($request->hasFile('Documentos')){
-            foreach ($request->file('Documentos') as $key => $value){
-                $nuevo_documento = new DocumentosCliente();
-                $file = $files[$key];
-                $nombre = time().'-'.$file->getClientOriginalName();
-                $nuevo_documento->nombre = $nombre;
-                $nuevo_documento->cliente_id = $nuevo_cliente->id;
-                $nuevo_documento->save();
-                $file->move(public_path().'/documentos/clientes', $nombre);
+            foreach ($request->input('TelefonosClientes') as $key => $value){
+                $nuevo_telefono = new TelefonoCliente();
+                $nuevo_telefono->numero = $telefonos[$key];
+                $nuevo_telefono->cliente_id = $nuevo_cliente->id;
+                $nuevo_telefono->estado = 1;
+                $nuevo_telefono->save();
             }
+
+            foreach ($request->input('DireccionesClientes') as $key => $value){
+                $nueva_direccion = new DireccionCliente();
+                $nueva_direccion->direccion = $direcciones[$key];
+                $nueva_direccion->estado = 1;
+                $nueva_direccion->cliente_id = $nuevo_cliente->id;
+                $nueva_direccion->save();
+            }
+
+            $files = $request->file('Documentos');
+
+            if($request->hasFile('Documentos')){
+                foreach ($request->file('Documentos') as $key => $value){
+                    $nuevo_documento = new DocumentosCliente();
+                    $file = $files[$key];
+                    $nombre = time().'-'.$file->getClientOriginalName();
+                    $nuevo_documento->nombre = $nombre;
+                    $nuevo_documento->cliente_id = $nuevo_cliente->id;
+                    $nuevo_documento->save();
+                    $file->move(public_path().'/documentos/clientes', $nombre);
+                }
+            }
+
+            return redirect()->route('cliente.index')->with('status','El cliente '.$nombreCliente.' se registro correctamente');
         }
 
-        return redirect()->route('cliente.index')->with('status','El cliente '.$nombreCliente.' se ha guardado correctamente');
+
+
     }
 
     public function clientes(){

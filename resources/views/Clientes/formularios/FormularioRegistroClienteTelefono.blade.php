@@ -7,7 +7,7 @@
                 <td>
                     <div class="d-flex justify-content-start">
 
-                        <input type="tel" class="form-control w-100" id="RowTelefono" required name="TelefonosClientes[]" placeholder="99999999">
+                        <input type="tel" class="form-control w-100" required id="FormCliente-Telefono" maxlength="8" name="TelefonosClientes[]" placeholder="99999999">
                         <button type="button" id="BtnRegistroTelefono" href=""  class="btn btn-info">
                             <i data-feather="plus"></i>
                         </button>

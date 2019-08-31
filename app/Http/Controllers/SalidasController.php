@@ -46,7 +46,7 @@ class SalidasController extends Controller
             ->select('proveedors.nombre as nombre_proveedor', 'marcas.nombre as nombre_marca', 'modelos.nombre_mod',
                 'entrada_motocicletas.chasis', 'entrada_motocicletas.motor', 'entrada_motocicletas.color', 'consignacions.num_transferencia',
                 'consignacions.fecha_entrada', 'clientes.nombres', 'clientes.apellidos', 'clientes.identidad', 'clientes.rtn',
-                'sucursals.nombre as nombre_sucursal', 'notificacions.cod_notificacion', 'colaboradors.nombre as nombre_colaborador',
+                'sucursals.nombre as nombre_sucursal','sucursals.direccion as dir', 'notificacions.cod_notificacion', 'colaboradors.nombre as nombre_colaborador',
                 'users.name')
             ->where('notificacions.id', $id)
             ->get();
