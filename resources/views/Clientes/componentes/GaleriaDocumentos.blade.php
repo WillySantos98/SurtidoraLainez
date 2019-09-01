@@ -4,12 +4,12 @@
 <div class="container" >
     @foreach($datosDocumentos as $itemDocumentos)
         <div class="mySlides">
-            <img class="rounded mx-auto d-block" src="public/documentos/clientes/{{$itemDocumentos->nombre}}" style="width:350px; height: 450px">
+            <img class="rounded mx-auto d-block" src="/public/documentos/clientes/{{$itemDocumentos->nombre}}" style="width:350px; height: 450px">
             <div class="d-flex justify-content-center">
                 @foreach($cliente as $item)
-                    <a href="public/documentos/clientes/{{$itemDocumentos->nombre}}" target="_blank">Ver completa</a>
+                    <a href="/public/documentos/clientes/{{$itemDocumentos->nombre}}" target="_blank">Ver completa</a>
                     <hr>
-                    <a href="public/documentos/clientes/{{$itemDocumentos->nombre}}" download="Documento-{{$itemDocumentos->nombres}}-{{$itemDocumentos->apellidos}}-{{$itemDocumentos->nombre}}" >Descargar Documento </a>
+                    <a href="/public/documentos/clientes/{{$itemDocumentos->nombre}}" download="Documento-{{$itemDocumentos->nombres}}-{{$itemDocumentos->apellidos}}-{{$itemDocumentos->nombre}}" >Descargar Documento </a>
                 @endforeach
             </div>
         </div>
@@ -20,7 +20,7 @@
     <div class="row">
         @foreach($datosDocumentos as $itemDocumentos)
             <div class="column">
-                <img class="demo cursor" src="public/documentos/clientes/{{$itemDocumentos->nombre}}" style="width:150px;height: 150px"
+                <img class="demo cursor" src="/public/documentos/clientes/{{$itemDocumentos->nombre}}" style="width:150px;height: 150px"
                      onclick="currentSlide({{$i=$i+1}})" alt="The Woods">
             </div>
         @endforeach

@@ -7,7 +7,7 @@
     <tbody>
     @foreach($datosDocumentos as $doc)
         <tr>
-            <td><a href="public/documentos/clientes/{{$doc->nombre}}" target="_blank">{{$doc->nombre}}</a></td>
+            <td><a href="/public/documentos/clientes/{{$doc->nombre}}" target="_blank">{{$doc->nombre}}</a></td>
         </tr>
     @endforeach
     </tbody>
