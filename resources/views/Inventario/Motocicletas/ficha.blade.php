@@ -20,7 +20,9 @@
             <hr>
         @endforeach
 
-            <h4 class="text-center">Informacion de la motocicleta</h4>
+
+
+        <h4 class="text-center">Informacion de la motocicleta</h4>
 
         @foreach($info_modelo as $info_m)
             @include('Inventario.Motocicletas.Tablas.TablaInformacionModelo')

@@ -40,6 +40,7 @@
     </tr>
     </tbody>
 </table>
+
 <div class="modal fade bd-example-modal-xl" id="ModalDocumentosMotos" tabindex="-1" role="dialog" aria-labelledby="ModalDocumentosMotos" aria-hidden="true">
     @include('Inventario.Motocicletas.Modals.ModalVistaDocMotos')
 </div>

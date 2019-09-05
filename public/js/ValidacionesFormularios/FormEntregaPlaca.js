@@ -19,3 +19,7 @@ function FormEntregaPlacas() {
         document.getElementById("Boton-Submit-Form").disabled = true;
     }
 }
+
+function EnviarForm() {
+    document.getElementById("FormEntregaPlaca").submit();
+}

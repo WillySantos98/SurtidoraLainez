@@ -50,6 +50,7 @@
                 @show
             </div>
         </div>
+
         @include('Index.componentes.footer')
     </div>
 </div>

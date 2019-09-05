@@ -40,10 +40,13 @@
                 </div>
                 @endforeach
                 <div class="row" style="margin-top: 20px">
-                    <form action="" id="FormEntregaPlaca" onchange="FormEntregaPlacas()">
+                    <form action="{{route('placas.entrega.save')}}" method="post"  enctype="multipart/form-data" id="FormEntregaPlaca" onchange="FormEntregaPlacas()">
                         @csrf
                         <div class="form-group">
                             <label for="">Hizo Entrega</label>
+                            @foreach($boleta as $bol)
+                            <input type="text" value="{{$bol->id}}" name="InputIdPlaca" hidden>
+                            @endforeach
                             <select name="SelectEntrega" class="form-control" id="FormEntregaPlaca-SelectEntrega">
                                 <option value="-">No</option>
                                 <option value="1">Si</option>
@@ -53,12 +56,12 @@
                             <label for="">Subir Documento</label>
                             <input type="file" name="FileDocumento" id="FormEntregaPlaca-File" class="form-control">
                         </div>
+                        <button type="button" class="btn btn-primary" onclick="EnviarForm()" id="Boton-Submit-Form">Confirmar Entrega</button>
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="Boton-Submit-Form">Confirmar Entrega</button>
             </div>
         </div>
     </div>

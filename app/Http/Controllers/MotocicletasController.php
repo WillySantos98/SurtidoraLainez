@@ -2,11 +2,16 @@
 
 namespace SurtidoraLainez\Http\Controllers;
 
+use BaconQrCode\Encoder\QrCode;
+//use Barryvdh\DomPDF\PDF;
+use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use function MongoDB\BSON\toJSON;
 use SurtidoraLainez\EntradaMotocicleta;
 use SurtidoraLainez\Sucursal;
+
+
 
 class MotocicletasController extends Controller
 {
@@ -21,6 +26,8 @@ class MotocicletasController extends Controller
             ->where('entrada_motocicletas.estado',1)
             ->get();
         return view('Inventario.Motocicletas.index', compact('totalMotos','motos'));
+
+
     }
 
     public function ficha($codigo){
@@ -43,7 +50,7 @@ class MotocicletasController extends Controller
             ->join('consignacions', 'consignacions.id','=','entrada_motocicletas.consignacion_id')
             ->join('proveedors','proveedors.id','=','consignacions.proveedor_id')
             ->select('tipo_vehiculos.nombre_v','modelos.nombre_mod','marcas.nombre as nombre_mar','modelos.cilindraje','tipo_vehiculos.ruedas',
-                'proveedors.nombre as nombre_pro')
+                'proveedors.nombre as nombre_pro','entrada_motocicletas.id_moto')
             ->where('entrada_motocicletas.id_moto',$codigo)
             ->get();
         $info_fisico = DB::table('entrada_motocicletas')
@@ -69,6 +76,9 @@ class MotocicletasController extends Controller
         $fotos_moto = DB::table('fotos_motocicletas')
             ->join('entrada_motocicletas','entrada_motocicletas.id','=','fotos_motocicletas.moto_id')
             ->select('fotos_motocicletas.nombre','entrada_motocicletas.id_moto')->where('entrada_motocicletas.id_moto', $codigo)->get();
+
+
+
         return view('Inventario.Motocicletas.ficha', compact('informacion_moto','info_modelo','info_fisico','entrada_documentos',
             'contador_doc','documentos_moto','fotos_moto'));
     }
@@ -103,6 +113,27 @@ class MotocicletasController extends Controller
             ->get();
 
         return view('Inventario.Motocicletas.index', compact('totalMotos','motos'));
+    }
+
+    public function qr($codigo){
+        $info_modelo = DB::table('entrada_motocicletas')
+            ->join('modelos','modelos.id','=','entrada_motocicletas.modelo_id')
+            ->join('tipo_vehiculos','tipo_vehiculos.id','=','modelos.tipovehiculo_id')
+            ->join('marcas','marcas.id','=','entrada_motocicletas.marca_id')
+            ->join('consignacions', 'consignacions.id','=','entrada_motocicletas.consignacion_id')
+            ->join('proveedors','proveedors.id','=','consignacions.proveedor_id')
+            ->select('tipo_vehiculos.nombre_v','modelos.nombre_mod','marcas.nombre as nombre_mar','modelos.cilindraje','tipo_vehiculos.ruedas',
+                'proveedors.nombre as nombre_pro','entrada_motocicletas.id_moto')
+            ->where('entrada_motocicletas.id_moto',$codigo)
+            ->get();
+        $pdf = new Dompdf();
+        $pdf = \PDF::LoadView('QR.InfoMotos', compact('info_modelo'));
+        $pdf->setPaper('A7');
+        return $pdf->stream();
+
+//        return view('QR.InfoMotos', compact('info_modelo'))
+
+
     }
 
 }

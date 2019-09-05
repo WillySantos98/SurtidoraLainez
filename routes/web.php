@@ -144,4 +144,8 @@ Route::get('verificar_chasis/{chasis}','ExistenciaPlacasController@chasis');
 Route::get('verificar_motor/{motor}','ExistenciaPlacasController@motor');
 Route::get('placas/documentos/pendientes','PlacasController@Pendientes')->name('placas.pendientes');
 Route::get('placas/entrega','PlacasController@entrega')->name('placas.entrega');
+Route::post('placas/entrega/save','PlacasController@entrega_save')->name('placas.entrega.save');
 Route::get('/placas/documento_entrega/{boleta}','PlacasController@documento_entrega');
+
+
+Route::get('motocicletas/qr/{codigo}','MotocicletasController@qr')->name('motocicletas.qr');

@@ -20,7 +20,7 @@
                         <th>Nombre</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tbodyDocumentosVentas">
                     @foreach($doc as $info)
                         <tr>
                             <td><a href="{{asset('documentos/ventas/'.$info->nombre)}}" target="_blank" class="card-link"><i data-feather="file"></i> {{$info->nombre}}</a></td>
@@ -47,4 +47,29 @@
         modal.find('.modal-body #InputId').val(id);
 
     });
+
+    if(document.getElementById("tbodyDocumentosVentas")){
+        let dominio = document.domain
+        let html = '';
+        if(dominio == 'surtidoralainez.com'){
+            html +=`
+            @foreach($doc as $info)
+                <tr>
+                    <td><a href="{{asset('documentos/ventas/'.$info->nombre)}}" target="_blank" class="card-link"><i data-feather="file"></i> {{$info->nombre}}</a></td>
+                    </tr>
+            @endforeach
+            `
+            document.getElementById("tbodyDocumentosVentas").innerHTML = html;
+        }else if(dominio == 'multiservicioscomercialestito.com'){
+            html +=`
+            @foreach($doc as $info)
+            <tr>
+                <td><a href="{{asset('/public/documentos/ventas/'.$info->nombre)}}" target="_blank" class="card-link"><i data-feather="file"></i> {{$info->nombre}}</a></td>
+                </tr>
+            @endforeach
+            `
+            document.getElementById("tbodyDocumentosVentas").innerHTML = html;
+        }
+    }
+
 </script>

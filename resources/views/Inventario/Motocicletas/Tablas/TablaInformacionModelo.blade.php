@@ -8,6 +8,7 @@
         <th class="text-center" style="font-size: 14px">Cilindraje</th>
         <th class="text-center" style="font-size: 14px">Tipo de Vehiculo</th>
         <th class="text-center" style="font-size: 14px">Ruedas</th>
+        <th class="text-center" style="font-size: 14px">Codigo QR</th>
     </tr>
     </thead>
     <tbody>
@@ -18,6 +19,10 @@
         <td class="text-center" style="font-size: 14px">{{$info_m->cilindraje}}</td>
         <td class="text-center" style="font-size: 14px">{{$info_m->nombre_v}}</td>
         <td class="text-center" style="font-size: 14px">{{$info_m->ruedas}}</td>
+        <td class="text-center" style="font-size: 14px">
+            <a href="/motocicletas/qr/{{$info_m->id_moto}}" target="_blank">Imprimir Codigo QR</a>
+        </td>
     </tr>
     </tbody>
 </table>
+

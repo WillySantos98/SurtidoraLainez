@@ -11,6 +11,7 @@ use PhpParser\Node\Stmt\Return_;
 use SurtidoraLainez\AlmacenAltualPlaca;
 use SurtidoraLainez\CuerpoTransferenciaPlaca;
 use SurtidoraLainez\EntradaMotocicleta;
+use SurtidoraLainez\EntregaPlaca;
 use SurtidoraLainez\FotosBoleta;
 use SurtidoraLainez\FotosPlaca;
 use SurtidoraLainez\HistorialUsuario;
@@ -22,6 +23,11 @@ use SurtidoraLainez\TransferenciaPlaca;
 
 class PlacasController extends Controller
 {
+//    public function qr(){
+//
+//        return view('QR.InfoMotos');
+//    }
+
     public function ingreso(){
         $motos = EntradaMotocicleta::join('marcas','marcas.id','=','entrada_motocicletas.marca_id')
             ->join('modelos','modelos.id','=','entrada_motocicletas.modelo_id')
@@ -166,7 +172,8 @@ class PlacasController extends Controller
             ->join('users','users.id','=','placas.usuario_registrador')
             ->select('placas.num_ingreso','placas.num_boleta','placas.comprobante','placas.fecha_vencimiento',
                 'placas.num_placa','placas.identificacion','sucursals.nombre as nombre_alm','placas.propietario',
-                'placas.ano','placas.estado','placas.estado_enlazo','placas.observaciones','salidas.cod_venta','users.usuario')
+                'placas.ano','placas.estado','placas.estado_enlazo','placas.observaciones','salidas.cod_venta',
+                'users.usuario','placas.id')
             ->where('placas.num_boleta', $codigo)
             ->get();
         $cliente = Placa::join('salidas','salidas.id','=','placas.venta_id')
@@ -367,6 +374,32 @@ class PlacasController extends Controller
         $pdf = \PDF::loadView('PDFs.EntregaPlacas', compact('info', 'fecha'));
 
         return $pdf->stream();
+    }
+
+
+    public function entrega_save(Request $request){
+        if ($request->input('SelectEntrega') == 1){
+            DB::table('placas')->where('id', $request->input('InputIdPlaca'))
+                ->update(['placas.estado'=> 2]);
+            if ($request->hasFile('FileDocumento')){
+                $nuevo_documento = new EntregaPlaca();
+                $file = $request->file('FileDocumento');
+                $nombre = time().'-'.rand(1,20).'-'.$file->getClientOriginalName();
+                $fecha = date('j-m-y');
+                $nuevo_documento->fecha_entrega = $fecha;
+                $nuevo_documento->documento = $nombre;
+                $nuevo_documento->placa_id = $request->input('InputIdPlaca');
+                $nuevo_documento->save();
+                $file->move(public_path().'/Placas/DocumentosEntrega', $nombre);
+
+            }
+            return redirect()->route('placas.entrega')->with('aprobado','La entrega de placa se realizo correctamente');
+        }else{
+            return redirect()->route('placas.entrega')->with('error','La placa entrega de la placa no se pudo realizar, algo fallo, intenta nuevamente');
+        }
+
+
+
     }
 
 }

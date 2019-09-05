@@ -41,9 +41,10 @@ class DocumentosInventarioController extends Controller
         $placas_aceptadas = TransferenciaPlaca::where('estado', 2)->count();
         $placas_pendientes = Salida::join('entrada_motocicletas','entrada_motocicletas.id','=','salidas.moto_id')
             ->where('entrada_motocicletas.estado_placa', 1)->count();
+        $placas_entregada = Placa::where('estado', 2)->count();
         return view('Inventario.Motocicletas.Documentos.index', compact('entradas','salidas','notificaciones'
         ,'trans_p','trans_a','trans_r','notificaciones2','trans_declinadas','trans_exitosas','transferencias_externas','placas_transferencia',
-        'placas_aceptadas','placas_pendientes'));
+        'placas_aceptadas','placas_pendientes', 'placas_entregada'));
     }
 
     public function docEntrada_ficha($codigo){
