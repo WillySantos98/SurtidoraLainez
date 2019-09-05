@@ -22,7 +22,7 @@
                 @endforeach
             `
             document.getElementById("tbodyVistaPdfMotos").innerHTML = html
-        }else if(dominio == 'multiservicioscomercialestito.com'){
+        }else if(dominio == 'www.multiservicioscomercialestito.com'){
             html +=`
                 @foreach($fotos_moto as $doc)
                     <tr>

@@ -22,7 +22,7 @@
     `
             @endforeach
             document.getElementById("VistaPdfDocumentos").innerHTML = html;
-        }else if(dominio == 'multiservicioscomercialestito.com'){
+        }else if(dominio == 'www.multiservicioscomercialestito.com'){
             @foreach($datosDocumentos as $doc)
                 html +=`
                 <tr>

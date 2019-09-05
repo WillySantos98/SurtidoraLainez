@@ -38,7 +38,7 @@
             `
             document.getElementById("VistaGaleriaClientes").innerHTML = html
 
-        } else if(dominio == 'multiservicioscomercialestito.com'){
+        } else if(dominio == 'www.multiservicioscomercialestito.com'){
             html +=`
             @foreach($datosDocumentos as $itemDocumentos)
                 <div class="mySlides">
