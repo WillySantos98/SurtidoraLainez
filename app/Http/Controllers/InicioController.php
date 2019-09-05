@@ -13,5 +13,9 @@ class InicioController extends Controller
         return view('Index.base');
     }
 
+    public function fallo(){
+        return view('Index.FalloSesion');
+    }
+
 
 }

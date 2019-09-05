@@ -189,12 +189,12 @@
                 </div>
             </a>
 
-            <a href="{{route('docEntrada.index')}}" class="nav-link" style="width: 24%">
+            <a href="{{route('placas.pendientes')}}" class="nav-link" style="width: 24%">
                 <div class="col card border-left-primary shadow py-2">
                     <div class="row">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Placas Pendientes</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$entradas}}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$placas_pendientes}}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-file fa-2x text-gray-300"></i>
@@ -237,7 +237,7 @@
                 <div class="col card border-left-primary shadow py-2">
                     <div class="row">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Placas Entregadas a Sucu.</div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Transferencias Aceptadas por Suc.</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{$placas_aceptadas}}</div>
                         </div>
                         <div class="col-auto">
@@ -247,7 +247,7 @@
                 </div>
             </a>
 
-            <a href="{{route('docEntrada.index')}}" class="nav-link" style="width: 24%">
+            <a href="{{route('placas.entrega')}}" class="nav-link" style="width: 24%">
                 <div class="col card border-left-primary shadow py-2">
                     <div class="row">
                         <div class="col mr-2">

@@ -69,7 +69,8 @@
     <label for="">Observacion</label>
     <input type="text" name="Observacion" value="Venta sin ningun inconveniente" class="form-control">
 </div>
-<input type="submit" class="btn btn-outline-primary" value="Registrar Salida">
+
+<button type="submit" class="btn btn-outline-primary" id="Boton-Submit-Form">Registrar Venta</button>
 
 
 <div class="modal fade bd-example-modal-xl" id="ModalBuscarCliente" tabindex="-1" role="dialog" aria-labelledby="ModalBuscarCliente" aria-hidden="true">

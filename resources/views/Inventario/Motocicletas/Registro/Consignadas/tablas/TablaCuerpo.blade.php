@@ -20,7 +20,6 @@
        <table class="table table-hover">
            <thead>
            <tr>
-               <th class="text-center">Codigo</th>
                <th class="text-center">Marca</th>
                <th class="text-center">Modelo</th>
                <th class="text-center">Color</th>
@@ -34,52 +33,54 @@
            </tr>
            </thead>
            <tbody>
+           {{$i = 0}}
            @foreach($motos as $item)
+               {{$i = $i + 1}}
                <tr>
                    <input type="text" class="form-group" value="{{$item->id}}" hidden name="MotodId[]">
-                   <td class="text-center">{{$item->id_moto}}</td>
                    <td class="text-center">{{$item->nombre_mar}}</td>
                    <td class="text-center">{{$item->nombre_mod}}</td>
                    <td class="text-center">{{$item->color}}</td>
                    <td class="text-center">{{$item->chasis}}</td>
                    <td class="text-center">
-                       <select name="SelectCasco[]" class="form-control" required id="">
-                           <option value="2">----</option>
+                       <select name="SelectCasco[]" class="form-control" required id="FormRegistro2-SelectCasco-{{$i}}">
+                           <option value="-">----</option>
                            <option value="1">Si</option>
                            <option value="2">No</option>
                        </select>
                    </td>
                    <td class="text-center">
-                       <select name="SelectBateria[]" class="form-control" required id="">
-                           <option value="2">----</option>
+                       <select name="SelectBateria[]" class="form-control" required id="FormRegistro2-SelectBateria-{{$i}}">
+                           <option value="-">----</option>
                            <option value="1">Si</option>
                            <option value="2">No</option>
                        </select>
                    </td>
                    <td class="text-center">
-                       <select name="SelectAcido[]" class="form-control" required id="">
-                           <option value="2">----</option>
+                       <select name="SelectAcido[]" class="form-control" required id="FormRegistro2-SelectAcido-{{$i}}">
+                           <option value="-">----</option>
                            <option value="1">Si</option>
                            <option value="2">No</option>
                        </select>
                    </td>
                    <td class="text-center">
-                       <select name="SelectLlaves[]" class="form-control" required id="">
-                           <option value="4">----</option>
-                           <option value="4">No</option>
+                       <select name="SelectLlaves[]" class="form-control" required id="FormRegistro2-SelectLlaves-{{$i}}">
+                           <option value="-">----</option>
                            <option value="1">1</option>
                            <option value="2">2</option>
                            <option value="3">3</option>
                        </select>
                    </td>
                    <td class="text-center">
-                       <select name="SelectGarantia[]" class="form-control" required id="">
-                           <option value="2">----</option>
+                       <select name="SelectGarantia[]" class="form-control" required id="FormRegistro2-SelectGarantia-{{$i}}">
+                           <option value="-">----</option>
                            <option value="1">Si</option>
                            <option value="2">No</option>
                        </select>
                    </td>
-                   <td><input type="file" required multiple class="form-control" name="InputDocumentosMoto-{{$item->id}}[]"></td>
+                   <td><input type="file" required multiple class="form-control" id="FormRegistro2-FileMotos-{{$i}}" name="InputDocumentosMoto-{{$item->id}}[]"></td>
+
+                   <input type="text" value="{{$i}}" id="InputValores" hidden>
                </tr>
            @endforeach
            </tbody>

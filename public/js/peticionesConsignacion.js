@@ -15,7 +15,7 @@ function cargarEmpleados(val) {
 
 function cargarEmpleadosMo(val) {
     var id = val;
-    let html = "<option value=''>-----</option>";
+    let html = "<option value='-'>-----</option>";
     axios.get('/cargar_empleados/'+id).
     then(function (empleados) {
         for(var i=0; i< empleados.data.length; i++){

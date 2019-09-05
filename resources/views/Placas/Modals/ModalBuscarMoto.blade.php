@@ -18,7 +18,7 @@
                 </div>
                 <table class="table table-sm">
                     <thead>
-                    <th>Codigo</th>
+                    <th>Nombre del Cliente</th>
                     <th>Marca</th>
                     <th>Modelo</th>
                     <th>Chasis</th>
@@ -29,7 +29,7 @@
                     <tbody id="bodyTableMotoVincular">
                         @foreach($motos as $moto)
                         <tr>
-                            <td>{{$moto->id_moto}}</td>
+                            <td>{{$moto->nombres}} {{$moto->apellidos}}</td>
                             <td>{{$moto->nombre}}</td>
                             <td>{{$moto->nombre_mod}}</td>
                             <td>{{$moto->chasis}}</td>

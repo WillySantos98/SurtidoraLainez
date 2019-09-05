@@ -34,7 +34,7 @@ class LoginController extends Controller
             return redirect()->route('index');
 
         }else{
-            return "no existe el usuario";
+            return redirect()->route('sesion.fallo');
         }
     }
 

@@ -164,7 +164,7 @@
                     <h6 class="collapse-header">Inventario</h6>
                     <a class="collapse-item" href="{{route('placas.ingreso')}}">Ingreso de Placa</a>
                     <a class="collapse-item" href="{{route('placas.inventario')}}">Inven, de Boletas/Placas</a>
-                    <a class="collapse-item" href="{{route('placas.transferencia')}}">Transferencias</a>
+                    <a class="collapse-item" href="{{route('placas.transferencia')}}">Hacer Transferencia</a>
                 </div>
             </div>
         </li>
@@ -202,6 +202,16 @@
             <a class="nav-link" href="{{route('placas.inventario')}}">
                 <i class="fa fa-folder" aria-hidden="true"></i>
                 <span>Placas</span></a>
+        </li>
+
+    @endif
+
+    @if(Auth::user()->tipousuario_id == 2)
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('doc.index')}}">
+                <i class="fa fa-file" aria-hidden="true"></i>
+                <span>Documentos</span>
+            </a>
         </li>
     @endif
 

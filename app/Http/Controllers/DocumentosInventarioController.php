@@ -10,6 +10,7 @@ use SurtidoraLainez\Notificacion;
 use SurtidoraLainez\Placa;
 use SurtidoraLainez\Salida;
 use SurtidoraLainez\Transferencia;
+use SurtidoraLainez\TransferenciaPlaca;
 
 class DocumentosInventarioController extends Controller
 {
@@ -37,12 +38,12 @@ class DocumentosInventarioController extends Controller
         $trans_exitosas = Transferencia::where('estado_c', 1)->count();
         $transferencias_externas = Transferencia::where('estado', 7)->count();
         $placas_transferencia = Placa::where('estado', 3)->count();
-        $placas_aceptadas = Placa::join('cuerpo_transferencia_placas','cuerpo_transferencia_placas.placa_id','=','placas.id')
-            ->join('transferencia_placas','transferencia_placas.id','=','cuerpo_transferencia_placas.transferencia_id')
-            ->where('placas.estado',1)->where('transferencia_placas.estado',2)->count();
+        $placas_aceptadas = TransferenciaPlaca::where('estado', 2)->count();
+        $placas_pendientes = Salida::join('entrada_motocicletas','entrada_motocicletas.id','=','salidas.moto_id')
+            ->where('entrada_motocicletas.estado_placa', 1)->count();
         return view('Inventario.Motocicletas.Documentos.index', compact('entradas','salidas','notificaciones'
         ,'trans_p','trans_a','trans_r','notificaciones2','trans_declinadas','trans_exitosas','transferencias_externas','placas_transferencia',
-        'placas_aceptadas'));
+        'placas_aceptadas','placas_pendientes'));
     }
 
     public function docEntrada_ficha($codigo){

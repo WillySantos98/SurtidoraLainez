@@ -27,7 +27,7 @@
           </div>
 
           <div class="modal-footer">
-              <button type="button" class="btn btn-primary" id="AgregarRegistrosConsignacion" data-dismiss="modal">Registrar datos de la moto</button>
+              <button type="button" class="btn btn-primary" id="AgregarRegistrosConsignacion"  data-dismiss="modal">Registrar datos de la moto</button>
           </div>
         </div>
 

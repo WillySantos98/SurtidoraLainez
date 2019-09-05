@@ -12,7 +12,6 @@ $('#FormCliente').on('change', function () {
         nombres.style.border = "thick solid #00FF00";
     }else{
         nombres.style.border = "thick solid #FF0000";
-        bandera = false
     }
     if(apellidos.value.length > 4){
         bandera += 1;
@@ -83,9 +82,12 @@ $('#FormCliente').on('change', function () {
             bandera += 1;
         }
     }
+
     if (bandera == 6) {
         document.getElementById("Boton-Submit-Form").disabled = false;
     }else if (bandera < 6){
         document.getElementById("Boton-Submit-Form").disabled = true;
     }
 })
+
+

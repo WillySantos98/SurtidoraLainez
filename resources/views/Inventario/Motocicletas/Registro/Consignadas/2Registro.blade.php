@@ -16,14 +16,14 @@
     <h3 class="text-center" style="color: white">Segunda Parte del Ingreso de Motocicletas</h3>
 </div>
 <div id="wrapper" class="container-fluid">
-    <form action="{{route('save.2.form')}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('save.2.form')}}" onchange="FormRegistro2()" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
         @include('Inventario.Motocicletas.Registro.Consignadas.tablas.TablaEncabezado')
         <hr>
         <h4 class="text-center">Motocicletas de la Entrada</h4>
         @include('Inventario.Motocicletas.Registro.Consignadas.tablas.TablaCuerpo')
-
-        <input type="submit" class="btn btn-primary" value="Guardar Entrada">
+        <hr>
+        <button class="btn btn-outline-primary" type="submit" id="Boton-Submit-Form">Guardar Registros de Documentos y Motocicletas</button>
     </form>
 </div>
 
@@ -34,6 +34,8 @@
 <script>
     feather.replace()
 </script>
+<script src="{{asset('js/ValidacionesFormularios/Validacion.js')}}"></script>
+<script src="{{asset('js/ValidacionesFormularios/FormRegistroEntrada2.js')}}"></script>
 </body>
 
 </html>

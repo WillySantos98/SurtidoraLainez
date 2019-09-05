@@ -2,6 +2,8 @@
 
 namespace SurtidoraLainez\Http\Controllers;
 
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -300,15 +302,71 @@ class PlacasController extends Controller
             ->where('transferencia_placas.id', $id)
             ->update(['placas.estado'=>1, 'transferencia_placas.estado'=>2,'almacen_altual_placas.almacen_actual'=> $idSuc]);
 
-        return $id;
+        return redirect()->route('placas.aceptadas.sucursal')->with('aprobado','El lote de placas ha sido reasignada a la sucursal de entrega.');
     }
 
     public function aceptadas_sucursal(){
-        $placas = TransferenciaPlaca::join('sucursals','sucursals.id','=','transferencia_placas.almacen_final')
+        $placas = TransferenciaPlaca::join('sucursals','sucursals.id','=','transferencia_placas.almacen_origen')
             ->select('transferencia_placas.id','sucursals.nombre','transferencia_placas.cod_transferencia')
-            ->where('transferencia_placas.estado', 1)->get();
+            ->where('transferencia_placas.estado', 2)->get();
+        $placas_final =TransferenciaPlaca::join('sucursals','sucursals.id','=','transferencia_placas.almacen_final')
+            ->select('transferencia_placas.id','sucursals.nombre','transferencia_placas.cod_transferencia')
+            ->where('transferencia_placas.estado', 2)->get();
 
-        return view('Placas.Documentos.PlacasAceptadas', compact('placas'));
+
+        return view('Placas.Documentos.PlacasAceptadas', compact('placas','placas_final'));
+    }
+
+    function Pendientes(){
+        $placas = Salida::join('sucursals','sucursals.id','=','salidas.sucrusal_id')
+            ->join('entrada_motocicletas','entrada_motocicletas.id','=','salidas.moto_id')
+            ->join('proveedors','proveedors.id','=','entrada_motocicletas.proveedor_id')
+            ->select('proveedors.nombre','entrada_motocicletas.chasis','sucursals.nombre as nombre_suc','salidas.num_venta',
+                'salidas.cod_venta','entrada_motocicletas.id_moto')
+            ->where('entrada_motocicletas.estado_placa', 1)->get();
+
+        return view('Placas.Documentos.PlacasPendientes', compact('placas'));
+    }
+
+    public function entrega(){
+        return  view('Placas.Documentos.EntregaIndex');
+    }
+
+    public function documento_entrega($boleta){
+        $dias = ['Lunez','Martes','Miercoles','Jueves','Viernes','Sábado','Domingo'];
+        $meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+        $info = Placa::join('salidas','salidas.id','=','placas.venta_id')
+            ->join('clientes','clientes.id','=','salidas.cliente_id')
+            ->join('entrada_motocicletas','entrada_motocicletas.id','=','moto_id')
+            ->join('sucursals','sucursals.id','=','salidas.sucrusal_id')
+            ->join('marcas','marcas.id','=','entrada_motocicletas.marca_id')
+            ->join('modelos','modelos.id','=','entrada_motocicletas.modelo_id')
+            ->select('entrada_motocicletas.chasis','entrada_motocicletas.motor','entrada_motocicletas.color','entrada_motocicletas.ano',
+                'placas.num_boleta','placas.num_placa','salidas.cod_venta','salidas.fecha_salida','sucursals.direccion',
+                'clientes.nombres','clientes.apellidos','clientes.identidad','marcas.nombre as nombre_m','modelos.nombre_mod',
+                'placas.estado_enlazo','salidas.num_venta')
+            ->where('placas.num_boleta', $boleta)->get();
+        $dia_n_actual =date('N');
+        $dia_actual = date('j');
+        $ano_actual = date('y');
+        $mes_actual = date('m');
+        $dia_string = '';
+        for ($i=0;$i<=$dia_n_actual; $i++){
+            if ($dia_n_actual == $i){
+                $dia_string = $dias[$i - 1];
+            }
+        }
+        $mes_string='';
+        for ($i=0;$i<=$mes_actual; $i++){
+            if ($mes_actual == $i){
+                $mes_string = $meses[$i - 1];
+            }
+        }
+        $fecha = $dia_string.', '.$dia_actual.' de '.$mes_string.' de 20'.$ano_actual;
+        $pdf = new Dompdf();
+        $pdf = \PDF::loadView('PDFs.EntregaPlacas', compact('info', 'fecha'));
+
+        return $pdf->stream();
     }
 
 }

@@ -134,7 +134,7 @@
                             <div class="col-sm-6">
                                 <div class="card border-left-warning">
                                     <div class="card-header">Fotos de la Boleta</div>
-                                    <input type="file" multiple name="FileBoleta[]" required value="Fotos de la Boleta" class="form-control @error('FileBoleta') is-invalid @enderror">
+                                    <input type="file" multiple name="FileBoleta[]"  value="Fotos de la Boleta" class="form-control @error('FileBoleta') is-invalid @enderror">
                                 </div>
                                 @error('FileBoleta')
                                 <div class="alert alert-danger">{{$message}}</div>

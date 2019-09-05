@@ -102,5 +102,18 @@
                 @break
             @endforeach
         </div>
+        <hr>
+        <div style="margin-top: 15px" class="d-flex justify-content-center">
+            @foreach($boleta as $bol)
+            @if($bol->estado != 2)
+                <button type="button" value="{{$bol->num_boleta}}" class="btn btn-outline-warning" data-toggle="modal" data-target="#ModalEntregaPlaca">
+                    Hacer entrega de este documento
+                </button>
+            @endif
+            @endforeach
+            @include('Placas.Modals.ModalEntregaPlaca')
+        </div>
+        <hr>
     </div>
+
 @endsection

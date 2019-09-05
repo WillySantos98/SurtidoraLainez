@@ -11,11 +11,14 @@
 */
 
 //login
-Route::get('/', 'Auth\LoginController@index');
+
+
+Route::get('/', 'Auth\LoginController@index')->name('login');
 Route::post('/verificar', 'Auth\LoginController@enter')->name('validacionUser');
 Route::get('/meter','Auth\LoginController@meter');
 Route::get('logout','Auth\LoginController@logout')->name('logout');
 Route::get('logout','Auth\LoginController@logout')->name('logout');
+Route::get('/fallo_inicio_sesion','InicioController@fallo')->name('sesion.fallo');
 //index
 Route::get('/inicio', 'InicioController@index')->name('index');
 //----------------------------------------------------------------------------------------------------------------------
@@ -137,5 +140,8 @@ Route::get('/placas/documentos/transferencia','PlacasController@placas_transfere
 Route::get('/lotes_placas/{id}','PlacasController@lotes');
 Route::post('/placas/transferencia_aceptar', 'PlacasController@saveTransferencia_aceptada')->name('placas.transferencia.aceptada.save');
 Route::get('/placas/documentos/aceptadas_x_sucursals','PlacasController@aceptadas_sucursal')->name('placas.aceptadas.sucursal');
-//Auth::routes();
-//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('verificar_chasis/{chasis}','ExistenciaPlacasController@chasis');
+Route::get('verificar_motor/{motor}','ExistenciaPlacasController@motor');
+Route::get('placas/documentos/pendientes','PlacasController@Pendientes')->name('placas.pendientes');
+Route::get('placas/entrega','PlacasController@entrega')->name('placas.entrega');
+Route::get('/placas/documento_entrega/{boleta}','PlacasController@documento_entrega');

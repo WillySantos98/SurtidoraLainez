@@ -1,8 +1,5 @@
 
-<script src="{{ asset('css/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-<!-- Core plugin JavaScript-->
-<script src="{{asset('css/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
 
 
@@ -23,8 +20,15 @@
 <script src="{{asset('js/FormTransPlacas.js')}}"></script>
 <script src="{{asset('js/ValidacionesFormularios/Validacion.js')}}"></script>
 <script src="{{asset('js/ValidacionesFormularios/FormCliente.js')}}"></script>
+<script src="{{asset('js/ValidacionesFormularios/FormRegistroMoto.js')}}"></script>
+<script src="{{asset('js/LotesPlacas.js')}}"></script>
+<script src="{{asset('js/ValidacionesFormularios/FormEntregaPlaca.js')}}"></script>
+<script src="{{asset('js/ValidacionesFormularios/FormSalida.js')}}"></script>
+<script src="{{asset('js/ValidacionesFormularios/FormRegistroEntrada2.js')}}"></script>
+<script src="{{asset('Urls/urls.js')}}"></script>
 
 <script>
+
 function UrlBack() {
     window.history.back();
 }
@@ -40,6 +44,13 @@ function UrlBack() {
         animation:{
             speed: 500,
         }
+    }).show();
+    @endif
+    @if(session('aprobado'))
+    new Noty({
+        type: 'success',
+        layout: 'topRight',
+        text: '{{session('aprobado')}}'+'Para desaparecer la advertencia haga click aca.'
     }).show();
     @endif
 

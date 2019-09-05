@@ -36,7 +36,7 @@
             <div class="card-body">
                 <div class="form-row">
                     <div class="form-group">
-                        <input type="file" name="Documentos[]" class="form-control" multiple>
+                        <input type="file" name="Documentos[]" id="FormRegistro2-documentos" class="form-control" multiple>
                     </div>
                 </div>
             </div>
