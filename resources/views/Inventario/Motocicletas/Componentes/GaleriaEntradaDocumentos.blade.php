@@ -37,7 +37,7 @@
                         </div>
         `
                     document.getElementById("DocumentosVistaGaleriaEntrada").innerHTML = html;
-                }else if(dominio == 'www.multiservicioscomercialestito.com'){
+                }else if(dominio == 'multiservicioscomercialestito.com'){
                     html +=`
                         <input type="hidden" {{$i=0}}>
                         @foreach($entrada_documentos as $doc)

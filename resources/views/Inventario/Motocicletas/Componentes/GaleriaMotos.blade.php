@@ -39,7 +39,7 @@
 
 `
             document.getElementById("MotoVistaFotosGaleria").innerHTML =html
-        }else if(dominio = 'www.multiservicioscomercialestito.com'){
+        }else if(dominio = 'multiservicioscomercialestito.com'){
             html +=`
             <input type="hidden" {{$i=0}}>
             @foreach($fotos_moto as $doc)

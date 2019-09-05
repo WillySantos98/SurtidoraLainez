@@ -149,7 +149,27 @@
         </li>
 
         <hr class="sidebar-divider">
-        @if(Auth::user()->tipousuario_id == 1 or Auth::user()->tipousuario_id == 4)
+        @if(Auth::user()->tipousuario_id == 1 or Auth::user()->tipousuario_id == 4 )
+        <div class="sidebar-heading">
+            Placas
+        </div>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePlacas1" aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fa fa-motorcycle" aria-hidden="true"></i>
+                {{--            <i class="fa fa-motorcycle" aria-hidden="true"></i>--}}
+                <span>Gestion de Placas</span>
+            </a>
+            <div id="collapsePlacas1" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Inventario</h6>
+                    <a class="collapse-item" href="{{route('placas.inventario')}}">Inven, de Boletas/Placas</a>
+                </div>
+            </div>
+        </li>
+            @endif
+    @endif
+
+    @if(Auth::user()->tipousuario_id == 5 )
         <div class="sidebar-heading">
             Placas
         </div>
@@ -164,11 +184,9 @@
                     <h6 class="collapse-header">Inventario</h6>
                     <a class="collapse-item" href="{{route('placas.ingreso')}}">Ingreso de Placa</a>
                     <a class="collapse-item" href="{{route('placas.inventario')}}">Inven, de Boletas/Placas</a>
-                    <a class="collapse-item" href="{{route('placas.transferencia')}}">Hacer Transferencia</a>
                 </div>
             </div>
         </li>
-            @endif
     @endif
 
     @if(Auth::user()->tipousuario_id == 3)
@@ -212,6 +230,21 @@
                 <i class="fa fa-file" aria-hidden="true"></i>
                 <span>Documentos</span>
             </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePlacas1" aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fa fa-motorcycle" aria-hidden="true"></i>
+                {{--            <i class="fa fa-motorcycle" aria-hidden="true"></i>--}}
+                <span>Gestion de Placas</span>
+            </a>
+            <div id="collapsePlacas1" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Inventario</h6>
+                    <a class="collapse-item" href="{{route('placas.inventario')}}">Inven, de Boletas/Placas</a>
+                    <a class="collapse-item" href="{{route('placas.transferencia')}}">Hacer Transferencia</a>
+                </div>
+            </div>
         </li>
     @endif
 

@@ -56,7 +56,7 @@
             @endforeach
             `
             document.getElementById("tbodyDocumentosVentas").innerHTML = html;
-        }else if(dominio == 'www.multiservicioscomercialestito.com'){
+        }else if(dominio == 'multiservicioscomercialestito.com'){
             html +=`
             @foreach($doc as $info)
             <tr>

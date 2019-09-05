@@ -22,7 +22,7 @@
                 @endforeach
             `
             document.getElementById("tbodyVistaDocumentoEntrada").innerHTML =  html
-        }else if(dominio == 'www.multiservicioscomercialestito.com'){
+        }else if(dominio == 'multiservicioscomercialestito.com'){
             html +=`
                  @foreach($entrada_documentos as $doc)
                     <tr>
