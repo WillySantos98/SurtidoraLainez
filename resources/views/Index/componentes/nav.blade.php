@@ -16,6 +16,9 @@
         <a class="nav-link" href="{{route('index')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Inicio</span></a>
+        <a class="nav-link" href="{{route('reportes.index')}}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Reportes</span></a>
     </li>
     <!-- Divider -->
 @if(Auth::user()->tipousuario_id == 1)

@@ -33,3 +33,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 //     el: '#app'
 // });
 const Noty = require('noty');
+var Chart = require('chart.js')
+
+

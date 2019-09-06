@@ -148,4 +148,9 @@ Route::post('placas/entrega/save','PlacasController@entrega_save')->name('placas
 Route::get('/placas/documento_entrega/{boleta}','PlacasController@documento_entrega');
 
 
-Route::get('motocicletas/qr/{codigo}','MotocicletasController@qr')->name('motocicletas.qr');
+Route::get('/motocicletas/qr/{codigo}','MotocicletasController@qr')->name('motocicletas.qr');
+Route::get('/sl/reportes','ReportesController@index')->name('reportes.index');
+Route::get('/sl/ventasmarcas/{num_peticion}','ReportesController@v_marcas');
+Route::get('/sl/ventasmarcas/fecha/{mes}/{ano}','ReportesController@f_marcas');
+Route::get('/sl/ventasmarcas/fecha/{ano}','ReportesController@f_ano');
+

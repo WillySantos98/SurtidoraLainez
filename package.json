@@ -23,6 +23,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "chart.js": "^2.8.0",
         "noty": "^3.2.0-beta",
         "sweetalert2": "^8.16.4"
     }
