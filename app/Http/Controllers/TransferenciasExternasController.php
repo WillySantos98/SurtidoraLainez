@@ -77,7 +77,7 @@ class TransferenciasExternasController extends Controller
             ->join("transferencias_externas","transferencias_externas.transferencia_id","=","transferencias.id")
             ->join("users","users.id","=","transferencias.usuario_creacion")
             ->select("transferencias.cod_transferencia","sucursals.nombre","transferencias.fecha_decision","transferencias_externas.destino",
-                "users.usuario")
+                "users.usuario",'transferencias_externas.num_documento')
             ->get();
         return view('Inventario.Motocicletas.Documentos.TransferenciasExternas.index', compact('transferencia'));
     }

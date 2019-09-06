@@ -14,7 +14,7 @@
                     <th>Almacen de Salida</th>
                     <th>Fecha de Salida</th>
                     <th>Lugar de Destino</th>
-                    <th>Usuario Creador</th>
+                    <th># Documento</th>
                     <th>Transferencia</th>
                 </tr>
                 </thead>
@@ -25,7 +25,7 @@
                         <td>{{$trans->nombre}}</td>
                         <td>{{$trans->fecha_decision}}</td>
                         <td>{{$trans->destino}}</td>
-                        <td>{{$trans->usuario}}</td>
+                        <td>{{$trans->num_documento}}</td>
                         <td><a href="/inventario/motocicletas/documentos/salidas_x_transferencia_externa/{{$trans->cod_transferencia}}">Ver Transferencia</a></td>
                     </tr>
                 @endforeach
