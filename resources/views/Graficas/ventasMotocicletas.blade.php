@@ -16,7 +16,7 @@
                 <button type="button" class="list-group-item list-group-item-action" onclick="btnSeccionMarcas(1)">Ventas totales por marcas</button>
                 <button type="button" class="list-group-item list-group-item-action" onclick="btnSeccionMarcas(2)">Ventas totales por marcas mensual</button>
                 <button type="button" class="list-group-item list-group-item-action" onclick="btnSeccionMarcas(3)">Ventas totales por marcas anual</button>
-                <button type="button" class="list-group-item list-group-item-action" disabled>Descargar Grafico</button>
+                <button type="button" class="list-group-item list-group-item-action" >Descargar Grafico</button>
                 <button type="button" class="list-group-item list-group-item-action" disabled>Generar Reporte PDF</button>
 
             </div>
