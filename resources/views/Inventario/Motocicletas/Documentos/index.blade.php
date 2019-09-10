@@ -5,277 +5,259 @@
         @include('Index.componentes.status')
         <h4 class="text-center">Seleccione el Tipo de Documento</h4>
         <br>
-
-        <div class="d-flex justify-content-between">
-
-            <a href="{{route('docEntrada.index')}}" class="nav-link" style="width: 24%">
-                <div class="col card border-left-primary shadow py-2">
-                    <div class="row">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Entradas de Motocicletas</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$entradas}}</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-file fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="{{route('salidas.index')}}" class="nav-link" style="width: 24%">
-                <div class="col card border-left-primary shadow py-2">
-                    <div class="row">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Salidas x Ventas</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$salidas}}</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-file fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="{{route('notificaciones.index')}}" class="nav-link" style="width: 24%">
-                <div class="col card border-left-primary shadow py-2">
-                    <div class="row">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Notificaciones Pendientes</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$notificaciones}}</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-file fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="{{route('notificacion.gen')}}" class="nav-link" style="width: 24%">
-                <div class="col card border-left-primary shadow py-2">
-                    <div class="row">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Notificaciones Generadas</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$notificaciones2}}</div>
-                        </div>
-                        <div class="col-auto">
-                            <div class="row">
-                                <i class="fas fa-arrow-right text-gray-300"></i>
-                            </div>
-                            <div class="row">
-                                <i class="fas fa-arrow-left text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
+        <hr>
+        <div id="MenuDocumentos">
 
         </div>
 
 
-        <div class="d-flex justify-content-between">
-            <a href="{{route('transferencias_internas.index')}}" class="nav-link" style="width: 24%">
-                <div class="col card border-left-warning shadow py-2">
-                    <div class="row">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Transferencias Pendientes</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$trans_p}}</div>
-                        </div>
-                        <div class="col-auto">
-                            <div class="row">
-                                <i class="fas fa-arrow-right text-gray-300"></i>
-                            </div>
-                            <div class="row">
-                                <i class="fas fa-arrow-left text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
 
-            <a href="{{route('aceptadas.index')}}" class="nav-link" style="width: 24%">
-                <div class="col card border-left-success shadow py-2">
-                    <div class="row">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Transferencias</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$trans_a}}</div>
-                        </div>
-                        <div class="col-auto">
-                            <div class="row">
-                                <i class="fas fa-arrow-right text-gray-300"></i>
-                            </div>
-                            <div class="row">
-                                <i class="fas fa-arrow-left text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="{{route('transferencia.rechazadas')}}" class="nav-link" style="width: 24%">
-                <div class="col card border-left-danger shadow py-2">
-                    <div class="row">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Trans. Rechazadas x Supervisor</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$trans_r}}</div>
-                        </div>
-                        <div class="col-auto">
-                            <div class="row">
-                                <i class="fas fa-arrow-right text-gray-300"></i>
-                            </div>
-                            <div class="row">
-                                <i class="fas fa-arrow-left text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="{{route('declinada.transferencia.index')}}" class="nav-link" style="width: 24%">
-                <div class="col card border-left-danger shadow py-2">
-                    <div class="row">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Trans. Declinadas x Gerente</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$trans_declinadas}}</div>
-                        </div>
-                        <div class="col-auto">
-                            <div class="row">
-                                <i class="fas fa-arrow-right text-gray-300"></i>
-                            </div>
-                            <div class="row">
-                                <i class="fas fa-arrow-left text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <div class="d-flex justify-content-between">
-            <a href="{{route('exitosas.transferencia.index')}}" class="nav-link" style="width: 24%">
-                <div class="col card border-left-success shadow py-2">
-                    <div class="row">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Transferencias Exitosas</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$trans_exitosas}}</div>
-                        </div>
-                        <div class="col-auto">
-                            <div class="row">
-                                <i class="fas fa-arrow-right text-gray-300"></i>
-                            </div>
-                            <div class="row">
-                                <i class="fas fa-arrow-left text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="{{route('transferencias_externas.index')}}" class="nav-link" style="width: 24%">
-                <div class="col card border-left-warning shadow py-2">
-                    <div class="row">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Transferencias Externas</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$transferencias_externas}}</div>
-                        </div>
-                        <div class="col-auto">
-                            <div class="row">
-                                <i class="fas fa-arrow-right text-gray-300"></i>
-                            </div>
-                            <div class="row">
-                                <i class="fas fa-arrow-left text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="{{route('placas.pendientes')}}" class="nav-link" style="width: 24%">
-                <div class="col card border-left-primary shadow py-2">
-                    <div class="row">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Placas Pendientes</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$placas_pendientes}}</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-file fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="{{route('permisos.index')}}" class="nav-link" style="width: 24%">
-                <div class="col card border-left-primary shadow py-2">
-                    <div class="row">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Generar Permisos Para Circular sin Placa</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-file fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-        </div>
-
-        <div class="d-flex justify-content-between">
-            <a href="{{route('placasTransferencias')}}" class="nav-link" style="width: 24%">
-                <div class="col card border-left-primary shadow py-2">
-                    <div class="row">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Placas En Transferencia</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$placas_transferencia}}</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-file fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="{{route('placas.aceptadas.sucursal')}}" class="nav-link" style="width: 24%">
-                <div class="col card border-left-primary shadow py-2">
-                    <div class="row">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Transferencias Aceptadas por Suc.</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$placas_aceptadas}}</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-file fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="{{route('placas.entrega')}}" class="nav-link" style="width: 24%">
-                <div class="col card border-left-primary shadow py-2">
-                    <div class="row">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Placas Entregadas a Clien.</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$placas_entregada}}</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-file fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="#" class="nav-link" style="width: 24%">
-                <div class="col card border-left-primary shadow py-2">
-                    <div class="row">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"></div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$entradas}}</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-file fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
 
     </div>
+
+    <script>
+        axios.get('/cargar_menu/{{Auth::user()->id}}').then(
+            function (elementos) {
+                let html_documentos = '';
+                var html_documentos_moto = '';
+                let html_documentos_transferencia = '';
+                let html_documentos_placas = '';
+                var elem;
+                for (let i =0; i<elementos.data.length; i++){
+                    elem = elementos.data
+                    if( elementos.data[i].codigo ==4) {
+                        html_documentos += `
+                        <div class="row">
+                            <div class="col">
+                                <div class="card border-left-primary" style="width: 100%">
+                                    <div class="card-body">
+                                        <strong>Motocicletas</strong>
+                                        <hr class="my-4">
+                                        <div class="row" id="MenuDocumentosMotocicletas">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" >
+                            <div class="col">
+                                <div class="card border-left-warning" style="width: 100%">
+                                    <div class="card-body">
+                                        <strong>Transferencias de Motocicletas</strong>
+                                        <hr class="my-4">
+                                        <div class="row" id="MenuDocumentosTransferencias">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" >
+                            <div class="col">
+                                <div class="card border-left-info" style="width: 100%">
+                                    <div class="card-body">
+                                        <strong>Placas</strong>
+                                        <hr class="my-4">
+                                        <div class="row" id="MenuDocumentosPlacas">
+
+                                        </div>
+                                    </div>
+                                 </div>
+                            </div>
+                        </div>
+
+                    `
+                    }
+                        if (elementos.data[i].codigo == '4-0'){
+                        html_documentos_moto +=`
+                        <div class="col">
+                            <a href="{{route('docEntrada.index')}}" class="btn btn-outline-primary rounded" style="width: 150px;height: 150px;">
+                                <br>
+                                <br>
+                                Entrada de Motocicletas
+                                <span class="badge badge-success">{{$entradas}}</span>
+                            </a>
+                        </div>
+                        `
+                    }
+                    if (elementos.data[i].codigo == '4-1'){
+                        html_documentos_moto +=`
+                        <div class="col">
+                            <a href="{{route('salidas.index')}}" class="btn btn-outline-primary rounded" style="width: 150px;height: 150px;">
+                                <br>
+                                <br>
+                                Salidas por Ventas
+                                <span class="badge badge-success">{{$salidas}}</span>
+                            </a>
+                        </div>
+                        `
+                    }
+                    if (elementos.data[i].codigo == '4-2'){
+                        html_documentos_moto +=`
+                        <div class="col">
+                            <a href="{{route('notificaciones.index')}}" class="btn btn-outline-primary rounded" style="width: 150px;height: 150px;">
+                                <br>
+                                <br>
+                                Notificaciones Pendientes
+                                <span class="badge badge-success">{{$notificaciones}}</span>
+                            </a>
+                        </div>
+                        `
+                    }
+                    if (elementos.data[i].codigo == '4-3'){
+                        html_documentos_moto +=`
+                        <div class="col">
+                            <a href="{{route('notificacion.gen')}}" class="btn btn-outline-primary rounded" style="width: 150px;height: 150px;">
+                                <br>
+                                <br>
+                                Notificaciones Generadas
+                                <span class="badge badge-success">{{$notificaciones2}}</span>
+                            </a>
+                        </div>
+
+                        `
+                    }
+                    if (elementos.data[i].codigo == '4-4'){
+                        html_documentos_transferencia +=`
+                        <div class="col">
+                            <a href="{{route('transferencias_internas.index')}}" class="btn btn-outline-warning rounded" style="width: 150px;height: 150px;">
+                                <br>
+                                <br>
+                                Transferencias Pendientes
+                                <span class="badge badge-success">{{$trans_p}}</span>
+                            </a>
+                        </div>
+                        `
+                    }
+                    if (elementos.data[i].codigo == '4-5'){
+                        html_documentos_transferencia +=`
+                        <div class="col">
+                            <a href="{{route('aceptadas.index')}}" class="btn btn-outline-warning rounded" style="width: 150px;height: 150px;">
+                                <br>
+                                <br>
+                                Transferencias
+                                <span class="badge badge-success">{{$trans_a}}</span>
+                            </a>
+                        </div>
+                        `
+                    }
+                    if (elementos.data[i].codigo == '4-6'){
+                        html_documentos_transferencia +=`
+                        <div class="col">
+                            <a href="{{route('transferencia.rechazadas')}}" class="btn btn-outline-warning rounded" style="width: 150px;height: 150px;">
+                                <br>
+                                Transferencias Rechazadas
+                                por Facturacion
+                                <span class="badge badge-success">{{$trans_r}}</span>
+                            </a>
+                        </div>
+                        `
+                    }
+                    if (elementos.data[i].codigo == '4-7'){
+                        html_documentos_transferencia +=`
+                        <div class="col">
+                            <a href="{{route('declinada.transferencia.index')}}" class="btn btn-outline-warning rounded" style="width: 150px;height: 150px;">
+                                <br>
+                                Transferencias Declinadas
+                                por Gerencia
+                                <span class="badge badge-success">{{$trans_declinadas}}</span>
+                            </a>
+                        </div>
+                        `
+                    }
+                    if (elementos.data[i].codigo == '4-8'){
+                        html_documentos_transferencia +=`
+                        <div class="col">
+                            <a href="{{route('exitosas.transferencia.index')}}" class="btn btn-outline-warning rounded" style="width: 150px;height: 150px;">
+                                <br>
+                                <br>
+                                Transferencias Exitosas
+                                <span class="badge badge-success">{{$trans_exitosas}}</span>
+                            </a>
+                        </div>
+                        `
+                    }
+                    if (elementos.data[i].codigo == '4-9'){
+                        html_documentos_transferencia +=`
+                        <div class="col">
+                            <a href="{{route('transferencias_externas.index')}}" class="btn btn-outline-warning rounded" style="width: 150px;height: 150px;">
+                                <br>
+                                <br>
+                                Transferencias Externas
+                                <span class="badge badge-success">{{$transferencias_externas}}</span>
+                            </a>
+                        </div>
+                        `
+                    }
+                    if (elementos.data[i].codigo == '4-10'){
+                        html_documentos_placas +=`
+                        <div class="col">
+                            <a href="{{route('permisos.index')}}" class="btn btn-outline-info rounded" style="width: 150px;height: 150px;">
+                                <br>
+                                <br>
+                                Generar Permisos
+                            </a>
+                        </div>
+                        `
+                    }
+                    if (elementos.data[i].codigo == '4-11'){
+                        html_documentos_placas +=`
+                        <div class="col">
+                            <a href="{{route('placas.pendientes')}}" class="btn btn-outline-info rounded" style="width: 150px;height: 150px;">
+                                <br>
+                                <br>
+                                Placas Pendientes
+                                <span class="badge badge-success">{{$placas_pendientes}}</span>
+                            </a>
+                        </div>
+                        `
+                    }
+                    if (elementos.data[i].codigo == '4-12'){
+                        html_documentos_placas +=`
+                    <div class="col">
+                        <a href="{{route('placasTransferencias')}}" class="btn btn-outline-info rounded" style="width: 150px;height: 150px;">
+                            <br>
+                            Placas en Transferencias
+                            <span class="badge badge-success">{{$placas_transferencia}}</span>
+                        </a>
+                    </div>
+                    `
+                    }
+                    if (elementos.data[i].codigo == '4-12'){
+                        html_documentos_placas +=`
+                        <div class="col">
+                            <a href="{{route('placas.aceptadas.sucursal')}}" class="btn btn-outline-info rounded" style="width: 150px;height: 150px;">
+                                <br>
+                                Transferencias Aceptadas
+                                por Gerencia
+                                <span class="badge badge-success">{{$placas_aceptadas}}</span>
+                            </a>
+                        </div>
+                        `
+                    }
+                    if (elementos.data[i].codigo == '4-14'){
+                        html_documentos_placas +=`
+                        <div class="col">
+                            <a href="{{route('placas.entrega')}}" class="btn btn-outline-info rounded disabled" style="width: 150px;height: 150px;">
+                                <br>
+                                Placas Entregadas a Clientes
+                                <span class="badge badge-success">{{$placas_entregada}}</span>
+                            </a>
+                        </div>
+`
+                    }
+                }
+
+                document.getElementById("MenuDocumentos").innerHTML = html_documentos;
+                document.getElementById("MenuDocumentosMotocicletas").innerHTML = html_documentos_moto;
+                document.getElementById("MenuDocumentosTransferencias").innerHTML = html_documentos_transferencia;
+                document.getElementById("MenuDocumentosPlacas").innerHTML = html_documentos_placas;
+            })
+
+
+    </script>
 
 @endsection

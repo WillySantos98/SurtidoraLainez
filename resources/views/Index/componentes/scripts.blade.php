@@ -1,4 +1,6 @@
-
+{{--@include('Index.Menu')--}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
 {{--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>--}}
@@ -41,21 +43,14 @@ function UrlBack() {
 <script src="{{asset('js/app.js')}}"></script>
 <script>
     @if(session('error'))
-    new Noty({
-        type: 'error',
-        layout: 'topRight',
-        text: '{{session('error')}}'+'Para desaparecer la advertencia haga click aca.',
-        animation:{
-            speed: 500,
-        }
-    }).show();
+        Command: toastr["error"]("{{session('error')}}");
     @endif
-    @if(session('aprobado'))
-    new Noty({
-        type: 'success',
-        layout: 'topRight',
-        text: '{{session('aprobado')}}'+'Para desaparecer la advertencia haga click aca.'
-    }).show();
+        @if(session('aprobado'))
+        Command: toastr["success"]("{{session('aprobado')}}");
     @endif
+
+
+
+
 
 </script>

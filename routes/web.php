@@ -25,6 +25,12 @@ Route::get('/inicio', 'InicioController@index')->name('index');
 Route::get('/usuarios/','UsuarioController@index')->name('usuario.index');
 Route::get('/usuarios/nuevo','UsuarioController@crear_usuario')->name('usuario.crear');
 Route::post('/usuarios/nuevo','UsuarioController@save_usuario')->name('usuario.save');
+Route::get('/usuarios/secciones','UsuarioController@secciones')->name('usuario.secciones');
+Route::post('/usuarios/secciones','UsuarioController@save_secciones')->name('usuario.save_secciones');
+Route::post('/usuarios/sub_secciones','UsuarioController@save_sub_secciones')->name('usuario.save_subsecciones');
+Route::post('/usuarios/permisos','UsuarioController@permisos')->name('usuario.permisos');
+Route::get('/cargar_menu/{id}','UsuarioController@menu');
+
 //----------------------------------------------------------------------------------------------------------------------
 //*****Proveedores
 Route::get('/proveedores','ProveedorController@index')->name('proveedor.index');
@@ -83,6 +89,7 @@ Route::get('/inventario/motocicletas/ficha/{codigo}','MotocicletasController@fic
 Route::get('/inventario/motocicletas/inventario_x_sucursal','MotocicletasController@inventario_sucursal')->name('inventarioSucursal.index');
 Route::get('/inventario/motocicletas/cargarmotos/{id}','MotocicletasController@info_sucursal');
 Route::get('/inventario/motocicletas/estado_de_transferencia', 'MotocicletasController@transferencia')->name('inventario.transferencia');
+Route::get('inventario/motocicletas/vendidas', 'Motocicletascontroller@vendidas')->name('inventario.vendidas');
 //doucmentos de entrada
 Route::get('/inventario/motocicletas/documentos/entrada', 'DocumentosInventarioController@entrada_doc')->name('docEntrada.index');
 Route::get('/inventario/motocicletas/documentos/', 'DocumentosInventarioController@doc')->name('doc.index');

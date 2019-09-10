@@ -83,7 +83,7 @@ class SalidasMotocicletasController extends Controller
             ->select('salidas.cod_venta','tipo_ventas.nombre as nombre_ven','salidas.num_venta','salidas.fecha_salida',
                 'clientes.nombres','clientes.apellidos', 'clientes.identidad','clientes.rtn','entrada_motocicletas.chasis',
                 'marcas.nombre','modelos.nombre_mod','salidas.id','entrada_motocicletas.motor','entrada_motocicletas.color',
-                'entrada_motocicletas.ano','entrada_motocicletas.id_moto')
+                'entrada_motocicletas.ano','entrada_motocicletas.id_moto','clientes.id as id_c')
             ->where('salidas.cod_venta',$codigo)
             ->get();
         $doc = DB::table('salidas')

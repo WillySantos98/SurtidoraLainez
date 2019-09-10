@@ -7,6 +7,7 @@ use BaconQrCode\Encoder\QrCode;
 use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use SurtidoraLainez\Salida;
 use function MongoDB\BSON\toJSON;
 use SurtidoraLainez\EntradaMotocicleta;
 use SurtidoraLainez\Sucursal;
@@ -134,6 +135,19 @@ class MotocicletasController extends Controller
 //        return view('QR.InfoMotos', compact('info_modelo'))
 
 
+    }
+
+    public function vendidas(){
+        $motos = Salida::join('clientes','clientes.id','=','salidas.cliente_id')
+            ->join('entrada_motocicletas','entrada_motocicletas.id','=','salidas.moto_id')
+            ->join('marcas','marcas.id','=','entrada_motocicletas.marca_id')
+            ->join('modelos','modelos.id','=','entrada_motocicletas.modelo_id')
+            ->join('sucursals','sucursals.id','=','salidas.sucrusal_id')
+            ->select('salidas.num_venta','sucursals.nombre as nombre_suc','modelos.nombre_mod',
+                'entrada_motocicletas.chasis','clientes.nombres','clientes.apellidos','salidas.cod_venta')
+            ->where('entrada_motocicletas.estado', 2)->get();
+
+        return view('Inventario.Motocicletas.Vendidas.index',compact('motos'));
     }
 
 }

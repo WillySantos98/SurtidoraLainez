@@ -8,7 +8,7 @@
     </thead>
     <tbody>
     <tr>
-        <td class="text-center" style="font-size: 13px">{{$info->nombres}} {{$info->apellidos}}</td>
+        <td class="text-center" style="font-size: 13px"><a href="/clientes/perfil/{{$info->id_c}}" target="_blank">{{$info->nombres}} {{$info->apellidos}}</a></td>
         <td class="text-center" style="font-size: 13px">{{$info->identidad}}</td>
         <td class="text-center" style="font-size: 13px">{{$info->rtn}}</td>
     </tr>
