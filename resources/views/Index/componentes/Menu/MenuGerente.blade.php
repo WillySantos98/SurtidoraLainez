@@ -57,7 +57,7 @@
             <a class="collapse-item" href="{{route('motocicletas.index')}}">Inventario Disponible</a>
             <a class="collapse-item" href="{{route('inventario.transferencia')}}">Inventario en Transferencia</a>
             <a class="collapse-item" href="{{route('inventarioSucursal.index')}}">Inventario x Sucursal</a>
-            <a class="collapse-item" href="{{route('inventarioSucursal.index')}}">Inventario Vendido</a>
+            <a class="collapse-item" href="{{route('inventario.vendidas')}}">Inventario Vendido</a>
             <a class="collapse-item" href="{{route('transferencias_externas.index')}}">Inventario Trans. Externa</a>
         </div>
     </div>
