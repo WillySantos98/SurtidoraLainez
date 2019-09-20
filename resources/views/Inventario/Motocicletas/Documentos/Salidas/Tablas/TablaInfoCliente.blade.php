@@ -1,16 +1,12 @@
-<table class="table">
-    <thead>
-    <tr>
-        <th class="text-center" style="font-size: 13px">Nombre Completo</th>
-        <th class="text-center" style="font-size: 13px">Identidad</th>
-        <th class="text-center" style="font-size: 13px">Rtn</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td class="text-center" style="font-size: 13px"><a href="/clientes/perfil/{{$info->id_c}}" target="_blank">{{$info->nombres}} {{$info->apellidos}}</a></td>
-        <td class="text-center" style="font-size: 13px">{{$info->identidad}}</td>
-        <td class="text-center" style="font-size: 13px">{{$info->rtn}}</td>
-    </tr>
-    </tbody>
-</table>
+<div class="row">
+    <div class="col"><h6 class="text-center text-gray-400">Datos del Cliente</h6></div>
+</div>
+<div class="row">
+    <div class="col"><strong>Nombre Completo:</strong><a href="/clientes/perfil/{{$info->id_c}}" target="_blank">{{$info->nombres}} {{$info->apellidos}}</a></div>
+</div>
+<div class="row">
+    <div class="col"><strong>Identidad:</strong>{{$info->identidad}}</div>
+</div>
+<div class="row">
+    <div class="col"><strong>RTN:</strong>{{$info->rtn}}</div>
+</div>

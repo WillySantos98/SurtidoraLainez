@@ -111,4 +111,11 @@ class SalidasMotocicletasController extends Controller
         }
         return redirect('/inventario/motocicletas/documentos/salidas/'.$request->input('CodVenta'))->with('status','Se agregaron '.$i.' correctamente');
     }
+    public function edit_num_factura(Request $request){
+        DB::table('salidas')->where('id', $request->input('InputId'))
+            ->update(['num_venta'=>$request->input('Factura')]);
+
+        return redirect('/inventario/motocicletas/documentos/salidas/'.$request->input('InputCod'))
+            ->with('aprobado','Se ha cambiado el numero de factura a '.$request->input('Factura').', de la venta '.$request->input('Inputcod'));
+    }
 }

@@ -22,6 +22,7 @@
             <a class="collapse-item" href="{{route('proveedor.index')}}">Proveedores</a>
             <a class="collapse-item" href="{{route('contactos.index')}}">Contactos</a>
             <a class="collapse-item" href="{{route('consultas.index')}}">Edición</a>
+            <a class="collapse-item" href="{{route('preciomodelos.index')}}">Asignacion de Precios</a>
             <span class="collapse-header">Sucursales</span>
             <a class="collapse-item" href="{{route('sucursal.index')}}">Sucursales</a>
             <a class="collapse-item" href="{{route('colaboradores.index')}}">Colaboradores</a>
@@ -76,7 +77,7 @@
             <a class="collapse-item" href="{{route('motocicletas.index')}}">Inventario Disponible</a>
             <a class="collapse-item" href="{{route('inventario.transferencia')}}">Inventario en Transferencia</a>
             <a class="collapse-item" href="{{route('inventarioSucursal.index')}}">Inventario x Sucursal</a>
-            <a class="collapse-item" href="{{route('inventario.vendidas)}}">Inventario Vendido</a>
+            <a class="collapse-item" href="{{route('inventario.vendidas')}}">Inventario Vendido</a>
             <a class="collapse-item" href="{{route('transferencias_externas.index')}}">Inventario Trans. Externa</a>
         </div>
     </div>
@@ -123,3 +124,4 @@
         </div>
     </div>
 </li>
+

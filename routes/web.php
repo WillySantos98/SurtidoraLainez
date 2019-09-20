@@ -13,6 +13,8 @@
 //login
 
 
+use FontLib\Table\Type\name;
+
 Route::get('/', 'Auth\LoginController@index')->name('login');
 Route::post('/verificar', 'Auth\LoginController@enter')->name('validacionUser');
 Route::get('/meter','Auth\LoginController@meter');
@@ -89,7 +91,7 @@ Route::get('/inventario/motocicletas/ficha/{codigo}','MotocicletasController@fic
 Route::get('/inventario/motocicletas/inventario_x_sucursal','MotocicletasController@inventario_sucursal')->name('inventarioSucursal.index');
 Route::get('/inventario/motocicletas/cargarmotos/{id}','MotocicletasController@info_sucursal');
 Route::get('/inventario/motocicletas/estado_de_transferencia', 'MotocicletasController@transferencia')->name('inventario.transferencia');
-Route::get('inventario/motocicletas/vendidas', 'Motocicletascontroller@vendidas')->name('inventario.vendidas');
+Route::get('inventario/motocicletas/vendidas', 'MotocicletasController@vendidas')->name('inventario.vendidas');
 //doucmentos de entrada
 Route::get('/inventario/motocicletas/documentos/entrada', 'DocumentosInventarioController@entrada_doc')->name('docEntrada.index');
 Route::get('/inventario/motocicletas/documentos/', 'DocumentosInventarioController@doc')->name('doc.index');
@@ -102,6 +104,7 @@ Route::post('/inventario/motocicletas/documentos/save_salida','SalidasMotociclet
 Route::get('/inventario/motocicletas/documentos/salidas','SalidasMotocicletasController@index')->name('salidas.index');
 Route::get('/inventario/motocicletas/documentos/salidas/{codigo}','SalidasMotocicletasController@venta')->name('salidas.venta');
 Route::post('/inventario/motocicletas/documentos/salidas_x_venta/add_documentos','SalidasMotocicletasController@add_doc')->name('add.doc');
+Route::post('/inventario/motocicletas/documentos/edit/num_factura','SalidasMotocicletasController@edit_num_factura')->name('edit_num_factura');
 //notificacions
 Route::get('/inventario/motocicletas/notificaciones/', 'SalidasController@index_notificaciones')->name('notificaciones.index');
 Route::get('/inventario/motocicletas/notificaciones/pendientes/{codigo}', 'SalidasController@index_notificaciones')->name('generacion.ver');
@@ -154,10 +157,28 @@ Route::get('placas/entrega','PlacasController@entrega')->name('placas.entrega');
 Route::post('placas/entrega/save','PlacasController@entrega_save')->name('placas.entrega.save');
 Route::get('/placas/documento_entrega/{boleta}','PlacasController@documento_entrega');
 
-
+//qr  y reportes
 Route::get('/motocicletas/qr/{codigo}','MotocicletasController@qr')->name('motocicletas.qr');
 Route::get('/sl/reportes','ReportesController@index')->name('reportes.index');
 Route::get('/sl/ventasmarcas/{num_peticion}','ReportesController@v_marcas');
 Route::get('/sl/ventasmarcas/fecha/{mes}/{ano}','ReportesController@f_marcas');
 Route::get('/sl/ventasmarcas/fecha/{ano}','ReportesController@f_ano');
+
+//Problemas
+Route::get('seccion_documentacion/','ProblemasController@index')->name('problemas.index');
+Route::get('seccion_documentacion/reportar_problema','ProblemasController@reporte')->name('problemas.reporte');
+Route::post('seccion_documentacion/reportar_problema','ProblemasController@save_reporte')->name('problemas.reporte.save');
+
+Route::get('documentacion','DocumentacionController@index')->name('documentacion.index');
+Route::get('documentacion/procesos','DocumentacionController@procesos')->name('documentacion.procesos');
+
+//precios
+Route::get('/modelos/asignacion_precios','PreciosModelosController@index')->name('preciomodelos.index');
+Route::get('/modelos/asignacion_precios/modelo/{mdoelo}','PreciosModelosController@ficha')->name('preciosmodelos.ficha');
+Route::post('/impuesto_save','PreciosModelosController@save_impuesto')->name('impuesto_save');
+Route::post('/impuesto_edit','PreciosModelosController@edit_impuesto')->name('impuesto_edit');
+Route::post('/gasto_administrativo_save','PreciosModelosController@save_ga')->name('ga.save');
+Route::post('/gasto_administrativo_edit','PreciosModelosController@edit_ga')->name('ga.edit');
+Route::post('/precio_modelo_save','PreciosModelosController@save_precios')->name('preciomodelos.save');
+
 

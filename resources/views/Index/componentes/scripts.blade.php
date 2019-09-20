@@ -32,6 +32,7 @@
 <script src="{{asset('Urls/urls.js')}}"></script>
 <script src="{{asset('js/MenuReportes.js')}}"></script>
 <script src="{{asset('Reportes/VentasMes.js')}}"></script>
+<script src="{{asset('js/ValidacionesFormularios/FormPrecioModelos.js')}}"></script>
 
 <script>
 

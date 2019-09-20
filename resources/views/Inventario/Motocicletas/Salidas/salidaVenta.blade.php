@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="col">
-                <input type="text" required name="CodVenta" id="FormSalidaVenta-Cod" class="form-control" placeholder="# de Venta" >
+                <input type="text" name="CodVenta" id="FormSalidaVenta-Cod" class="form-control" placeholder="# de Venta" >
             </div>
             <div class="col">
                 <input type="date" name="Fecha_Venta" id="FormSalidaVenta-Fecha" class="form-control">

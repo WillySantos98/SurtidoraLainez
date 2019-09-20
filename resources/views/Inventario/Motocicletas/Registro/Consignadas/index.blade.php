@@ -2,7 +2,7 @@
 @section('title', 'Registro-consignacion')
 @section('content')
 <div class="container-fluid w-100">
-    <h5 class="text-center">Entrada de Motocicletas Consignadas</h5>
+    <h5 class="text-center">Registro de Motocicletas Nuevas al Inventario</h5>
     <hr>
     <form action="{{route('consignada.registro.save')}}" method="post" onchange="FormRegistroMoto()" enctype="multipart/form-data">
         {{ csrf_field() }}
