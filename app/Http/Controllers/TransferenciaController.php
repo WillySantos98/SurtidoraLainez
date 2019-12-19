@@ -197,7 +197,7 @@ class TransferenciaController extends Controller
             ->join('modelos','modelos.id','=','entrada_motocicletas.modelo_id')
             ->where('transferencias.cod_transferencia', $codigo)->get();
         $pdf = \PDF::loadView('transferencia', compact('consultaO', 'consulta2','motos'));
-        return $pdf->stream('documentoddj');
+        return $pdf->stream('transferencia-'.date('Y-m-d').$codigo.'.pdf');
     }
 
     public function declinada(Request $request){

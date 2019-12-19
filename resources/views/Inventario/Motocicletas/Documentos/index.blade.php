@@ -22,6 +22,7 @@
                 var html_documentos_moto = '';
                 let html_documentos_transferencia = '';
                 let html_documentos_placas = '';
+                let html_documentos_cotizaciones = '';
                 var elem;
                 for (let i =0; i<elementos.data.length; i++){
                     elem = elementos.data
@@ -69,11 +70,25 @@
                             </div>
                         </div>
 
+                        <div class="row" >
+                            <div class="col">
+                                <div class="card border-left-success" style="width: 100%">
+                                    <div class="card-body">
+                                        <strong>Cotizaciones</strong>
+                                        <hr class="my-4">
+                                        <div class="row" id="MenuDocumentosCotizaciones">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     `
                     }
                         if (elementos.data[i].codigo == '4-0'){
                         html_documentos_moto +=`
-                        <div class="col">
+                        <div class="col-auto">
                             <a href="{{route('docEntrada.index')}}" class="btn btn-outline-primary rounded" style="width: 150px;height: 150px;">
                                 <br>
                                 <br>
@@ -85,7 +100,7 @@
                     }
                     if (elementos.data[i].codigo == '4-1'){
                         html_documentos_moto +=`
-                        <div class="col">
+                        <div class="col-auto">
                             <a href="{{route('salidas.index')}}" class="btn btn-outline-primary rounded" style="width: 150px;height: 150px;">
                                 <br>
                                 <br>
@@ -97,7 +112,7 @@
                     }
                     if (elementos.data[i].codigo == '4-2'){
                         html_documentos_moto +=`
-                        <div class="col">
+                        <div class="col-auto">
                             <a href="{{route('notificaciones.index')}}" class="btn btn-outline-primary rounded" style="width: 150px;height: 150px;">
                                 <br>
                                 <br>
@@ -107,9 +122,21 @@
                         </div>
                         `
                     }
+                    if (elementos.data[i].codigo == '4-20'){
+                        html_documentos_moto +=`
+                        <div class="col-auto">
+                            <a href="{{route('contratospendientes')}}" class="btn btn-outline-primary rounded" style="width: 150px;height: 150px;">
+                                <br>
+                                <br>
+                                Contratos Pendientes
+                                <span class="badge badge-success">{{$contratos_pendientes}}</span>
+                            </a>
+                        </div>
+                        `
+                    }
                     if (elementos.data[i].codigo == '4-3'){
                         html_documentos_moto +=`
-                        <div class="col">
+                        <div class="col-auto">
                             <a href="{{route('notificacion.gen')}}" class="btn btn-outline-primary rounded" style="width: 150px;height: 150px;">
                                 <br>
                                 <br>
@@ -122,7 +149,7 @@
                     }
                     if (elementos.data[i].codigo == '4-4'){
                         html_documentos_transferencia +=`
-                        <div class="col">
+                        <div class="col-auto">
                             <a href="{{route('transferencias_internas.index')}}" class="btn btn-outline-warning rounded" style="width: 150px;height: 150px;">
                                 <br>
                                 <br>
@@ -134,7 +161,7 @@
                     }
                     if (elementos.data[i].codigo == '4-5'){
                         html_documentos_transferencia +=`
-                        <div class="col">
+                        <div class="col-auto">
                             <a href="{{route('aceptadas.index')}}" class="btn btn-outline-warning rounded" style="width: 150px;height: 150px;">
                                 <br>
                                 <br>
@@ -146,7 +173,7 @@
                     }
                     if (elementos.data[i].codigo == '4-6'){
                         html_documentos_transferencia +=`
-                        <div class="col">
+                        <div class="col-auto">
                             <a href="{{route('transferencia.rechazadas')}}" class="btn btn-outline-warning rounded" style="width: 150px;height: 150px;">
                                 <br>
                                 Transferencias Rechazadas
@@ -158,7 +185,7 @@
                     }
                     if (elementos.data[i].codigo == '4-7'){
                         html_documentos_transferencia +=`
-                        <div class="col">
+                        <div class="col-auto">
                             <a href="{{route('declinada.transferencia.index')}}" class="btn btn-outline-warning rounded" style="width: 150px;height: 150px;">
                                 <br>
                                 Transferencias Declinadas
@@ -170,7 +197,7 @@
                     }
                     if (elementos.data[i].codigo == '4-8'){
                         html_documentos_transferencia +=`
-                        <div class="col">
+                        <div class="col-auto">
                             <a href="{{route('exitosas.transferencia.index')}}" class="btn btn-outline-warning rounded" style="width: 150px;height: 150px;">
                                 <br>
                                 <br>
@@ -182,7 +209,7 @@
                     }
                     if (elementos.data[i].codigo == '4-9'){
                         html_documentos_transferencia +=`
-                        <div class="col">
+                        <div class="col-auto">
                             <a href="{{route('transferencias_externas.index')}}" class="btn btn-outline-warning rounded" style="width: 150px;height: 150px;">
                                 <br>
                                 <br>
@@ -194,7 +221,7 @@
                     }
                     if (elementos.data[i].codigo == '4-10'){
                         html_documentos_placas +=`
-                        <div class="col">
+                        <div class="col-auto">
                             <a href="{{route('permisos.index')}}" class="btn btn-outline-info rounded" style="width: 150px;height: 150px;">
                                 <br>
                                 <br>
@@ -205,7 +232,7 @@
                     }
                     if (elementos.data[i].codigo == '4-11'){
                         html_documentos_placas +=`
-                        <div class="col">
+                        <div class="col-auto">
                             <a href="{{route('placas.pendientes')}}" class="btn btn-outline-info rounded" style="width: 150px;height: 150px;">
                                 <br>
                                 <br>
@@ -217,7 +244,7 @@
                     }
                     if (elementos.data[i].codigo == '4-12'){
                         html_documentos_placas +=`
-                    <div class="col">
+                    <div class="col-auto">
                         <a href="{{route('placasTransferencias')}}" class="btn btn-outline-info rounded" style="width: 150px;height: 150px;">
                             <br>
                             Placas en Transferencias
@@ -228,7 +255,7 @@
                     }
                     if (elementos.data[i].codigo == '4-12'){
                         html_documentos_placas +=`
-                        <div class="col">
+                        <div class="col-auto">
                             <a href="{{route('placas.aceptadas.sucursal')}}" class="btn btn-outline-info rounded" style="width: 150px;height: 150px;">
                                 <br>
                                 Transferencias Aceptadas
@@ -240,7 +267,7 @@
                     }
                     if (elementos.data[i].codigo == '4-14'){
                         html_documentos_placas +=`
-                        <div class="col">
+                        <div class="col-auto">
                             <a href="{{route('placas.entrega')}}" class="btn btn-outline-info rounded disabled" style="width: 150px;height: 150px;">
                                 <br>
                                 Placas Entregadas a Clientes
@@ -249,12 +276,69 @@
                         </div>
 `
                     }
+
+                    if (elementos.data[i].codigo == '4-15'){
+                        html_documentos_cotizaciones +=`
+                            <div class="col-auto">
+                                <a href="{{route('cotizaciones.abiertas')}}" class="btn btn-outline-success rounded" style="width: 150px;height: 150px;">
+                                    <br>
+                                    Cotizaciones de Clientes Potenciales
+                                    <span class="badge badge-warning">{{$cotizaciones_abiertas}}</span>
+                            </a>
+                            </div>
+                        `
+                    }
+                    if (elementos.data[i].codigo == '4-16'){
+                        html_documentos_cotizaciones +=`
+                            <div class="col-auto">
+                                <a href="{{route('placas.entrega')}}" class="btn btn-outline-success rounded" style="width: 150px;height: 150px;">
+                                    <br>
+                                    Cotizaciones de Clientes Cerradas
+                                    <span class="badge badge-warning"></span>
+                            </a>
+                            </div>
+                        `
+                    }
+                    if (elementos.data[i].codigo == '4-17'){
+                        html_documentos_cotizaciones +=`
+                            <div class="col-auto">
+                                <a href="{{route('cotizaciones.pendientes')}}" class="btn btn-outline-success rounded" style="width: 150px;height: 150px;">
+                                    <br>
+                                    Cotizaciones Para Ventas Pendientes
+                                    <span class="badge badge-warning">{{$cotizaciones_pendientes}}</span>
+                            </a>
+                            </div>
+                        `
+                    }
+                    if (elementos.data[i].codigo == '4-18'){
+                        html_documentos_cotizaciones +=`
+                            <div class="col-auto">
+                                <a href="{{route('cotizaciones.ventas.aceptadas')}}" class="btn btn-outline-success rounded" style="width: 150px;height: 150px;">
+                                    <br>
+                                    Cotizaciones Para Ventas Aceptadas
+                                    <span class="badge badge-warning">{{$cotizaciones_v_aceptadas}}</span>
+                            </a>
+                            </div>
+                        `
+                    }
+                    if (elementos.data[i].codigo == '4-19'){
+                        html_documentos_cotizaciones +=`
+                            <div class="col-auto">
+                                <a href="{{route('cotizaciones.declinadas')}}" class="btn btn-outline-success rounded" style="width: 150px;height: 150px;">
+                                    <br>
+                                    Cotizaciones Para Ventas Declinadas
+                                    <span class="badge badge-warning">{{$cotizaciones_v_declinadas}}</span>
+                            </a>
+                            </div>
+                        `
+                    }
                 }
 
                 document.getElementById("MenuDocumentos").innerHTML = html_documentos;
                 document.getElementById("MenuDocumentosMotocicletas").innerHTML = html_documentos_moto;
                 document.getElementById("MenuDocumentosTransferencias").innerHTML = html_documentos_transferencia;
                 document.getElementById("MenuDocumentosPlacas").innerHTML = html_documentos_placas;
+                document.getElementById("MenuDocumentosCotizaciones").innerHTML = html_documentos_cotizaciones;
             })
 
 

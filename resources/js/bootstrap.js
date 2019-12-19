@@ -1,13 +1,22 @@
 window.Noty = require('noty');
 window.swal = require('sweetalert2');
 window._ = require('lodash');
+window.Vue = require('vue');
+require('vue-template-compiler');
+// import { Calendar } from '@fullcalendar/core';
+// import dayGridPlugin from '@fullcalendar/daygrid';
+window.Calendar = require('tui-calendar');
+
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
  * code may be modified to fit the specific needs of your application.
  */
-
+Vue.http.interceptors.push((request, next) =>{
+    request.headers.set('X-CSRF-TOKEN', laravel.csrfToken);
+    next();
+})
 try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');

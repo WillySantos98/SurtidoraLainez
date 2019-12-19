@@ -6,18 +6,24 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use SurtidoraLainez\Cliente;
 use SurtidoraLainez\Colaborador;
+use SurtidoraLainez\Cotizacione;
+use SurtidoraLainez\Cuenta;
 use SurtidoraLainez\DocumentosSalida;
 use SurtidoraLainez\Notificacion;
+use SurtidoraLainez\Http\Controllers\FuncionesCuenta;
 use SurtidoraLainez\Salida;
 use SurtidoraLainez\Sucursal;
 use SurtidoraLainez\TipoVenta;
 
 class SalidasMotocicletasController extends Controller
 {
+
     public function salidas_venta(){
         $tipo_venta = TipoVenta::all();
         $colaborador = Colaborador::all();
         $sucursal = Sucursal::all();
+        $cotizaciones = Cotizacione::join('modelos','modelos.id','=','cotizaciones.modelo_id')
+            ->where('estado', 3)->where('estado_condicion', 3)->get();
         $motos = DB::table('entrada_motocicletas')
             ->join('marcas','marcas.id','=','entrada_motocicletas.marca_id')
             ->join('modelos','modelos.id','=','entrada_motocicletas.modelo_id')
@@ -26,14 +32,21 @@ class SalidasMotocicletasController extends Controller
             ->where('entrada_motocicletas.estado', 1)
             ->get();
         $clientes = Cliente::all();
-        return view('Inventario.Motocicletas.Salidas.salidaVenta', compact('clientes','motos','tipo_venta','sucursal','colaborador'));
+        return view('Inventario.Motocicletas.Salidas.salidaVenta', compact('clientes','motos',
+            'tipo_venta','sucursal','colaborador','cotizaciones'));
     }
 
+
     public function salida_save(Request $request){
+        $total_pagos = FuncionesCuenta::Pagos($request->input('Intervalo'), $request->input('Plazo'));
+        $fecha_vencimiento = FuncionesCuenta::FechaVencimiento($request);
+        $descripcion = FuncionesCuenta::Descripcion($request->input('SelectVenta'));
+
         $nuevaSalida = new Salida();
         $nuevaNotificacion = new Notificacion();
         $contadorSalida = Salida::all()->count();
         $contadorNotificacion = Notificacion::all()->count();
+        $nueva_cuenta = new Cuenta();
 
         $nuevaSalida->cod_venta = 'sl-0'.$contadorSalida;
         $nuevaSalida->tipoventa_id = $request->input('SelectVenta');
@@ -45,13 +58,39 @@ class SalidasMotocicletasController extends Controller
         $nuevaSalida->sucrusal_id = $request->input('SelectSucursal');
         $nuevaSalida->usuario_id = $request->input('Usuario');
         $nuevaSalida->num_venta = $request->input('CodVenta');
+        $nuevaSalida->contrato = 1;
+        $nuevaSalida->cuenta = 1;
         $nuevaSalida->save();
+//
+        $nueva_cuenta->salida_id = $nuevaSalida->id;
+        $nueva_cuenta->plazo = $request->input('Plazo');
+        $nueva_cuenta->intervalo_pago = $request->input('Intervalo');
+        $nueva_cuenta->dias_gracia = $request->input('DiasGracia');
+        $nueva_cuenta->cod_cuenta = FuncionesCuenta::CrearCodigo();
+        $nueva_cuenta->saldo_financiar = $request->input('SaldoFinanciado');
+        $nueva_cuenta->total_inicial_cuenta = $request->input('TotalCuenta');
+        $nueva_cuenta->saldo_actual = $request->input('TotalCuenta');
+        $nueva_cuenta->fecha_vencimiento = $fecha_vencimiento;
+        $nueva_cuenta->prima = $request->input('Prima');
+        $nueva_cuenta->total_pagos = $total_pagos;
+        $nueva_cuenta->estado_interes = 1;
+        $nueva_cuenta->total_intereses = 0;
+        $nueva_cuenta->estado_cuenta = 1;
+        $nueva_cuenta->descripcion = $descripcion;
+        $nueva_cuenta->mora = 0.05;
+        $nueva_cuenta->saldo_con_interes = $request->input('TotalCuenta');
+        $nueva_cuenta->tipo_cuenta = 1;
+        $nueva_cuenta->save();
+
+        FuncionesCuenta::PagosCuenta($nueva_cuenta->id, $request, $total_pagos);
+        FuncionesCuenta::EstadoCuenta($request, $nueva_cuenta->id, $nueva_cuenta->cod_cuenta);
 
         $nuevaNotificacion->cod_notificacion = 'sl-nt-'.$contadorNotificacion;
         $nuevaNotificacion->fecha_generada = $request->input('Fecha_Venta');
         $nuevaNotificacion->salida_id = $nuevaSalida->id;
         $nuevaNotificacion->estado = 1;
         $nuevaNotificacion->save();
+
 
         DB::table('entrada_motocicletas')->where('id', $request->input('IdMoto'))
             ->update(['estado' => 2]);
@@ -108,6 +147,8 @@ class SalidasMotocicletasController extends Controller
                 $nuevo_Documento->save();
                 $i++;
             }
+        DB::table('salidas')->where('id',$request->input('IdVenta'))
+            ->update(['contrato'=>2]);
         }
         return redirect('/inventario/motocicletas/documentos/salidas/'.$request->input('CodVenta'))->with('status','Se agregaron '.$i.' correctamente');
     }
@@ -118,4 +159,18 @@ class SalidasMotocicletasController extends Controller
         return redirect('/inventario/motocicletas/documentos/salidas/'.$request->input('InputCod'))
             ->with('aprobado','Se ha cambiado el numero de factura a '.$request->input('Factura').', de la venta '.$request->input('Inputcod'));
     }
+
+    public function contratos_pendientes(){
+        $salidas = Salida::join('entrada_motocicletas','entrada_motocicletas.id','=','salidas.moto_id')
+            ->join('clientes','clientes.id','=','salidas.cliente_id')
+            ->join('sucursals','sucursals.id','=','salidas.sucrusal_id')
+            ->join('modelos','modelos.id','=','entrada_motocicletas.modelo_id')
+            ->where('salidas.contrato' ,1)->paginate(10);
+
+        return view('Inventario.Motocicletas.Documentos.VentasSinContrato.index', compact('salidas'));
+    }
+
+
+
+
 }

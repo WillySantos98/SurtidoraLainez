@@ -55,7 +55,7 @@ function cargarEmpleadosMo(val) {
 
 function cargarmodelos(val) {
     var id = val;
-    let html ="<option value=''>-----</option>";
+    let html ='<option value="'+0+'">-----</option>';
     axios.get('/cargar_modelos/'+id).
         then(function (modelos) {
         for(var i=0; i< modelos.data.length; i++){

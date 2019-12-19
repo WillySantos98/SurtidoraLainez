@@ -15,6 +15,9 @@
 
 use FontLib\Table\Type\name;
 
+
+//use Illuminate\Routing\Route;
+
 Route::get('/', 'Auth\LoginController@index')->name('login');
 Route::post('/verificar', 'Auth\LoginController@enter')->name('validacionUser');
 Route::get('/meter','Auth\LoginController@meter');
@@ -105,6 +108,7 @@ Route::get('/inventario/motocicletas/documentos/salidas','SalidasMotocicletasCon
 Route::get('/inventario/motocicletas/documentos/salidas/{codigo}','SalidasMotocicletasController@venta')->name('salidas.venta');
 Route::post('/inventario/motocicletas/documentos/salidas_x_venta/add_documentos','SalidasMotocicletasController@add_doc')->name('add.doc');
 Route::post('/inventario/motocicletas/documentos/edit/num_factura','SalidasMotocicletasController@edit_num_factura')->name('edit_num_factura');
+Route::get('/inventario/motocicletas/documentos/contratos_pendientes','SalidasMotocicletasController@contratos_pendientes')->name('contratospendientes');
 //notificacions
 Route::get('/inventario/motocicletas/notificaciones/', 'SalidasController@index_notificaciones')->name('notificaciones.index');
 Route::get('/inventario/motocicletas/notificaciones/pendientes/{codigo}', 'SalidasController@index_notificaciones')->name('generacion.ver');
@@ -126,6 +130,7 @@ Route::get('/inventario/motocicletas/documentos/transferencias/exitosas','Transf
 Route::get('/inventario/motocicletas/documentos/transferenciasrechazadas/','TransferenciaController@rechazada')->name('transferencia.rechazadas');
 Route::get('/inventario/motocicletas/documentos/transferencias/exitosas/motos/{codigo}','TransferenciaController@motos');
 Route::get('/inventario/motocicletas/documentos/transferencias_externas','TransferenciasExternasController@index')->name('transferencias_externas.index');
+
 
 Route::get('/inventario/motocicletas/documentos/salidas_x_transferencia_externa','TransferenciasExternasController@form')->name('transferenciasExternas.form');
 Route::post('/inventario/motocicletas/documentos/salidas_x_transferencia_externa','TransferenciasExternasController@save_form')->name('transferenciasExternas.form.save');
@@ -181,4 +186,62 @@ Route::post('/gasto_administrativo_save','PreciosModelosController@save_ga')->na
 Route::post('/gasto_administrativo_edit','PreciosModelosController@edit_ga')->name('ga.edit');
 Route::post('/precio_modelo_save','PreciosModelosController@save_precios')->name('preciomodelos.save');
 
+//cotizaciones
+Route::get('/cotizaciones','CotizacionesController@index')->name('cotizaciones.index');
+Route::get('/cotizaciones/precios_modelos/{id}','CotizacionesController@precios');
+Route::post('/cotizaciones_save','CotizacionesController@save')->name('cotizaciones.save');
+Route::get('/documentos/cotizaciones/cotizaciones_potenciales_abiertas','CotizacionesController@potenciales_abiertas')->name('cotizaciones.abiertas');
+Route::get('/documentos/cotizaciones/cotizaciones_potenciales_abiertas/{cod}','CotizacionesController@potenciales_abiertas_cod')->name('cotizaciones.abiertas.cod');
+Route::get('/documentos/cotizaciones/cotizaciones_potenciales_abiertas/pdf/{cod}','CotizacionesController@pdf')->name('cotizaciones.pdf');
+Route::get('/documentos/cotizaciones/cotizaciones_ventas_pendientes/','CotizacionesController@pendientes')->name('cotizaciones.pendientes');
+Route::get('/documentos/cotizaciones/cotizaciones_ventas_declinadas/','CotizacionesController@declinadas')->name('cotizaciones.declinadas');
+Route::get('/documentos/cotizaciones/cotizaciones_ventas_aceptadas/','CotizacionesController@ventas_aceptadas')->name('cotizaciones.ventas.aceptadas');
+Route::get('/documentos/cotizaciones/cotizaciones_ventas_pendientes/{cod}','CotizacionesController@pendientes_cot')->name('cotizaciones.pendientes_cod');
+Route::get('/documentos/cotizaciones/cotizaciones_ventas_aceptadas/{cod}','CotizacionesController@cotizacion_aceptadas')->name('cotizaciones.aceptadas');
+Route::post('/documentos/cotizacion/aceptar_cotizacion','CotizacionesController@aceptar')->name('cotizacion.aceptar');
 
+
+//cuentas
+Route::get('/cuentas','CuentasController@cuentas')->name('cuentas.cuentas');
+Route::get('/cuentas/index','CuentasController@index')->name('cuentas.index');
+Route::get('/cuenta/{codigo}','CuentasController@cuenta')->name('cuentas.cuenta');
+Route::get('/cuenta/estado_cuenta/{cod}','CuentasController@historial_pago');
+Route::get('/cuenta/proximos_pagos/{cod}','CuentasController@proximos_pagos');
+Route::get('/cuenta/moras/{cod}','CuentasController@moras');
+Route::get('/cuenta/pagos/cuota/{cod}','CuentasController@cuotas');
+
+Route::post('/cuentas/edit/mora/porcentaje','ModificarCuentasController@mora_porcentaje')->name('mod.porcentaje');
+Route::post('/cuentas/edit/mora/cambiar','ModificarCuentasController@mora_cambiar')->name('mod.cambiartotal');
+Route::post('/cuentas/edit/mora/cero','ModificarCuentasController@mora_cero')->name('mod.cero');
+//este es el calendario
+Route::get('/cuentas/calendario_abonos','CuentasController@calendario')->name('calendario.index');
+//este es para el posteo
+Route::get('/cuentas/posteo/','CuentasController@posteo')->name('posteo.index');
+Route::get('/cuenta/posteo/{codigo}','CuentasController@posteo_cuenta')->name('posteo.cuenta');
+Route::get('/cuentas/posteo/info/{codigo}/{pago}','CuentasController@info_posteo');
+Route::post('/cuenta/posteo/','CuentasController@registrar_posteo')->name('posteo.registrar');
+Route::get('/cuenta/posteo/{codigo}/revision/{recibo}/{id}','CuentasController@revision')->name('posteo.revision');
+Route::get('/cuenta/posteo/{codigo}/{id}','CuentasController@recibo')->name('posteo.recibo');
+//este es para Asignar Cuentas
+Route::get('/cuentas/asignacion', 'AsignarcuentasController@index')->name('cuentas.asignacion.index');
+Route::get('/cuentas/asignacion/{salida}', 'AsignarcuentasController@cuenta')->name('cuentas.asignacion');
+Route::post('/cuentas/asignacion/crear_cuenta','AsignarCuentasController@crear')->name('cuentas.asignacion.crear');
+Route::get('/cuentas/asignacion/pagos/{cuenta}','AsignarCuentasController@pagos');
+Route::get('/cuentas/asignacion/pagos/{id}/{pago}','AsignarCuentasController@pagos_pagos');
+//otras cuentas
+Route::get('/cuentas/otras/','CuentasController@otras');
+//cajas
+Route::get('/cajas/','CajasController@index');
+Route::get('/cajas/consulta','CajasController@cargar_abonos');
+//Calendario de Abonos
+Route::get('/calendario/abonos/{ano}/{mes}','CuentasController@calendario_abonos');
+//php artisan schedule:run
+Route::get('/pruebas','PruebasController@txt');
+
+//********moras
+Route::get('/cobros/1/','ReporteMora1Controller@index')->name('cobros.index');
+Route::get('/cobros/reporte/{cod}','ReporteMora1Controller@ver')->name('cobros.ver');
+Route::post('/cobros/save_reporte','ReporteMora1Controller@save_accion');
+Route::get('/cobros/cuerpo_reporte/{rep_id}','ReporteMora1Controller@cuerpo');
+Route::post('/cobros/guardar_promesas', 'ReporteMora1Controller@guardar_promesa')->name('cobros.guardar_promesa');
+Route::get('/cobros/cuerpo_promesas/{id}','ReporteMora1Controller@promesas');

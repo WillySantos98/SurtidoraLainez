@@ -34,6 +34,11 @@
                 <div class="col"><strong>*OBSERVACION:</strong> {{$bol->observaciones}}</div>
                 <div class="col"><strong>*NUMERO DE VENTA:</strong> <a href="/inventario/motocicletas/documentos/salidas/{{$bol->cod_venta}}" target="_blank">{{$bol->cod_venta}}</a></div>
             </div>
+            <div class="row">
+                <div class="col"><strong>*ESTADO DE LA MATRICULA:</strong> @if($bol->estado_matricula == 2) Gratis @elseif($bol->estado_matricula ==1) Tiene que pagar @endif</div>
+                <div class="col"><strong>*PRECIO DE LA MATRICULA:</strong> {{$bol->precio_matricula}}</div>
+                <div class="col"><strong>*ESTADO PAGO DE MATRICULA:</strong> @if($bol->estado_pago_matricula == 2) Pagado @elseif($bol->estado_pago_matricula ==1) Se espera el pago @endif</div>
+            </div>
         @endforeach
         <h5 style="margin-top: 25px">-Informacion del Cliente</h5>
         @foreach($cliente as $cli)

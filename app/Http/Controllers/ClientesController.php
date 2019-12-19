@@ -2,6 +2,7 @@
 
 namespace SurtidoraLainez\Http\Controllers;
 
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use SurtidoraLainez\Cliente;
@@ -70,9 +71,11 @@ class ClientesController extends Controller
 
     }
 
-    public function clientes(){
+    public function clientes(Request $request){
         $clientes = Cliente::all();
-
+//        if ($request->ajax()){
+//            return response()->json(view('Clientes.Tablas.TablaClientes', compact('clientes'))->render());
+//        }
         return view('Clientes.index', compact('clientes'));
     }
 

@@ -8,20 +8,23 @@
 
 //require('./bootstrap');
 
+
+
 window.Vue = require('vue');
+
 
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
  * components and automatically register them with their "basename".
  *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+ * Eg. ./components/Example.vue -> <example-component></example-component>
  */
 
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('example-component', require('./components/Example.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -30,8 +33,36 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 
 // const app = new Vue({
-//     el: '#app'
+//     el: '#app',
+//     created: function(){
+//       this.leerTeras();
+//     },
+//     data:{
+//         tareas: [],
+//     },
+//     methods:{
+//         leerTeras: function () {
+//             var urlTareas = 'usersss';
+//             axios.get(urlTareas).then(
+//                 response =>{
+//                     this.tareas = response.data
+//                 }
+//             )
+//         }
+//     }
 // });
+// var vm = new Vue({
+//     el: '#example',
+//     data: {
+//         message: '123'
+//     }
+// })
+// // vm.message = 'new message' // change data
+// vm.$el.textContent === 'new message' // false
+// Vue.nextTick(function () {
+//     vm.$el.textContent === 'new message' // true
+// })
+
 const Noty = require('noty');
 var Chart = require('chart.js')
 

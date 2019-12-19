@@ -23,6 +23,14 @@
                        <strong>Vino Placa: </strong> @if($bol->estado_enlazo == 1) Si Vino Placa  @elseif($bol->estado_enlazo == 2) No Vino Placa @endif
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col">
+                        <strong>Pago de Matricula: {{$bol->precio_matricula}}</strong>
+                    </div>
+                    <div class="col">
+                        <strong>Estado de Pago: @if($bol->estado_pago_matricula == 2) Pagado @else No Pagado @endif </strong>
+                    </div>
+                </div>
                 @foreach($cliente as $cli)
                 <div class="row">
                     <div class="col">Nombre Cliente: {{$cli->nombres}}  {{$cli->apellidos}}</div>
@@ -43,18 +51,22 @@
                     <form action="{{route('placas.entrega.save')}}" method="post"  enctype="multipart/form-data" id="FormEntregaPlaca" onchange="FormEntregaPlacas()">
                         @csrf
                         <div class="form-group">
-                            <label for="">Hizo Entrega</label>
                             @foreach($boleta as $bol)
-                            <input type="text" value="{{$bol->id}}" name="InputIdPlaca" hidden>
+                                @if($bol->estado_pago_matricula == 2)
+                                    <label for="">Hizo Entrega</label>
+                                    <input type="text" value="{{$bol->id}}" name="InputIdPlaca" hidden>
+                                    <select name="SelectEntrega" class="form-control" id="FormEntregaPlaca-SelectEntrega">
+                                        <option value="-">No</option>
+                                        <option value="1">Si</option>
+                                    </select>
+                                    <div class="form-group">
+                                        <label for="">Subir Documento</label>
+                                        <input type="file" name="FileDocumento" id="FormEntregaPlaca-File" class="form-control">
+                                    </div>
+                                @else
+                                    <strong>Tiene que pagar la matricula para poder hacer la entrega</strong>
+                                @endif
                             @endforeach
-                            <select name="SelectEntrega" class="form-control" id="FormEntregaPlaca-SelectEntrega">
-                                <option value="-">No</option>
-                                <option value="1">Si</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Subir Documento</label>
-                            <input type="file" name="FileDocumento" id="FormEntregaPlaca-File" class="form-control">
                         </div>
                         <button type="button" class="btn btn-primary" onclick="EnviarForm()" id="Boton-Submit-Form">Confirmar Entrega</button>
                     </form>

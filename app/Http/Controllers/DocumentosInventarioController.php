@@ -5,6 +5,7 @@ namespace SurtidoraLainez\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use SurtidoraLainez\Consignacion;
+use SurtidoraLainez\Cotizacione;
 use SurtidoraLainez\HistorialUsuario;
 use SurtidoraLainez\Notificacion;
 use SurtidoraLainez\Placa;
@@ -42,9 +43,15 @@ class DocumentosInventarioController extends Controller
         $placas_pendientes = Salida::join('entrada_motocicletas','entrada_motocicletas.id','=','salidas.moto_id')
             ->where('entrada_motocicletas.estado_placa', 1)->count();
         $placas_entregada = Placa::where('estado', 2)->count();
+        $cotizaciones_abiertas =Cotizacione::where('estado', 1)->where('estado_condicion',1)->count();
+        $cotizaciones_pendientes = Cotizacione::where('cotizaciones.estado', 3)->where('cotizaciones.estado_condicion',2)->count();
+        $cotizaciones_v_aceptadas = Cotizacione::where('cotizaciones.estado', 3)->where('cotizaciones.estado_condicion', 3)->count();
+        $cotizaciones_v_declinadas = Cotizacione::where('cotizaciones.estado', 3)->where('cotizaciones.estado_condicion', 4)->count();
+        $contratos_pendientes = Salida::where('contrato', 1)->count();
         return view('Inventario.Motocicletas.Documentos.index', compact('entradas','salidas','notificaciones'
         ,'trans_p','trans_a','trans_r','notificaciones2','trans_declinadas','trans_exitosas','transferencias_externas','placas_transferencia',
-        'placas_aceptadas','placas_pendientes', 'placas_entregada'));
+        'placas_aceptadas','placas_pendientes', 'placas_entregada','cotizaciones_abiertas','cotizaciones_pendientes','cotizaciones_v_aceptadas',
+        'cotizaciones_v_declinadas','contratos_pendientes'));
     }
 
     public function docEntrada_ficha($codigo){

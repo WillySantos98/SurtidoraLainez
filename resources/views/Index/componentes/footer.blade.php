@@ -7,8 +7,10 @@
         </div>
     </div>
 </footer>
-
 @include('Index.componentes.scripts')
+
+@section('js')
+@show
 
 
 

@@ -15,6 +15,7 @@ use SurtidoraLainez\EntregaPlaca;
 use SurtidoraLainez\FotosBoleta;
 use SurtidoraLainez\FotosPlaca;
 use SurtidoraLainez\HistorialUsuario;
+use SurtidoraLainez\Http\Controllers\Funciones\PlacasCuentas;
 use SurtidoraLainez\Http\Requests\SavePlaca;
 use SurtidoraLainez\Placa;
 use SurtidoraLainez\Salida;
@@ -45,10 +46,17 @@ class PlacasController extends Controller
         return view('Placas.ingreso', compact('motos','almacenes'));
     }
 
+
     public function save_ingreso(SavePlaca $request){
         $fotosPlaca = $request->file('FilePlaca');
         $fotosBoleta = $request->file('FileBoleta');
         $nuevahubicacionActual = new AlmacenAltualPlaca();
+//        $matricula = 1;
+//        $pago_matricula = 1;
+//        if ($request->input('PrecioMatricula') == null){
+//            $matricula =2 ;
+//            $pago_matricula= 2;
+//        }
 
         $nueva_placa = new Placa();
         $nueva_placa->num_boleta = $request->input('NumeroBoleta');
@@ -64,9 +72,12 @@ class PlacasController extends Controller
         $nueva_placa->id_moto = $request->input('IdMoto');
         $nueva_placa->almacen_entrada = $request->input('SelectAlmacen');
         $nueva_placa->num_ingreso = $request->input('NumGuia');
-        $nueva_placa->estado_enlazo = $request->input('RadioOpcion');
+        $nueva_placa->estado_enlazo = $request->input('RadioOpcion');//estado enlace es ver si la boleta trae placa
         $nueva_placa->venta_id = $request->input('IdVenta');
         $nueva_placa->sucursal_final = $request->input('IdSucursal');
+        $nueva_placa->estado_matricula = 1;
+        $nueva_placa->precio_matricula = $request->input('PrecioMatricula');
+        $nueva_placa->estado_pago_matricula = 1;//es para saber si el cliente tiene que pagar matricula
         $nueva_placa->save();
 
         $nuevahubicacionActual->almacen_actual = $request->input('SelectAlmacen');
@@ -126,6 +137,9 @@ class PlacasController extends Controller
             }
         }
 
+        $salida_id = PlacasCuentas::ObterneCodigoSalidaId($request->input('IdMoto'));
+        PlacasCuentas::Cuenta($salida_id,$request->input('PrecioMatricula'), $request->input('Placa'));
+
         return redirect()->route('placas.ingreso')->with('status','Se ha Guardado Correctamente');
     }
 
@@ -173,7 +187,8 @@ class PlacasController extends Controller
             ->select('placas.num_ingreso','placas.num_boleta','placas.comprobante','placas.fecha_vencimiento',
                 'placas.num_placa','placas.identificacion','sucursals.nombre as nombre_alm','placas.propietario',
                 'placas.ano','placas.estado','placas.estado_enlazo','placas.observaciones','salidas.cod_venta',
-                'users.usuario','placas.id')
+                'users.usuario','placas.id','placas.estado_pago_matricula','placas.estado_matricula',
+                'placas.precio_matricula')
             ->where('placas.num_boleta', $codigo)
             ->get();
         $cliente = Placa::join('salidas','salidas.id','=','placas.venta_id')

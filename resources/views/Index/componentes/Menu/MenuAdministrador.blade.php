@@ -7,6 +7,19 @@
         <span>Reportes</span>
     </a>
 </li>
+<li class="nav-item">
+    <a class="nav-link" href="{{route('cotizaciones.index')}}">
+        <i class="fa fa-file-text-o" aria-hidden="true"></i>
+        <span>Cotizador</span>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="{{route('cuentas.cuentas')}}">
+        <i class="fa fa-list-alt" aria-hidden="true"></i>
+        <span>Cuentas</span>
+    </a>
+</li>
 
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">

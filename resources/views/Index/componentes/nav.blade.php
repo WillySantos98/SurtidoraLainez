@@ -15,7 +15,7 @@
 @if(Auth::user()->tipousuario_id == 3)
     @include('Index.componentes.Menu.MenuVendedor')
 @endif
-    @if(Auth::user()->tipousuario_id == 2)
+    @if(Auth::user()->tipousuario_id == 4)
         @include('Index.componentes.Menu.MenuSupervisor')
     @endif
 @if(Auth::user()->tipousuario_id == 5)

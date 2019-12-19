@@ -23,8 +23,11 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@fullcalendar/core": "^4.3.1",
+        "@fullcalendar/daygrid": "^4.3.0",
         "chart.js": "^2.8.0",
         "noty": "^3.2.0-beta",
-        "sweetalert2": "^8.16.4"
+        "sweetalert2": "^8.16.4",
+        "tui-calendar": "^1.12.5"
     }
 }

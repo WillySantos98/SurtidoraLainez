@@ -24,6 +24,7 @@
                         <th>Chasis</th>
                         <th>Motor</th>
                         <th>Color</th>
+                        <th>Accion</th>
                     </thead>
                     <tbody id="bodyTableMotoE">
 

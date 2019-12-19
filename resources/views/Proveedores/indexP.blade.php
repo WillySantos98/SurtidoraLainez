@@ -1,7 +1,6 @@
 @extends('Index.base')
 @section('title', 'Proveedores')
 @section('content')
-
     @include('Proveedores.formProveedor')
     <hr>
     <div class="container-fluid w-75">
@@ -23,6 +22,7 @@
             </div>
         </div>
         <hr>
+
         <div class="card shadow mb-4">
         <a href="#collapse-tipovehiculo" class="d-block card-header " data-toggle="collapse" role="button" aria-expanded="false">
             <h6 class="m-0 font-weight-bold text-primary">Tipos de Vehiculos</h6>
@@ -99,9 +99,21 @@
         </div>
     </div>
 
+
+
+
+
     <div class="modal fade" id="ModalNewMarca" tabindex="-1" role="dialog" aria-labelledby="ModalNewMarca" aria-hidden="true">
         @include('Proveedores.modals.ModalNewMarca')
     </div>
+
+
+
+
+
+
+
+
     <div class="modal fade" id="ModalNewModelo" tabindex="-1" role="dialog" aria-labelledby="ModalNewModelo" aria-hidden="true">
         @include('Proveedores.modals.ModalNewModelo')
     </div>
